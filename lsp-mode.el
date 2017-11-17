@@ -79,7 +79,7 @@
 
 (cl-defmacro lsp-define-stdio-client (name language-id get-root command
                                        &key docstring
-                                       (language-id-fn #'(lambda (_b) language-id))
+                                       language-id-fn
                                        command-fn
                                        ignore-regexps
                                        initialize)
@@ -104,8 +104,14 @@ Optional arguments:
     `(defun ,enable ()
        ,docstring
        (interactive)
-       (let ((client (make-lsp--client
-                       :language-id ,language-id-fn
+       (let* ((language-id-fn (if (null ,language-id-fn)
+                                (progn
+                                  (cl-check-type ,language-id string)
+                                  (lambda (_) ,language-id))
+                                (cl-check-type ,language-id-fn function)
+                                language-id-fn))
+              (client (make-lsp--client
+                       :language-id language-id-fn
                        :send-sync #'lsp--stdio-send-sync
                        :send-async #'lsp--stdio-send-async
                        :new-connection (lsp--make-stdio-connection
@@ -126,7 +132,7 @@ Optional arguments:
 
 (cl-defmacro lsp-define-tcp-client (name language-id get-root command host port
                                      &key docstring
-                                     (language-id-fn #'(lambda (_b) language-id))
+                                     language-id-fn
                                      command-fn
                                      ignore-regexps
                                      initialize)
@@ -152,7 +158,13 @@ Optional arguments:
     `(defun ,enable ()
        ,docstring
        (interactive)
-       (let ((client (make-lsp--client
+       (let* ((language-id-fn (if (null ,language-id-fn)
+                                (progn
+                                  (cl-check-type ,language-id string)
+                                  (lambda (_) ,language-id))
+                                (cl-check-type ,language-id-fn function)
+                                language-id-fn))
+              (client (make-lsp--client
                        :language-id ,language-id-fn
                        :send-sync #'lsp--stdio-send-sync
                        :send-async #'lsp--stdio-send-async
