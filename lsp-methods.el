@@ -1370,7 +1370,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
 FILE is a cons where its car is the filename and the cdr is a list of Locations
 within the file.  We open and/or create the file/buffer only once for all
 references.  The function returns a list of `xref-item'."
-  (let* ((filename (car file))
+  (let* ((filename (lsp--uri-to-path (car file)))
          (visiting (find-buffer-visiting filename))
          (fn (lambda (loc) (lsp--xref-make-item filename loc))))
     (if visiting
@@ -1390,7 +1390,7 @@ interface Location {
 	range: Range;
 }"
   (when locations
-    (let* ((fn (lambda (loc) (lsp--uri-to-path (gethash "uri" loc))))
+    (let* ((fn (lambda (loc) (gethash "uri" loc)))
             ;; locations-by-file is an alist of the form
             ;; ((FILENAME . LOCATIONS)...), where FILENAME is a string of the
             ;; actual file name, and LOCATIONS is a list of Location objects
