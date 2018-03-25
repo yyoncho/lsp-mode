@@ -132,7 +132,9 @@
   ;; The function takes no parameter and returns a cons (start . end) representing
   ;; the start and end bounds of the prefix. If it's not set, the client uses a
   ;; default prefix function."
-  (prefix-function nil :read-only t))
+  (prefix-function nil :read-only t)
+
+  (load-file-function nil :read-only t))
 
 (cl-defstruct lsp--registered-capability
   (id "" :type string)
@@ -1365,21 +1367,34 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
                                         (1+ (gethash "line" pos-start))
                                         (gethash "character" pos-start)))))
 
+
+(defun lsp--default-load-file (uri fn)
+  "Loads FILENAME and applies calls FN in it."
+  (let* ((filename (lsp--uri-to-path uri))
+         (visiting (find-buffer-visiting filename)))
+    (if visiting
+      (with-current-buffer visiting
+        (funcall fn))
+      (when (file-readable-p filename)
+        (with-current-buffer (find-file-literally filename)
+          (funcall fn))))))
+
 (defun lsp--get-xrefs-in-file (file)
   "Return all references that contain a file.
 FILE is a cons where its car is the filename and the cdr is a list of Locations
 within the file.  We open and/or create the file/buffer only once for all
 references.  The function returns a list of `xref-item'."
-  (let* ((filename (lsp--uri-to-path (car file)))
-         (visiting (find-buffer-visiting filename))
-         (fn (lambda (loc) (lsp--xref-make-item filename loc))))
-    (if visiting
-        (with-current-buffer visiting
-          (mapcar fn (cdr file)))
-      (when (file-readable-p filename)
-        (with-temp-buffer
-          (insert-file-contents-literally filename)
-          (mapcar fn (cdr file)))))))
+  (let* ((uri (car file))
+          (process-loc-fn (lambda (loc) (lsp--xref-make-item
+                                          (buffer-file-name)
+                                          loc)))
+         (process-file-fn (lambda () (mapcar
+                                       process-loc-fn
+                                      (cdr file))))
+         (load-file-fn (or (lsp--client-load-file-function
+                              (lsp--workspace-client lsp--cur-workspace))
+                          'lsp--default-load-file)))
+    (funcall load-file-fn uri process-file-fn)))
 
 (defun lsp--locations-to-xref-items (locations)
   "Return a list of `xref-item' from LOCATIONS.
