@@ -983,7 +983,7 @@ interface TextDocumentEdit {
 (define-inline lsp--apply-text-edits (edits)
   "Apply the edits described in the TextEdit[] object in EDITS."
   (inline-quote
-    (mapc #'lsp--apply-text-edit (sort ,edits #'lsp--text-edit-sort-predicate))))
+    (mapc #'lsp--apply-text-edit (reverse ,edits))))
 
 (defun lsp--apply-text-edit (text-edit)
   "Apply the edits described in the TextEdit object in TEXT-EDIT."
@@ -1642,7 +1642,7 @@ If title is nil, return the name for the command handler."
   "Execute code action ACTION."
   (interactive (list (completing-read "Select code action: "
                        (seq-group-by #'lsp--command-get-title lsp-code-actions))))
-  (lsp--execute-command action))
+  (lsp--apply-workspace-edit (first (gethash "arguments" action))))
 
 (defvar-local lsp-code-lenses nil
   "A list of code lenses computed for the buffer.")
