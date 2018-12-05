@@ -235,5 +235,34 @@ PARAMS progress report notification data."
                   :server-id 'php-ls))
 
 
+;; XML
+(defcustom lsp-clients-xml-server-command
+  `("java" ,(expand-file-name "/home/kyoncho/Downloads/org.eclipse.lsp4xml-all.jar"))
+  "The command for the XML language server."
+  :group 'lsp-xml
+  :type 'file)
+
+(setq lsp-clients-xml-settings
+      `(:trace ("server" "verbose")
+               :catalogs ,(vector)
+               :logs ("client" t
+                      "file" "/home/kyoncho/.config/Code/User/workspaceStorage/c0b7e892df768e522288c11d3c7ca4a6/redhat.vscode-xml/lsp4xml.log")
+               :format ("splitAttributes" :json-false
+                        "joinCDATALines" :json-false
+                        "joinContentLines" :json-false
+                        "joinCommentLines" :json-false
+                        "enabled" t)
+               :fileAssociations ,(vector)
+               :completion ("autoCloseTags" t)
+               :server ("vmargs" "-noverify -Xmx64M -XX:+UseG1GC -XX:+UseStringDeduplication")
+               :useCache t)
+      )
+
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection (-const lsp-clients-xml-server-command))
+                  :major-modes '(nxml-mode xml-mode)
+                  :initialization-options (lambda () lsp-clients-xml-settings)
+                  :server-id 'xml-ls))
+
 (provide 'lsp-clients)
 ;;; lsp-clients.el ends here
