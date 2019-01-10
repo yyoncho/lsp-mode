@@ -3457,14 +3457,9 @@ such."
 (defun lsp-shutdown-workspace ()
   "Shutdown language server."
   (interactive)
-  (--when-let (pcase (lsp-workspaces)
-                (`nil (user-error "There are no active servers in the current buffer"))
-                (`(,workspace) (when (y-or-n-p (format "Are you sure tou want to stop server %s?"
-                                                       (lsp--workspace-print workspace)))
-                                 workspace))
-                (workspaces (lsp--completing-read "Select server: "
-                                                  workspaces
-                                                  'lsp--workspace-print nil t)))
+  (--when-let (if-let (workspaces (lsp-workspaces))
+                  (lsp--completing-read "Select server: " workspaces 'lsp--workspace-print nil t)
+                (user-error "There are no active servers in the current buffer"))
     (lsp--warn "Stopping %s" (lsp--workspace-print it))
     (setf (lsp--workspace-shutdown-action it) 'shutdown)
     (with-lsp-workspace it (lsp--shutdown-workspace))))
@@ -3472,12 +3467,9 @@ such."
 (defun lsp-restart-workspace ()
   "Restart language server."
   (interactive)
-  (--when-let (pcase (lsp-workspaces)
-                (`nil (user-error "There are no active servers in the current buffer"))
-                (`(,workspace) workspace)
-                (workspaces (lsp--completing-read "Select server: "
-                                                  workspaces
-                                                  'lsp--workspace-print nil t)))
+  (--when-let (if-let (workspaces (lsp-workspaces))
+                  (lsp--completing-read "Select server: " workspaces 'lsp--workspace-print nil t)
+                (user-error "There are no active servers in the current buffer"))
     (lsp--warn "Restarting %s" (lsp--workspace-print it))
     (setf (lsp--workspace-shutdown-action it) 'restart)
     (with-lsp-workspace it (lsp--shutdown-workspace))))
