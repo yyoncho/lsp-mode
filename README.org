@@ -1,5 +1,4 @@
-** Emacs Language Server Client
-
+** Comminity Driven Emacs Language Server Client
   [[https://melpa.org/#/lsp-mode][file:https://melpa.org/packages/lsp-mode-badge.svg]]
   [[https://stable.melpa.org/#/lsp-mode][file:https://stable.melpa.org/packages/lsp-mode-badge.svg]]
   [[https://gitter.im/emacs-lsp/lsp-mode][file:https://badges.gitter.im/emacs-lsp/lsp-mode.svg]]
@@ -9,10 +8,6 @@
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.0). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
 
    *This release is breaking refer to the configuration section for upgrade instruction.*
-
-   /Note: if you still want to use the legacy lsp-mode refer to melpa stable./
-
-   /Note: if your server is still not ported to the new interface, please file a bug in the corresponding repo./
 
    - Diagnostics (via builtin ~flymake~ when Emacs > 26 or [[https://github.com/flycheck/flycheck][flycheck]]/[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]])
    - Code completion - using [[https://github.com/tigersoldier/company-lsp][company-lsp]] or builtin ~complete-at-point~
@@ -66,37 +61,37 @@ Replace ~(require 'lsp-mode)~ with the following if you use use-package.
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
 #+END_SRC
+* How it works?
+  ~lsp-mode~
 * Supported languages
   Some of the servers are directly supported by ~lsp-mode~ by requiring
   ~lsp-clients.el~ while other require installing additional package which provide
   server specific functionality.
 
-  | Language              | Language Server             | Built-in      | Installation command                           | Debugger |
-  |-----------------------+-----------------------------+---------------+------------------------------------------------+----------|
-  | Bash                  | [[https://github.com/mads-hartmann/bash-language-server][bash-language-server]]        | Yes           | npm i -g bash-language-server                  |          |
-  | C++                   | [[https://github.com/MaskRay/ccls][ccls]]                        | [[https://github.com/MaskRay/emacs-ccls][emacs-ccls]]    | [[https://github.com/MaskRay/ccls][ccls]]                                           |          |
-  | C++                   | [[https://clang.llvm.org/extra/clangd.html][clangd]]                      | Yes           | [[https://clang.llvm.org/extra/clangd.html][clangd]]                                         |          |
-  | C++                   | [[https://github.com/cquery-project/cquery][cquery]]                      | [[https://github.com/cquery-project/emacs-cquery][emacs-cquery]]  | [[https://github.com/cquery-project/cquery][cquery]]                                         |          |
-  | CSS                   | [[https://github.com/vscode-langservers/vscode-css-languageserver-bin][css]]                         | Yes           | npm install -g vscode-css-languageserver-bin   |          |
-  | Dart                  | [[https://github.com/natebosch/dart_language_server][dart_language_server]]        | Yes           | pub global activate dart_language_server       |          |
-  | Elixir                | [[https://github.com/JakeBecker/elixir-ls][elixir-ls]]                   | Yes           | [[https://github.com/JakeBecker/elixir-ls][elixir-ls]]                                      |          |
-  | Fortran               | [[https://github.com/hansec/fortran-language-server][fortran-language-server]]     | Yes | pip install fortran-language-server |          |
-  | Go                    | [[https://github.com/saibing/bingo][bingo]]                       | Yes           | [[https://github.com/saibing/bingo/wiki/Install][bingo]]                                         |          |
-  | Groovy                | [[https://github.com/palantir/language-servers][groovy-language-server]]      | Yes           | [[https://github.com/palantir/language-servers][groovy-language-server]]                         |          |
-  | HTML                  | [[https://github.com/vscode-langservers/vscode-html-languageserver][html]]                        | Yes           | npm install -g vscode-html-languageserver-bin  |          |
-  | Haskell               | [[https://github.com/haskell/haskell-ide-engine][IDE engine]]                  | [[https://github.com/emacs-lsp/lsp-haskell][lsp-haskell]]   | [[https://github.com/haskell/haskell-ide-engine][IDE engine]]                                     |          |
-  | Java                  | [[https://github.com/eclipse/eclipse.jdt.ls][Eclipse JDT LS]]              | [[https://github.com/emacs-lsp/lsp-java][lsp-java]]      | Automatic by [[https://github.com/emacs-lsp/lsp-java][lsp-java]]                          | Yes      |
-  | Javascript/Typescript | [[https://github.com/sourcegraph/javascript-typescript-langserver][javascript-typescript-stdio]] | Yes           | npm i -g javascript-typescript-langserver      |          |
-  | Ocaml                 | [[https://github.com/freebroccolo/ocaml-language-server][ocaml-language-server]]       | Yes           | [[https://github.com/freebroccolo/ocaml-language-server][ocaml-language-server]]                          |          |
-  | PHP                   | [[https://github.com/felixfbecker/php-language-server][php-language-server]]         | Yes           | [[https://github.com/felixfbecker/php-language-server][php-language-server]]                            |          |
-  | Python                | [[https://github.com/palantir/python-language-server][pyls]]                        | Yes           | pip install 'python-language-server[all]'      | Yes      |
-  | Ruby                  | [[https://github.com/castwide/solargraph][solargraph]]                  | Yes           | gem install solargraph                         | Yes      |
-  | Rust                  | [[https://github.com/rust-lang-nursery/rls][rls]]                         | Yes           | [[https://github.com/rust-lang-nursery/rls][rls]]                                            |          |
-  | Scala                 | [[https://github.com/rossabaker/lsp-scala][lsp-scala]]                   | TBD           |                                                |          |
-  | Swift                 | [[https://github.com/apple/sourcekit-lsp][sourcekit-LSP]]               | [[https://github.com/emacs-lsp/lsp-sourcekit][lsp-sourcekit]] | [[https://github.com/apple/sourcekit-lsp][sourcekit-LSP]]                                  |          |
-  | Vue                   | [[https://github.com/vuejs/vetur/tree/master/server][vue-language-server]]         | Yes           | npm install -g vue-language-server             |          |
-
-  
+  | Language              | Language Server             | Built-in      | Installation command                          | Debugger                     |
+  |-----------------------+-----------------------------+---------------+-----------------------------------------------+------------------------------|
+  | Bash                  | [[https://github.com/mads-hartmann/bash-language-server][bash-language-server]]        | Yes           | npm i -g bash-language-server                 |                              |
+  | C++                   | [[https://github.com/MaskRay/ccls][ccls]]                        | [[https://github.com/MaskRay/emacs-ccls][emacs-ccls]]    | [[https://github.com/MaskRay/ccls][ccls]]                                          | Yes (via llvm debug adapter) |
+  | C++                   | [[https://clang.llvm.org/extra/clangd.html][clangd]]                      | Yes           | [[https://clang.llvm.org/extra/clangd.html][clangd]]                                        | Yes (via llvm debug adapter) |
+  | C++                   | [[https://github.com/cquery-project/cquery][cquery]]                      | [[https://github.com/cquery-project/emacs-cquery][emacs-cquery]]  | [[https://github.com/cquery-project/cquery][cquery]]                                        | Yes (via llvm debug adapter) |
+  | CSS                   | [[https://github.com/vscode-langservers/vscode-css-languageserver-bin][css]]                         | Yes           | npm install -g vscode-css-languageserver-bin  |                              |
+  | Dart                  | [[https://github.com/natebosch/dart_language_server][dart_language_server]]        | Yes           | pub global activate dart_language_server      |                              |
+  | Elixir                | [[https://github.com/JakeBecker/elixir-ls][elixir-ls]]                   | Yes           | [[https://github.com/JakeBecker/elixir-ls][elixir-ls]]                                     | Yes                          |
+  | Fortran               | [[https://github.com/hansec/fortran-language-server][fortran-language-server]]     | Yes           | pip install fortran-language-server           |                              |
+  | Go                    | [[https://github.com/saibing/bingo][bingo]]                       | Yes           | [[https://github.com/saibing/bingo/wiki/Install][bingo]]                                         |                              |
+  | Groovy                | [[https://github.com/palantir/language-servers][groovy-language-server]]      | Yes           | [[https://github.com/palantir/language-servers][groovy-language-server]]                        |                              |
+  | HTML                  | [[https://github.com/vscode-langservers/vscode-html-languageserver][html]]                        | Yes           | npm install -g vscode-html-languageserver-bin |                              |
+  | Haskell               | [[https://github.com/haskell/haskell-ide-engine][IDE engine]]                  | [[https://github.com/emacs-lsp/lsp-haskell][lsp-haskell]]   | [[https://github.com/haskell/haskell-ide-engine][IDE engine]]                                    |                              |
+  | Java                  | [[https://github.com/eclipse/eclipse.jdt.ls][Eclipse JDT LS]]              | [[https://github.com/emacs-lsp/lsp-java][lsp-java]]      | Automatic by [[https://github.com/emacs-lsp/lsp-java][lsp-java]]                         | Yes                          |
+  | Javascript/Typescript | [[https://github.com/sourcegraph/javascript-typescript-langserver][javascript-typescript-stdio]] | Yes           | npm i -g javascript-typescript-langserver     |                              |
+  | Ocaml                 | [[https://github.com/freebroccolo/ocaml-language-server][ocaml-language-server]]       | Yes           | [[https://github.com/freebroccolo/ocaml-language-server][ocaml-language-server]]                         |                              |
+  | PHP                   | [[https://github.com/felixfbecker/php-language-server][php-language-server]]         | Yes           | [[https://github.com/felixfbecker/php-language-server][php-language-server]]                           |                              |
+  | Python                | [[https://github.com/palantir/python-language-server][pyls]]                        | Yes           | pip install 'python-language-server[all]'     | Yes                          |
+  | Ruby                  | [[https://github.com/castwide/solargraph][solargraph]]                  | Yes           | gem install solargraph                        | Yes                          |
+  | Rust                  | [[https://github.com/rust-lang-nursery/rls][rls]]                         | Yes           | [[https://github.com/rust-lang-nursery/rls][rls]]                                           | Yes (via llvm debug adapter) |
+  | Scala                 | [[https://github.com/rossabaker/lsp-scala][lsp-scala]]                   | [[https://github.com/rossabaker/lsp-scala][lsp-scala]]     |                                               |                              |
+  | Swift                 | [[https://github.com/apple/sourcekit-lsp][sourcekit-LSP]]               | [[https://github.com/emacs-lsp/lsp-sourcekit][lsp-sourcekit]] | [[https://github.com/apple/sourcekit-lsp][sourcekit-LSP]]                                 |                              |
+  | Vue                   | [[https://github.com/vuejs/vetur/tree/master/server][vue-language-server]]         | Yes           | npm install -g vue-language-server            |                              |
 * Commands
   - ~lsp-describe-session~ - Display session folders and running servers.
   - ~lsp-describe-thing-at-point~ - Display help for the thing at point.
@@ -114,7 +109,6 @@ Replace ~(require 'lsp-mode)~ with the following if you use use-package.
   - ~completion-at-point~ - display completion using built-in emacs ~completion-at-point~ framework.
   - ~lsp-find-definition~ - to find the definition for the symbol under point.
   - ~lsp-find-references~ - Find references for the symbol under point.
-
 * Configuration
   - ~lsp-print-io~ - If non-nil, print all messages to and from the language server to ~*Messages*~.
   - ~lsp-inhibit-message~ - If non-nil, inhibit the message echo via ~inhibit-message~.
@@ -140,9 +134,7 @@ Replace ~(require 'lsp-mode)~ with the following if you use use-package.
   - ~lsp-response-timeout~ - Number of seconds to wait for a response from the language server before timing out.
 ** Hooks
    ~lsp-mode~ provides a handful of hooks that can be used to extend and configure
-   the behaviour of language servers. A full list of hooks is available in the
-   [[API documentation][./doc/API.org]].
-
+   the behaviour of language servers.
 * Adding support for languages
   See [[./doc/API.org][API docs]]
 
@@ -162,7 +154,9 @@ Replace ~(require 'lsp-mode)~ with the following if you use use-package.
     #+END_SRC
 *** I have multiple language servers registered for language FOO. Which one will be used when opening a project?
 The one with highest priority wins. ~lsp-clients.el~ predefined servers have
-priority -1, lower than external packages (priority 0 if unspecified).
+priority -1, lower than external packages (priority 0 if unspecified). If a
+server is registered with ~:add-on?~ flag set to ~t~ it will be started in
+parallel to the other servers that are registered for the current mode.
 ** See also
    - [[https://github.com/yyoncho/dap-mode][dap-mode]] - Debugger integration for ~lsp-mode~.
    - [[https://github.com/joaotavora/eglot][eglot]] - An alternative minimal LSP implementation.
