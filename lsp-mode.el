@@ -3437,7 +3437,11 @@ current language. When IGNORE-MULTI-FOLDER is nil current file
 will be openned in multi folder language server if there is
 such."
   (-let ((session (lsp-session)))
-    (-if-let (clients (lsp--find-clients session major-mode (buffer-file-name)))
+    (-if-let (clients (if current-prefix-arg
+                          (list (lsp--completing-read "Select server to start: "
+                                                      (ht-values lsp-clients)
+                                                      'lsp--client-server-id nil t))
+                        (lsp--find-clients session major-mode (buffer-file-name))))
         (-if-let (project-root (lsp--calculate-root session (buffer-file-name)))
             (progn
               ;; update project roots if needed and persit the lsp session
