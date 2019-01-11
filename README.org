@@ -62,7 +62,7 @@ Replace ~(require 'lsp-mode)~ with the following if you use use-package.
 (use-package company-lsp :commands company-lsp)
 #+END_SRC
 * How it works?
-  ~lsp-mode~
+  When ~lsp~ command is ~lsp-mode~
 * Supported languages
   Some of the servers are directly supported by ~lsp-mode~ by requiring
   ~lsp-clients.el~ while other require installing additional package which provide

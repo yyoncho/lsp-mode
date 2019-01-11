@@ -1974,6 +1974,35 @@ If INCLUDE-DECLARATION is non-nil, request the server to include declarations."
              (current-buffer))))
       (lsp--info "No content at point."))))
 
+(defun lsp--render-signature-help (signatures)
+  "Render signature help."
+  (with-temp-buffer
+    (-each signatures
+      (-lambda ((&hash "label" "documentation" "parameters"))
+        (insert label)
+        (insert "\n")
+        (insert documentation)
+        (insert "\n\n")))
+    (buffer-string)))
+
+(defun lsp-describe-signature-at-point ()
+  "Display the full documentation of the thing at point."
+  (interactive)
+  (if-let (signatures (-some->> (lsp--text-document-position-params)
+                                (lsp--make-request "textDocument/signatureHelp")
+                                (lsp--send-request)
+                                (gethash "signatures")))
+      (pop-to-buffer
+       (with-current-buffer (get-buffer-create "*lsp-signature*")
+         (let ((inhibit-read-only t))
+           (erase-buffer)
+           (insert (lsp--render-signature-help signatures))
+           (page-break-lines-mode)
+           (goto-char (point-min))
+           (view-mode t)
+           (current-buffer))))
+    (lsp--info "No content at point.")))
+
 (defun lsp--point-in-bounds-p (bounds)
   "Return whether the current point is within BOUNDS."
   (and (<= (car bounds) (point)) (< (point) (cdr bounds))))
@@ -3386,10 +3415,10 @@ Returns nil if the project should not be added to the current SESSION."
 (defun lsp-find-workspace (server-id file-name)
   "Find workspace for SERVER-ID for FILE-NAME."
   (-when-let* ((session (lsp-session))
-              (folder->servers (lsp-session-folder->servers session))
-              (workspaces (if file-name
-                              (gethash (lsp-find-session-folder session file-name) folder->servers)
-                            (lsp--session-workspaces session))))
+               (folder->servers (lsp-session-folder->servers session))
+               (workspaces (if file-name
+                               (gethash (lsp-find-session-folder session file-name) folder->servers)
+                             (lsp--session-workspaces session))))
 
     (--first (eq (lsp--client-server-id (lsp--workspace-client it)) server-id) workspaces)))
 
