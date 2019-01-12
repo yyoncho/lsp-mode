@@ -422,6 +422,49 @@ must be used for handling a particular message.")
   "Face used for highlighting symbols being written to."
   :group 'lsp-faces)
 
+(defcustom lsp-lenses-check-interval 0.1
+  "The interval for checking for changes in the buffer state."
+  :group 'lsp-mode
+  :type 'boolean)
+
+(defcustom lsp-lenses-debounce-interval 0.7
+  "Debounce interval for loading lenses."
+  :group 'lsp-mode
+  :type 'boolean)
+
+(defface lsp-lenses-mouse-face
+  '((t :height 0.8 :inherit link))
+  "The face used for code lens overlays."
+  :group'lsp-mode)
+
+(defface lsp-lenses-face
+  '((t :height 0.8 :inherit shadow))
+  "The face used for code lens overlays."
+  :group 'lsp-mode)
+
+(defvar-local lsp--lenses-overlays nil
+  "Current lenses.")
+
+(defvar-local lsp--lenses-modified-tick nil
+  "The tick last time the lenses where modified.")
+
+(defvar-local lsp--lenses-page nil
+  "Pair of points which holds the last window location the lenses were loaded.")
+
+(defvar lsp-lenses-backends '(lsp-lenses-backend)
+  "Backends providing lenses.")
+
+(defvar-local lsp--lenses-refresh-timer nil
+  "Pair of points which holds the last window location the lenses were loaded.")
+
+(defvar-local lsp--lenses-idle-timer  nil
+  "Pair of points which holds the last window location the lenses were loaded.")
+
+(defvar-local lsp--lences-data nil
+  "Pair of points which holds the last window location the lenses were loaded.")
+
+(defvar-local lsp--lenses-backend-cache nil)
+
 (defvar-local lsp--buffer-workspaces ()
   "List of the buffer workspaces.")
 
@@ -903,6 +946,220 @@ WORKSPACE is the workspace that contains the diagnostics."
                                                            (_ :note))
                                                          message)))))))
 
+(defun lsp--ht-get (tbl &rest keys)
+  "Get nested KEYS in TBL."
+  (let ((val tbl))
+    (while (and keys val)
+      (setq val (ht-get val (first keys)))
+      (setq keys (rest keys)))
+    val))
+
+;; lenses support
+
+(defun lsp--lenses-text-width (from to)
+  "Measure the width of the text between FROM and TO.
+Results are meaningful only if FROM and TO are on the same line."
+  ;; `current-column' takes prettification into account
+  (- (save-excursion (goto-char to) (current-column))
+     (save-excursion (goto-char from) (current-column))))
+
+(defun lsp--lenses-update (ov)
+  "Redraw quick-peek overlay OV."
+  (let ((offset (lsp--lenses-text-width (save-excursion
+                                          (beginning-of-visual-line)
+                                          (point))
+                                        (save-excursion
+                                          (beginning-of-line-text)
+                                          (point)))))
+    (save-excursion
+      (goto-char (overlay-start ov))
+      (overlay-put ov
+                   'before-string
+                   (format "%s%s\n"
+                           (make-string offset ?\s)
+                           (overlay-get ov 'lsp--lenses-contents))))))
+
+(defun lsp--lenses-overlay-ensure-at (pos)
+  "Find or create a lens for the line at POS."
+  (or (car (cl-remove-if-not (lambda (ov) (lsp--lenses-overlay-matches-pos ov pos)) lsp--lenses-overlays))
+      (let* ((ov (save-excursion
+                   (goto-char pos)
+                   (make-overlay (point-at-bol) (1+ (point-at-eol))))))
+        (overlay-put ov 'lsp-lens t)
+        ov)))
+
+(defun lsp--lenses-show (str pos)
+  "Show STR in an inline window at POS."
+  (let ((ov (lsp--lenses-overlay-ensure-at pos)))
+    (save-excursion
+      (goto-char pos)
+      (setf (overlay-get ov 'lsp--lenses-contents) str)
+      (lsp--lenses-update ov))
+    ov))
+
+(defun lsp--lenses-overlay-matches-pos (ov pos)
+  "Check if OV is a lens covering POS."
+  (and (overlay-get ov 'lsp-lens)
+       (<= (overlay-start ov) pos)
+       (< pos (overlay-end ov))))
+
+(defun lsp--lenses-idle-function (&optional buffer)
+  "Create iddle function for buffer BUFFER."
+  (when (or (not buffer) (eq (current-buffer) buffer))
+    (cond
+     ((not (equal (buffer-modified-tick) lsp--lenses-modified-tick))
+      (lsp--lenses-schedule-refresh t))
+
+     ((not (equal (list (window-start) (window-end)) lsp--lenses-page))
+      (lsp--lenses-schedule-refresh nil)))))
+
+(defun lsp--lenses-schedule-refresh (buffer-modified?)
+  "Call each of the backend.
+BUFFER-MODIFIED? determines whether the buffer is modified or not."
+  (-some-> lsp--lenses-refresh-timer cancel-timer)
+
+  (setq-local lsp--lenses-modified-tick (buffer-modified-tick))
+  (setq-local lsp--lenses-page (list (window-start) (window-end)))
+  (setq-local lsp--lenses-refresh-timer
+              (run-with-timer lsp-lenses-debounce-interval nil 'lsp--lenses-refresh buffer-modified?)))
+
+(defun lsp--lenses-display (lenses)
+  "Show LENSES."
+  (let ((overlays (->> lenses
+                       (--filter (gethash "command" it))
+                       (--group-by (lsp--ht-get it "range" "start" "line"))
+                       (-map (-lambda ((_ . lenses))
+                               (let ((sorted (--sort (< (lsp--ht-get it "range" "start" "character")
+                                                        (lsp--ht-get other "range" "start" "character"))
+                                                     lenses)))
+                                 (list (lsp--position-to-point (lsp--ht-get (first sorted) "range" "start"))
+                                       (s-join (propertize "|" 'face 'lsp-lenses-face)
+                                               (-map
+                                                (-lambda ((lens &as &hash "command" (command &as &hash "title")))
+                                                  (propertize title
+                                                              'face 'lsp-lenses-face
+                                                              'mouse-face 'lsp-lenses-mouse-face
+                                                              'local-map (let ((map (make-sparse-keymap)))
+                                                                           (define-key map [mouse-1]
+                                                                             (if (commandp command)
+                                                                                 command
+                                                                               (lambda ()
+                                                                                 (interactive)
+                                                                                 (lsp-execute-code-action command))))
+                                                                           map)))
+                                                sorted))))))
+                       (-map (-lambda ((position str))
+                               (lsp--lenses-show str position))))))
+    (--each lsp--lenses-overlays
+      (unless (-contains? overlays it)
+        (delete-overlay it)))
+    (setq-local lsp--lenses-overlays overlays)))
+
+(defun lsp--lenses-refresh (buffer-modified?)
+  "Refresh lenses using lenses backend.
+BUFFER-MODIFIED? determines whether the buffer is modified or not."
+  (setq-local lsp--lenses-modified-tick (buffer-modified-tick))
+  (dolist (backend lsp-lenses-backends)
+    (funcall backend buffer-modified?
+             (lambda (lenses)
+               (lsp--process-lenses backend lenses)))))
+
+(defun lsp--process-lenses (backend lenses)
+  "Process LENSES originated from BACKEND."
+  (setq-local lsp--lences-data (or lsp--lences-data (make-hash-table)))
+  (puthash backend lenses lsp--lences-data)
+  (lsp--lenses-display (-flatten (ht-values lsp--lences-data))))
+
+(defun lsp-lenses-show ()
+  "Display lenses in the buffer."
+  (interactive)
+  (let ((overlays (->> (lsp-request "textDocument/codeLens"
+                                    `(:textDocument (:uri ,(lsp--path-to-uri buffer-file-name))))
+                       (--map (if (gethash "command" it)
+                                  it
+                                (lsp-request "codeLens/resolve" it)))
+                       lsp--lenses-display)))
+    (--each lsp--lenses-overlays
+      (unless (-contains? overlays it)
+        (delete-overlay it)))
+    (setq-local lsp--lenses-overlays overlays)))
+
+(defun lsp-lenses-hide ()
+  "Delete all lenses."
+  (interactive)
+  (let ((scroll-preserve-screen-position t))
+    (-each lsp--lenses-overlays 'delete-overlay)
+    (setq-local lsp--lenses-overlays nil)))
+
+(defun lsp--lenses-backend-not-loaded? (lens)
+  "Return t if LENS has to be loaded."
+  (-let (((&hash "range" (&hash "start") "command" "pending") lens))
+    (and (< (window-start) (lsp--position-to-point start) (window-end))
+         (not command)
+         (not pending))))
+
+(defun lsp--lenses-backend-present? (lens)
+  "Return t if LENS has to be loaded."
+  (-let (((&hash "range" (&hash "start") "command") lens))
+    (or command
+        (not (< (window-start) (lsp--position-to-point start) (window-end))))))
+
+(defun lsp--lenses-backend-fetch-missing (lenses tick callback)
+  "Fetch LENSES without command in for the current window.
+
+TICK is the buffer modified tick. If it does not match
+`buffer-modified-tick' at the time of receiving the updates the
+updates must be discarted..
+CALLBACK - the callback for the lenses."
+  (--each (-filter 'lsp--lenses-backend-not-loaded? lenses)
+    (puthash "pending" t it)
+    (lsp-request-async "codeLens/resolve" it
+                       (lambda (lens)
+                         (when (equal tick (buffer-modified-tick))
+                           (remhash "pending" it)
+                           (puthash "command" (gethash "command" lens) it)
+                           (when (-all? 'lsp--lenses-backend-present?  lenses)
+                             (funcall callback lenses))))
+                       :mode 'detached)))
+
+(defun lsp-lenses-backend (modified? callback)
+  "Lenses backend using `textDocument/codeLens'.
+MODIFIED? - t when buffer is modified since the last invocation.
+CALLBACK - callback for the lenses."
+  (when (lsp--find-workspaces-for "textDocument/codeLens")
+    (if modified?
+        (let ((tick lsp--lenses-modified-tick))
+          (setq-local lsp--lenses-backend-cache nil)
+          (lsp-request-async "textDocument/codeLens"
+                             `(:textDocument (:uri ,(lsp--path-to-uri buffer-file-name)))
+                             (lambda (lenses)
+                               (when (equal tick (buffer-modified-tick))
+                                 (setq-local lsp--lenses-backend-cache lenses)
+                                 (if (--every? (gethash "command" it) lenses)
+                                     (funcall callback lenses)
+                                   (lsp--lenses-backend-fetch-missing lenses tick callback))))
+                             :mode 'detached))
+      (if (-all? #'lsp--lenses-backend-present? lsp--lenses-backend-cache)
+          (funcall callback lsp--lenses-backend-cache)
+        (lsp--lenses-backend-fetch-missing lsp--lenses-backend-cache lsp--lenses-modified-tick callback)))))
+
+(define-minor-mode lsp-lenses-mode
+  "toggle code-lens overlays"
+  :group 'lsp-mode
+  :global nil
+  :init-value nil
+  :lighter "Lens"
+  (cond
+   (lsp-lenses-mode
+    (setq-local lsp--lenses-idle-timer (run-with-idle-timer lsp-lenses-check-interval t #'lsp--lenses-idle-function  (current-buffer)))
+    (lsp--lenses-refresh t)
+    (add-hook 'after-save-hook #'lsp--lenses-idle-function t))
+   (t
+    (-some-> lsp--lenses-idle-timer cancel-timer)
+    (lsp-lenses-hide)
+    (remove-hook 'after-save-hook #'lsp--lenses-idle-function t))))
+
+
 (define-minor-mode lsp-mode ""
   nil nil nil
   :lighter (:eval (lsp-mode-line))
