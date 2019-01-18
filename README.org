@@ -1,8 +1,8 @@
-* Comminity Driven Emacs Language Server Client
   [[https://melpa.org/#/lsp-mode][file:https://melpa.org/packages/lsp-mode-badge.svg]]
   [[https://stable.melpa.org/#/lsp-mode][file:https://stable.melpa.org/packages/lsp-mode-badge.svg]]
   [[https://gitter.im/emacs-lsp/lsp-mode][file:https://badges.gitter.im/emacs-lsp/lsp-mode.svg]]
   [[https://travis-ci.org/emacs-lsp/lsp-mode][file:https://travis-ci.org/emacs-lsp/lsp-mode.svg?branch=master]]
+* Comminity Driven Emacs Language Server Client
 #+caption: LSP mode
 [[file:examples/head.png]]
 
