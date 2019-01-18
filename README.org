@@ -7,15 +7,15 @@
 [[file:examples/head.png]]
 
 ** Why?
-  - 💎 *Tested*: typed language, tested with CI.
-  - 🚀 *Fast* -
-  - 🌟 *Featured*: Almost 100% LSP support and
-  - ❤️ *Flexible*
+   - ❤️ *Community Driven*
+   - 💎 *Fully featured* - supports LSP core and Language Server non-standard extensions
+   - 🚀 *Easy to configure* - works out of the box and automatically upgrades if extensions are found.
+   - 🌟 *Flexible* - full-blown IDE with flashy UI or minimal distraction free
 ** Overview
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.14). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
 
    - Non-blocking asynchronous calls
-   - Realtime Diagnostics/lint messages (via builtin ~flymake~ when Emacs > 26 or [[https://github.com/flycheck/flycheck][flycheck]]/[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]])
+   - Real-time Diagnostics/linting (via builtin ~flymake~ when Emacs > 26 or [[https://github.com/flycheck/flycheck][flycheck]]/[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]])
    - Code completion - using [[https://github.com/tigersoldier/company-lsp][company-lsp]] or builtin ~complete-at-point~
    - Hovers - using [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
    - Code actions - using ~lsp-execute-code-action~ or [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
