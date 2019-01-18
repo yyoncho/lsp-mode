@@ -1,10 +1,10 @@
-  [[https://melpa.org/#/lsp-mode][file:https://melpa.org/packages/lsp-mode-badge.svg]]
-  [[https://stable.melpa.org/#/lsp-mode][file:https://stable.melpa.org/packages/lsp-mode-badge.svg]]
-  [[https://gitter.im/emacs-lsp/lsp-mode][file:https://badges.gitter.im/emacs-lsp/lsp-mode.svg]]
-  [[https://travis-ci.org/emacs-lsp/lsp-mode][file:https://travis-ci.org/emacs-lsp/lsp-mode.svg?branch=master]]
+[[https://melpa.org/#/lsp-mode][file:https://melpa.org/packages/lsp-mode-badge.svg]]
+[[https://stable.melpa.org/#/lsp-mode][file:https://stable.melpa.org/packages/lsp-mode-badge.svg]]
+[[https://gitter.im/emacs-lsp/lsp-mode][file:https://badges.gitter.im/emacs-lsp/lsp-mode.svg]]
+[[https://travis-ci.org/emacs-lsp/lsp-mode][file:https://travis-ci.org/emacs-lsp/lsp-mode.svg?branch=master]]
 * Language Server Protocol Support for Emacs
-#+caption: LSP mode
-[[file:examples/head.png]]
+  #+caption: LSP mode
+  [[file:examples/head.png]]
 
 ** Table of Contents                                      :TOC_4_gh:noexport:
 - [[#language-server-protocol-support-for-emacs][Language Server Protocol Support for Emacs]]
@@ -39,8 +39,6 @@
   - [[#troubleshoooting][Troubleshoooting]]
   - [[#adding-support-for-languages][Adding support for languages]]
   - [[#faq][FAQ]]
-      - [[#how-to-configure-a-server-with-local-variables][How to configure a server with local variables?]]
-      - [[#i-have-multiple-language-servers-registered-for-language-foo-which-one-will-be-used-when-opening-a-project][I have multiple language servers registered for language FOO. Which one will be used when opening a project?]]
   - [[#see-also][See also]]
 
 ** Why?
@@ -246,11 +244,11 @@
     - ~lsp-response-timeout~ - Number of seconds to wait for a response from the language server before timing out.
 ** Screenshots
 **** RUST Completion with company-lsp
-    [[file:examples/completion.png]]
+     [[file:examples/completion.png]]
 **** Typescript references using lsp-ui
-    [[file:examples/references.png]]
+     [[file:examples/references.png]]
 **** Debugging Python using dap-mode
-    [[file:examples/python_debugging.png]]
+     [[file:examples/python_debugging.png]]
 *** Hooks
     ~lsp-mode~ provides a handful of hooks that can be used to extend and configure
     the behaviour of language servers.
@@ -262,20 +260,20 @@
     - The server must be using TCP connection or it should be coverted to TCP via ~netcat~ or similar tool.
 *** How it works?
     ~lsp-mode~ detects that a particular file is located on remote machine and looks for a clients which can handle the current major mode and it is markred as with ~:remote?~ t. Then ~lsp-mode~ starts the client and it expects to use TCP connection. Since not all of the server have TCP support ~netcat~ is used to convert STDIO to TCP using ~lsp-make-nc-tramp-command~.
-#+BEGIN_SRC bash
-  nc -l -p {port} -c '{command}'
-#+END_SRC
-   In case the server already supports TCP connection it could be used directly without ~netcat~ adapter.
+    #+BEGIN_SRC bash
+      nc -l -p {port} -c '{command}'
+    #+END_SRC
+    In case the server already supports TCP connection it could be used directly without ~netcat~ adapter.
 *** Sample configuration
     Here it is example how you can configure python language server to work when using ~TRAMP~.
-   #+BEGIN_SRC emacs-lisp
-     (lsp-register-client
-      (make-lsp-client :new-connection (lsp-tramp-connection
-                                        (lsp-make-nc-tramp-command "pyls"))
-                       :major-modes '(python-mode)
-                       :remote? t
-                       :server-id 'pyls-tramp))
-   #+END_SRC
+    #+BEGIN_SRC emacs-lisp
+      (lsp-register-client
+       (make-lsp-client :new-connection (lsp-tramp-connection
+                                         (lsp-make-nc-tramp-command "pyls"))
+                        :major-modes '(python-mode)
+                        :remote? t
+                        :server-id 'pyls-tramp))
+    #+END_SRC
 
 ** Troubleshoooting
    - set ~lsp-print-io~ to ~t~ to inspect communicaiton between client and the server.
@@ -291,13 +289,13 @@
                        :server-id 'pyls))
    #+END_SRC
 ** FAQ
-**** How to configure a server with local variables?
+   - How to configure a server with local variables?
      Add ~lsp~ server call to ~hack-local-variables-hook~ which runs right after the local variables are loaded.
      #+BEGIN_SRC emacs-lisp
        (add-hook 'hack-local-variables-hook
                  (lambda () (when (derived-mode-p 'XXX-mode) (lsp))))
      #+END_SRC
-**** I have multiple language servers registered for language FOO. Which one will be used when opening a project?
+   - I have multiple language servers registered for language FOO. Which one will be used when opening a project?
      The one with highest priority wins. ~lsp-clients.el~ predefined servers have
      priority -1, lower than external packages (priority 0 if unspecified). If a
      server is registered with ~:add-on?~ flag set to ~t~ it will be started in
