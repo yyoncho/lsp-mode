@@ -35,12 +35,12 @@
       - [[#typescript-references-using-lsp-ui][Typescript references using lsp-ui]]
       - [[#debugging-python-using-dap-mode][Debugging Python using dap-mode]]
     - [[#hooks-1][Hooks]]
-    - [[#troubleshoooting][Troubleshoooting]]
-    - [[#adding-support-for-languages][Adding support for languages]]
-    - [[#faq][FAQ]]
+  - [[#troubleshoooting][Troubleshoooting]]
+  - [[#adding-support-for-languages][Adding support for languages]]
+  - [[#faq][FAQ]]
       - [[#how-to-configure-a-server-with-local-variables][How to configure a server with local variables?]]
       - [[#i-have-multiple-language-servers-registered-for-language-foo-which-one-will-be-used-when-opening-a-project][I have multiple language servers registered for language FOO. Which one will be used when opening a project?]]
-    - [[#see-also][See also]]
+  - [[#see-also][See also]]
 
 ** Overview
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.14). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
@@ -56,7 +56,6 @@
    - Code formatting
    - Debugger - [[https://github.com/yyoncho/dap-mode/][dap-mode]]
    - Helm integration - [[https://github.com/yyoncho/helm-lsp/][helm-lsp]]
-
 ** Installation
 *** Install via melpa
     The recommended way to install ~lsp-mode~ is via ~package.el~ - the built-in package manager in Emacs. ~lsp-mode~ is available on the two major ~package.el~ community maintained repos - [[http://stable.melpa.org][MELPA Stable]] and [[http://melpa.org][MELPA]].
@@ -272,20 +271,20 @@
 *** Hooks
     ~lsp-mode~ provides a handful of hooks that can be used to extend and configure
     the behaviour of language servers.
-*** Troubleshoooting
-    - set ~lsp-print-io~ to ~t~ to inspect communicaiton between client and the server.
-    - ~lsp-describe-session~ will show the current projects roots + the started severs and allows inspecting the server capabilities.
-    #+caption: Describe session
-    [file:examples/describe.png]]
-*** Adding support for languages
-    Here it is the minimal configuration that is needed for new language server registration. Refer to the documentation of ~lsp-client.el~ for the additional settings supported on registration time. ~lsp-language-id-configuration~ must be updated to contain the corresponding mode -> language id - in this case ~(python-mode . "python")~
-    #+BEGIN_SRC emacs-lisp
-      (lsp-register-client
-       (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
-                        :major-modes '(python-mode)
-                        :server-id 'pyls))
-    #+END_SRC
-*** FAQ
+** Troubleshoooting
+   - set ~lsp-print-io~ to ~t~ to inspect communicaiton between client and the server.
+   - ~lsp-describe-session~ will show the current projects roots + the started severs and allows inspecting the server capabilities.
+   #+caption: Describe session
+   [file:examples/describe.png]]
+** Adding support for languages
+   Here it is the minimal configuration that is needed for new language server registration. Refer to the documentation of ~lsp-client.el~ for the additional settings supported on registration time. ~lsp-language-id-configuration~ must be updated to contain the corresponding mode -> language id - in this case ~(python-mode . "python")~
+   #+BEGIN_SRC emacs-lisp
+     (lsp-register-client
+      (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
+                       :major-modes '(python-mode)
+                       :server-id 'pyls))
+   #+END_SRC
+** FAQ
 **** How to configure a server with local variables?
      Add ~lsp~ server call to ~hack-local-variables-hook~ which runs right after the local variables are loaded.
      #+BEGIN_SRC emacs-lisp
@@ -297,6 +296,6 @@
      priority -1, lower than external packages (priority 0 if unspecified). If a
      server is registered with ~:add-on?~ flag set to ~t~ it will be started in
      parallel to the other servers that are registered for the current mode.
-*** See also
-    - [[https://github.com/yyoncho/dap-mode][dap-mode]] - Debugger integration for ~lsp-mode~.
-    - [[https://github.com/joaotavora/eglot][eglot]] - An alternative minimal LSP implementation.
+** See also
+   - [[https://github.com/yyoncho/dap-mode][dap-mode]] - Debugger integration for ~lsp-mode~.
+   - [[https://github.com/joaotavora/eglot][eglot]] - An alternative minimal LSP implementation.
