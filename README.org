@@ -6,52 +6,16 @@
 #+caption: LSP mode
 [[file:examples/head.png]]
 
-** Table of Contents                                      :TOC_4_gh:noexport:
-- [[#language-server-protocol-support-for-emacs][Language Server Protocol Support for Emacs]]
-  - [[#why][Why?]]
-  - [[#overview][Overview]]
-  - [[#installation][Installation]]
-    - [[#install-via-melpa][Install via melpa]]
-  - [[#configuration][Configuration]]
-    - [[#install-language-server][Install language server]]
-    - [[#configure-lsp-mode][Configure lsp-mode]]
-      - [[#vanilla-emacs][Vanilla Emacs]]
-      - [[#spacemacs][Spacemacs]]
-      - [[#use-package][use-package]]
-    - [[#how-it-works][How it works?]]
-  - [[#supported-languages][Supported languages]]
-  - [[#commands][Commands]]
-  - [[#configuration-1][Configuration]]
-  - [[#requirements][Requirements]]
-    - [[#hooks][Hooks]]
-    - [[#supported-languages-1][Supported languages]]
-    - [[#commands-1][Commands]]
-    - [[#configuration-2][Configuration]]
-  - [[#screenshots][Screenshots]]
-      - [[#rust-completion-with-company-lsp][RUST Completion with company-lsp]]
-      - [[#typescript-references-using-lsp-ui][Typescript references using lsp-ui]]
-      - [[#debugging-python-using-dap-mode][Debugging Python using dap-mode]]
-    - [[#hooks-1][Hooks]]
-  - [[#extensions][Extensions]]
-    - [[#tramp-experimental][TRAMP (Experimental)]]
-    - [[#how-it-works-1][How it works?]]
-    - [[#sample-configuration][Sample configuration]]
-  - [[#troubleshoooting][Troubleshoooting]]
-  - [[#adding-support-for-languages][Adding support for languages]]
-  - [[#faq][FAQ]]
-      - [[#how-to-configure-a-server-with-local-variables][How to configure a server with local variables?]]
-      - [[#i-have-multiple-language-servers-registered-for-language-foo-which-one-will-be-used-when-opening-a-project][I have multiple language servers registered for language FOO. Which one will be used when opening a project?]]
-  - [[#see-also][See also]]
-
 ** Why?
-  - 💎 *Reliable*: typed language, tested with CI.
+  - 💎 *Tested*: typed language, tested with CI.
   - 🚀 *Fast* -
-  - 🌟 *Featured*: Almost 100% LSP support
+  - 🌟 *Featured*: Almost 100% LSP support and
   - ❤️ *Flexible*
 ** Overview
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.14). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
 
-   - Diagnostics (via builtin ~flymake~ when Emacs > 26 or [[https://github.com/flycheck/flycheck][flycheck]]/[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]])
+   - Non-blocking asynchronous calls
+   - Realtime Diagnostics/lint messages (via builtin ~flymake~ when Emacs > 26 or [[https://github.com/flycheck/flycheck][flycheck]]/[[https://github.com/emacs-lsp/lsp-ui][lsp-ui]])
    - Code completion - using [[https://github.com/tigersoldier/company-lsp][company-lsp]] or builtin ~complete-at-point~
    - Hovers - using [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
    - Code actions - using ~lsp-execute-code-action~ or [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
@@ -59,7 +23,7 @@
    - Code navigation - using builtin [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][xref]]
    - Code lens (references/implementations) - using builtin [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Xref.html][xref]]
    - Highlights
-   - Code formatting
+   - Formatting
    - Debugger - [[https://github.com/yyoncho/dap-mode/][dap-mode]]
    - Helm integration - [[https://github.com/yyoncho/helm-lsp/][helm-lsp]]
 ** Installation
