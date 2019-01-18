@@ -2,12 +2,13 @@
   [[https://stable.melpa.org/#/lsp-mode][file:https://stable.melpa.org/packages/lsp-mode-badge.svg]]
   [[https://gitter.im/emacs-lsp/lsp-mode][file:https://badges.gitter.im/emacs-lsp/lsp-mode.svg]]
   [[https://travis-ci.org/emacs-lsp/lsp-mode][file:https://travis-ci.org/emacs-lsp/lsp-mode.svg?branch=master]]
-* Comminity Driven Emacs Language Server Client
+* Language Server Protocol Support for Emacs
 #+caption: LSP mode
 [[file:examples/head.png]]
 
 ** Table of Contents                                      :TOC_4_gh:noexport:
-- [[#comminity-driven-emacs-language-server-client][Comminity Driven Emacs Language Server Client]]
+- [[#language-server-protocol-support-for-emacs][Language Server Protocol Support for Emacs]]
+  - [[#why][Why?]]
   - [[#overview][Overview]]
   - [[#installation][Installation]]
     - [[#install-via-melpa][Install via melpa]]
@@ -42,6 +43,10 @@
       - [[#i-have-multiple-language-servers-registered-for-language-foo-which-one-will-be-used-when-opening-a-project][I have multiple language servers registered for language FOO. Which one will be used when opening a project?]]
   - [[#see-also][See also]]
 
+** Why?
+  - 🚀 **Fast** -
+  - 🌟 **Featured**: [Almost 100% LSP support](https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features)
+  - ❤️ **Flexible**
 ** Overview
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.14). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
 
