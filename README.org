@@ -21,12 +21,8 @@
   - [[#supported-languages][Supported languages]]
   - [[#commands][Commands]]
   - [[#configuration-1][Configuration]]
-  - [[#tramp-experimental][TRAMP (Experimental)]]
-    - [[#how-it-works-1][How it works?]]
-    - [[#sample-configuration][Sample configuration]]
   - [[#requirements][Requirements]]
     - [[#hooks][Hooks]]
-    - [[#how-it-works-2][How it works?]]
     - [[#supported-languages-1][Supported languages]]
     - [[#commands-1][Commands]]
     - [[#configuration-2][Configuration]]
@@ -35,6 +31,10 @@
       - [[#typescript-references-using-lsp-ui][Typescript references using lsp-ui]]
       - [[#debugging-python-using-dap-mode][Debugging Python using dap-mode]]
     - [[#hooks-1][Hooks]]
+  - [[#extensions][Extensions]]
+    - [[#tramp-experimental][TRAMP (Experimental)]]
+    - [[#how-it-works-1][How it works?]]
+    - [[#sample-configuration][Sample configuration]]
   - [[#troubleshoooting][Troubleshoooting]]
   - [[#adding-support-for-languages][Adding support for languages]]
   - [[#faq][FAQ]]
@@ -163,34 +163,10 @@
    - ~lsp-imenu-container-name-separator~ - Separator string to use to separate the container name from the symbol while displaying imenu entries.
    - ~lsp-imenu-sort-methods~ - How to sort the imenu items. The value is a list of ~kind~, ~name~ or ~position~. Priorities are determined by the index of the element.
    - ~lsp-response-timeout~ - Number of seconds to wait for a response from the language server before timing out.
-** TRAMP (Experimental)
-   LSP mode has support for tramp buffers with the following requirements.
-   - The language server have to be present on the remote server since it is running on the remote machine.
-   - Having multi folder language server (like [[https://github.com/eclipse/eclipse.jdt.ls][Eclipse JDT LS]]) cannot have local and remote servers.
-   - The server must be using TCP connection or it should be coverted to TCP via ~netcat~ or similar tool.
-*** How it works?
-    ~lsp-mode~ detects that a particular file is located on remote machine and looks for a clients which can handle the current major mode and it is markred as with ~:remote?~ t. Then ~lsp-mode~ starts the client and it expects to use TCP connection. Since not all of the server have TCP support ~netcat~ is used to convert STDIO to TCP using ~lsp-make-nc-tramp-command~.
-#+BEGIN_SRC bash
-  nc -l -p {port} -c '{command}'
-#+END_SRC
-   In case the server already supports TCP connection it could be used directly without ~netcat~ adapter.
-*** Sample configuration
-    Here it is example how you can configure python language server to work when using ~TRAMP~.
-   #+BEGIN_SRC emacs-lisp
-     (lsp-register-client
-      (make-lsp-client :new-connection (lsp-tramp-connection
-                                        (lsp-make-nc-tramp-command "pyls"))
-                       :major-modes '(python-mode)
-                       :remote? t
-                       :server-id 'pyls-tramp))
-   #+END_SRC
 ** Requirements
-
 *** Hooks
     ~lsp-mode~ provides a handful of hooks that can be used to extend and configure
     the behaviour of language servers.
-*** How it works?
-    ~lsp-mode~ has predefined list of server configurations (located in ~lsp-clients.el~) containing a mapping from ~major-mode~ to the server configuration. In addition to the default server configuration located in ~lsp-clients.el~ there are few languages servers which require separate package(check [[#supported-languages][Supported languages]]). When you open a file from a particular project ~lsp-mode~ and call ~lsp~ command ~lsp-mode~ will look for server registrations able to handle current ~major-mode~. If there is such client ~lsp-mode~ will look for the project root. If you open a file from the project for the first time you will be prompted the project. Once the project is imported project root is saved in ~lsp-session~ file and it will be loaded the next time you start Emacs so you no longer will be asked for a project root when you open a file from that project. Later if you want to change the project root you may use ~lsp-workspace-folder-remove~ to remove the project and call ~lsp-workspace-folder-add~ to add the root. If you want to force starting a particular language server in a file you may use ~C-u~ ~M-x~ ~lsp~ which will prompt you to select language server to start.
 *** Supported languages
     Some of the servers are directly supported by ~lsp-mode~ by requiring
     ~lsp-clients.el~ while other require installing additional package which provide
@@ -271,6 +247,29 @@
 *** Hooks
     ~lsp-mode~ provides a handful of hooks that can be used to extend and configure
     the behaviour of language servers.
+** Extensions
+*** TRAMP (Experimental)
+    LSP mode has support for tramp buffers with the following requirements.
+    - The language server have to be present on the remote server since it is running on the remote machine.
+    - Having multi folder language server (like [[https://github.com/eclipse/eclipse.jdt.ls][Eclipse JDT LS]]) cannot have local and remote servers.
+    - The server must be using TCP connection or it should be coverted to TCP via ~netcat~ or similar tool.
+*** How it works?
+    ~lsp-mode~ detects that a particular file is located on remote machine and looks for a clients which can handle the current major mode and it is markred as with ~:remote?~ t. Then ~lsp-mode~ starts the client and it expects to use TCP connection. Since not all of the server have TCP support ~netcat~ is used to convert STDIO to TCP using ~lsp-make-nc-tramp-command~.
+#+BEGIN_SRC bash
+  nc -l -p {port} -c '{command}'
+#+END_SRC
+   In case the server already supports TCP connection it could be used directly without ~netcat~ adapter.
+*** Sample configuration
+    Here it is example how you can configure python language server to work when using ~TRAMP~.
+   #+BEGIN_SRC emacs-lisp
+     (lsp-register-client
+      (make-lsp-client :new-connection (lsp-tramp-connection
+                                        (lsp-make-nc-tramp-command "pyls"))
+                       :major-modes '(python-mode)
+                       :remote? t
+                       :server-id 'pyls-tramp))
+   #+END_SRC
+
 ** Troubleshoooting
    - set ~lsp-print-io~ to ~t~ to inspect communicaiton between client and the server.
    - ~lsp-describe-session~ will show the current projects roots + the started severs and allows inspecting the server capabilities.
