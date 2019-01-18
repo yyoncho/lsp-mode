@@ -44,9 +44,10 @@
   - [[#see-also][See also]]
 
 ** Why?
-  - 🚀 **Fast** -
-  - 🌟 **Featured**: [Almost 100% LSP support](https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features)
-  - ❤️ **Flexible**
+  - 💎 *Reliable*: typed language, tested with CI.
+  - 🚀 *Fast* -
+  - 🌟 *Featured*: Almost 100% LSP support
+  - ❤️ *Flexible*
 ** Overview
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.14). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
 
