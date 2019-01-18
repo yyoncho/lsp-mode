@@ -46,7 +46,7 @@
 ** Why?
    - ❤️ *Community Driven*
    - 💎 *Fully featured* - supports LSP core and Language Server non-standard extensions
-   - 🚀 *Easy to configure* - works out of the box and automatically upgrades if extensions are found.
+   - 🚀 *Easy to configure* - works out of the box and automatically upgrades if additional packages are present
    - 🌟 *Flexible* - full-blown IDE with flashy UI or minimal distraction free
 ** Overview
    Client for [[https://github.com/Microsoft/language-server-protocol/][Language Server Protocol]] (v3.14). [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] aims to provide IDE-like experience by providing optional integration with the most popular Emacs packages like ~company~, ~flycheck~ and ~projectile~.
