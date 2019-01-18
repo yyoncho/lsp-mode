@@ -6,6 +6,43 @@
 #+caption: LSP mode
 [[file:examples/head.png]]
 
+** Table of Contents                                      :TOC_4_gh:noexport:
+- [[#language-server-protocol-support-for-emacs][Language Server Protocol Support for Emacs]]
+  - [[#why][Why?]]
+  - [[#overview][Overview]]
+  - [[#installation][Installation]]
+    - [[#install-via-melpa][Install via melpa]]
+  - [[#configuration][Configuration]]
+    - [[#install-language-server][Install language server]]
+    - [[#configure-lsp-mode][Configure lsp-mode]]
+      - [[#vanilla-emacs][Vanilla Emacs]]
+      - [[#spacemacs][Spacemacs]]
+      - [[#use-package][use-package]]
+    - [[#how-it-works][How it works?]]
+  - [[#supported-languages][Supported languages]]
+  - [[#commands][Commands]]
+  - [[#configuration-1][Configuration]]
+  - [[#requirements][Requirements]]
+    - [[#hooks][Hooks]]
+    - [[#supported-languages-1][Supported languages]]
+    - [[#commands-1][Commands]]
+    - [[#configuration-2][Configuration]]
+  - [[#screenshots][Screenshots]]
+      - [[#rust-completion-with-company-lsp][RUST Completion with company-lsp]]
+      - [[#typescript-references-using-lsp-ui][Typescript references using lsp-ui]]
+      - [[#debugging-python-using-dap-mode][Debugging Python using dap-mode]]
+    - [[#hooks-1][Hooks]]
+  - [[#extensions][Extensions]]
+    - [[#tramp-experimental][TRAMP (Experimental)]]
+    - [[#how-it-works-1][How it works?]]
+    - [[#sample-configuration][Sample configuration]]
+  - [[#troubleshoooting][Troubleshoooting]]
+  - [[#adding-support-for-languages][Adding support for languages]]
+  - [[#faq][FAQ]]
+      - [[#how-to-configure-a-server-with-local-variables][How to configure a server with local variables?]]
+      - [[#i-have-multiple-language-servers-registered-for-language-foo-which-one-will-be-used-when-opening-a-project][I have multiple language servers registered for language FOO. Which one will be used when opening a project?]]
+  - [[#see-also][See also]]
+
 ** Why?
    - ❤️ *Community Driven*
    - 💎 *Fully featured* - supports LSP core and Language Server non-standard extensions
