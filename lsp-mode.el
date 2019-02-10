@@ -392,7 +392,8 @@ If set to `:none' neither of two will be enabled."
                                         (tuareg-mode . "ocaml")
                                         (swift-mode . "swift")
                                         (elixir-mode . "elixir")
-                                        (f90-mode . "fortran"))
+                                        (f90-mode . "fortran")
+                                        (conf-javaprop-mode . "spring-boot-properties"))
   "Language id configuration.")
 
 (defvar lsp-method-requirements
@@ -562,12 +563,16 @@ depending on it."
                                 (let ((merged (make-hash-table :test 'equal)))
                                   (--each results
                                     (let ((to-add (gethash "contents" it)))
-                                      (puthash "contents" (append (if (sequencep to-add)
+                                      (puthash "contents" (append (if (and (sequencep to-add)
+                                                                           (not (stringp to-add)))
                                                                       to-add
                                                                     (list to-add))
                                                                   (gethash "contents" merged))
                                                merged)))
                                   merged))))
+      ("textDocument/completion"
+       (ht ("isIncomplete" (--every? (gethash "isIncomplete" it) results))
+           ("items" (apply 'append (--map (gethash "items" it) results)))))
       (_ (if (not (cdr results))
              (car results)
            (apply 'append (--map (if (or (listp it) (vectorp it))
@@ -3445,7 +3450,7 @@ Return a nested alist keyed by symbol names. e.g.
    :connect (lambda (filter sentinel name)
               (let* ((host "localhost")
                      (port (lsp--find-available-port host (cl-incf lsp--tcp-port)))
-                     (command (funcall command-fn port))
+                     (command (funcall command port))
                      (final-command (if (consp command) command (list command)))
                      (_ (unless (executable-find (first final-command))
                           (user-error (format "Couldn't find executable %s" (first final-command)))))
@@ -3459,6 +3464,53 @@ Return a nested alist keyed by symbol names. e.g.
                 (set-process-filter tcp-proc filter)
                 (cons tcp-proc proc)))
    :test? (lambda () (-> command-fn lsp-resolve-final-function lsp-server-present?))))
+
+(defun lsp-tcp-server (command)
+  "Create tcp server connection.
+In this mode Emacs is TCP server and the language server connects
+to it. COMMAND is function with one parameter(the port) and it
+should return the command to start the LS server."
+    (list
+   :connect (lambda (filter sentinel name)
+              (let* ((host "localhost")
+                     (port (lsp--find-available-port host 20000))
+                     tcp-client-connection
+                     (final-command (funcall command port))
+                     (tcp-server (make-network-process :name (format "*tcp-server-%s*" name)
+                                                       :buffer (format "*tcp-server-%s*" name)
+                                                       :family 'ipv4
+                                                       :service port
+                                                       :sentinel (lambda (proc _string)
+                                                                   (lsp-log "Language server is connected on port %s"
+                                                                            port)
+                                                                   (setf tcp-client-connection proc))
+                                                       :server 't))
+                     (cmd-proc (make-process :name name
+                                             :connection-type 'pipe
+                                             :coding 'no-conversion
+                                             :command final-command
+                                             :sentinel sentinel
+                                             :stderr (concat name "::stderr")
+                                             :noquery t)))
+                (let ((retries 0))
+                  (while (and (not tcp-client-connection) (< retries 20))
+                    (sit-for 0.500)
+                    (incf retries)
+                    (lsp-log "Waiting for connection for %s, retries: %s" name retries)))
+
+                (unless tcp-client-connection
+                  (condition-case nil (delete-process tcp-server) (error))
+                  (condition-case nil (delete-process cmd-proc) (error))
+                  (error "Failed to create connection to %s on port %s" name port))
+
+                (set-process-query-on-exit-flag cmd-proc nil)
+                (set-process-query-on-exit-flag tcp-client-connection  nil)
+                (set-process-query-on-exit-flag tcp-server nil)
+
+                (set-process-filter tcp-client-connection filter)
+                (set-process-sentinel tcp-client-connection sentinel)
+                (cons tcp-client-connection cmd-proc)))
+   :test? (-const t)))
 
 (defun lsp-tramp-connection (local-command)
   "Create LSP stdio connection named name.
@@ -3661,10 +3713,12 @@ remote machine and vice versa."
                                        (lsp--client-priority client)))
                              it)))
       (-let* (((add-on-clients main-clients) (-separate 'lsp--client-add-on? it))
-              (selected-clients (cons (and main-clients (--max-by (> (lsp--client-priority it)
-                                                                     (lsp--client-priority other))
-                                                                  main-clients))
-                                      add-on-clients)))
+              (selected-clients (if-let (main-client (and main-clients
+                                                          (--max-by (> (lsp--client-priority it)
+                                                                       (lsp--client-priority other))
+                                                                    main-clients)))
+                                    (cons main-client add-on-clients)
+                                  add-on-clients)))
         (lsp-log "The following clients were selected based on priority: %s"
                  (s-join ", "
                          (-map (lambda (client)
