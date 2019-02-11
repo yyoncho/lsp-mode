@@ -1602,7 +1602,7 @@ disappearing, unset all the variables related to it."
   `(
     :workspace (:workspaceEdit (
                                 :documentChanges t
-                                :resourceOperations ("create" "rename" "delete"))
+                                :resourceOperations ["create" "rename" "delete"])
                                :applyEdit t
                                :symbol (:symbolKind (:valueSet ,(apply 'vector (number-sequence 1 26))))
                                :executeCommand (:dynamicRegistration :json-false)
@@ -2320,7 +2320,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
 
 (defun lsp--locations-to-xref-items (locations)
   "Return a list of `xref-item' from Location[] or LocationLink[]."
-  (when locations
+  (unless (seq-empty-p locations)
     (cl-labels ((get-xrefs-in-file
                  (file-locs location-link)
                  (let* ((filename (car file-locs))
@@ -2338,7 +2338,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
                          (insert-file-contents-literally filename)
                          (mapcar fn (cdr file-locs))))))))
       (apply #'append
-             (if (gethash "uri" (car locations))
+             (if (gethash "uri" (seq-first locations))
                  (--map (get-xrefs-in-file it nil)
                         (--group-by (lsp--uri-to-path (gethash "uri" it)) locations))
                (--map (get-xrefs-in-file it t)
@@ -2467,9 +2467,9 @@ RENDER-ALL - nil if only the signature should be rendered."
                        "signatures") signature-help)
                (signature (seq-elt signatures (or active-signature-index 0)))
                (result (lsp--fontlock-with-mode (gethash "label" signature) major-mode)))
-    (-when-let* ((selected-param-label (-some->> (gethash "parameters" signature)
-                                                 (nth active-parameter)
-                                                 (gethash "label")))
+    (-when-let* ((selected-parameter (when (>= active-parameter 0)
+                                       (seq-elt (gethash "parameters" signature) active-parameter)))
+                 (selected-param-label (gethash "label" selected-parameter))
                  (start (if (stringp selected-param-label)
                             (s-index-of selected-param-label result)
                           (car selected-param-label)))
@@ -3075,7 +3075,9 @@ WORKSPACE is the active workspace."
    (lsp--parser-reading-body p) nil))
 
 (defun lsp--read-json (str use-native-json)
-  (let* ((use-native-json (and use-native-json (fboundp 'json-parse-string)))
+  (let* (
+         (use-native-json (and use-native-json (fboundp 'json-parse-string)))
+         ;; (use-native-json nil)
          (json-array-type (if use-native-json 'vector 'list))
          (json-object-type 'hash-table)
          (json-false nil))
@@ -3470,7 +3472,7 @@ Return a nested alist keyed by symbol names. e.g.
 In this mode Emacs is TCP server and the language server connects
 to it. COMMAND is function with one parameter(the port) and it
 should return the command to start the LS server."
-    (list
+  (list
    :connect (lambda (filter sentinel name)
               (let* ((host "localhost")
                      (port (lsp--find-available-port host 20000))
@@ -3745,6 +3747,7 @@ session workspce folder configuration for the server."
                       (lsp-session-server-id->folders)
                       (gethash (lsp--client-server-id client))
                       (-map 'lsp--path-to-uri)
+                      (apply 'vector)
                       (plist-put initialization-options :workspaceFolders))
             initialization-options)
       initialization-options)))

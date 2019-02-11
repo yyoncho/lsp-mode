@@ -42,6 +42,7 @@
                   :major-modes '(python-mode)
                   :priority -1
                   :server-id 'pyls
+                  :use-native-json t
                   :library-folders-fn (lambda (_workspace)
                                         lsp-clients-python-library-directories)))
 
