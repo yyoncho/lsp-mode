@@ -116,6 +116,11 @@
   :group 'lsp-mode
   :type 'boolean)
 
+(defcustom lsp-use-native-json nil
+  "If non-nil, use native jsong parsing if available."
+  :group 'lsp-mode
+  :type 'boolean)
+
 (defcustom lsp-log-max message-log-max
   "Maximum number of lines to keep in the log buffer.
 If nil, disable message logging.  If t, log messages but don’t truncate
@@ -617,9 +622,13 @@ depending on it."
          ;; any incomplete
          ("isIncomplete" (--some? (and (ht? it) (gethash "isIncomplete" it))
                                   results))
-         ("items" (apply 'append (--map (if (ht? it) (gethash "items" it) it) results)))))
+         ("items" (apply 'append (--map (append (if (ht? it)
+                                                    (gethash "items" it)
+                                                  it)
+                                                nil)
+                                        results)))))
        (_ (apply 'append (--map (if (or (listp it) (vectorp it))
-                                    it
+                                    (append it nil)
                                   (list it))
                                 results)))))))
 (defun lsp--spinner-start ()
@@ -1189,7 +1198,7 @@ VERSION is the version of the file. The lenses has to be
 refreshed only when all backends have reported for the same
 version."
   (setq-local lsp--lens-data (or lsp--lens-data (make-hash-table)))
-  (puthash backend (cons version lenses) lsp--lens-data)
+  (puthash backend (cons version (append lenses nil)) lsp--lens-data)
 
   (-let [backend-data (->> lsp--lens-data ht-values (-filter #'cl-rest))]
     (when (-all? (-lambda ((version))
@@ -1264,8 +1273,8 @@ CALLBACK - callback for the lenses."
                                            (-mapcat
                                             (-lambda ((workspace . workspace-lenses))
                                               ;; preserve the original workspace so we can later use it to resolve the lens
-                                              (-each workspace-lenses (-partial 'puthash "workspace" workspace))
-                                              workspace-lenses)
+                                              (seq-do (-partial 'puthash "workspace" workspace) workspace-lenses)
+                                              (append workspace-lenses nil))
                                             lenses))
                                (if (--every? (gethash "command" it) lsp--lens-backend-cache)
                                    (funcall callback lsp--lens-backend-cache lsp--cur-version)
@@ -1471,15 +1480,14 @@ If WORKSPACE is not provided current workspace will be used."
   (lsp--cur-workspace-check)
   (let* ((json-encoding-pretty-print lsp-print-io)
          (json-false :json-false)
-         (client (lsp--workspace-client lsp--cur-workspace))
-         (body (if (and (lsp--client-use-native-json client)
-                        (fboundp 'json-serialize))
-                   (json-serialize params :null-object nil
-                                   :false-object json-false)
-                 (json-encode params)))
-         (body-with-newline (concat body "\n")))
-    (concat (format "Content-Length: %d\r\n\r\n" (string-bytes body-with-newline))
-            body-with-newline)))
+         (body (json-serialize params
+                               :null-object nil
+                               :false-object :json-false)))
+    (concat "Content-Length: "
+            (number-to-string (1+ (string-bytes body)))
+            "\r\n\r\n"
+            body
+            "\n")))
 
 (cl-defstruct lsp--log-entry
   (timestamp)
@@ -2445,7 +2453,8 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
     result))
 
 (defun lsp--make-completion-item (item)
-  (propertize (lsp--gethash "insertText" item (gethash "label" item ""))
+  (propertize (or (gethash "insertText" item)
+                  (gethash "label" item ""))
               'lsp-completion-item
               item))
 
@@ -2487,12 +2496,13 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
 
 (defun lsp--sort-string (c)
   (lsp--gethash "sortText" c (gethash "label" c "")))
+(define-inline lsp--sort-string (c)
+  (inline-quote (or (gethash "sortText" ,c)
+                    (gethash "label" ,c ""))))
 
 (defun lsp--sort-completions (completions)
-  (seq-into (sort completions
-                  (lambda (c1 c2)
-                    (string-lessp (lsp--sort-string c1) (lsp--sort-string c2))))
-            'list))
+  "Sort COMPLETIONS."
+  (--sort (string-lessp (lsp--sort-string it) (lsp--sort-string other)) completions))
 
 (defun lsp--resolve-completion (item)
   "Resolve completion ITEM."
@@ -2531,7 +2541,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
 
 (defun lsp--locations-to-xref-items (locations)
   "Return a list of `xref-item' from Location[] or LocationLink[]."
-  (when locations
+  (unless (seq-empty-p locations)
     (cl-labels ((get-xrefs-in-file
                  (file-locs location-link)
                  (let* ((filename (car file-locs))
@@ -2549,7 +2559,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
                          (insert-file-contents-literally filename)
                          (mapcar fn (cdr file-locs))))))))
       (apply #'append
-             (if (gethash "uri" (car locations))
+             (if (gethash "uri" (nth 0 locations))
                  (--map (get-xrefs-in-file it nil)
                         (--group-by (lsp--uri-to-path (gethash "uri" it)) locations))
                (--map (get-xrefs-in-file it t)
@@ -2678,9 +2688,9 @@ RENDER-ALL - nil if only the signature should be rendered."
                        "signatures") signature-help)
                (signature (seq-elt signatures (or active-signature-index 0)))
                (result (lsp--fontlock-with-mode (gethash "label" signature) major-mode)))
-    (-when-let* ((selected-param-label (-some->> (gethash "parameters" signature)
-                                                 (nth active-parameter)
-                                                 (gethash "label")))
+    (-when-let* ((selected-parameter (when (>= active-parameter 0)
+                                       (seq-elt (gethash "parameters" signature) active-parameter)))
+                 (selected-param-label (gethash "label" selected-parameter))
                  (start (if (stringp selected-param-label)
                             (s-index-of selected-param-label result)
                           (car selected-param-label)))
@@ -3263,6 +3273,7 @@ WORKSPACE is the active workspace."
     (cons key val)))
 
 (defun lsp--parser-reset (p)
+  "Reset parser P."
   (setf
    (lsp--parser-leftovers p) ""
    (lsp--parser-body-length p) nil
@@ -3271,15 +3282,20 @@ WORKSPACE is the active workspace."
    (lsp--parser-body p) nil
    (lsp--parser-reading-body p) nil))
 
-(defun lsp--read-json (str use-native-json)
-  (let* ((use-native-json (and use-native-json (fboundp 'json-parse-string)))
-         (json-array-type (if use-native-json 'vector 'list))
+(defun lsp--read-json (str)
+  "Read json string STR."
+  (let* ((use-native-json (and lsp-use-native-json (fboundp 'json-parse-string)))
+         (json-array-type 'vector)
          (json-object-type 'hash-table)
          (json-false nil))
     (if use-native-json
-        (json-parse-string str :object-type 'hash-table
-                           :null-object nil :false-object nil)
-      (json-read-from-string str))))
+        (with-temp-buffer
+          (insert str)
+          (json-parse-string str
+                             :object-type 'hash-table
+                             :null-object nil
+                             :false-object :json-false))
+      (json-read-from-string (buffer-string)))))
 
 (defun lsp--log-request-time (server-id method id start-time before-send received-time after-parsed-time after-processed-time)
   (when lsp-print-performance
@@ -3318,7 +3334,7 @@ WORKSPACE is the active workspace."
     (let* ((client (lsp--workspace-client lsp--cur-workspace))
            (received-time (current-time))
            (server-id (lsp--client-server-id client))
-           (json-data (lsp--read-json msg (lsp--client-use-native-json client)))
+           (json-data (lsp--read-json msg))
            (after-parsed-time (current-time))
            (id (--when-let (gethash "id" json-data)
                  (if (stringp it) (string-to-number it) it)))
@@ -3935,6 +3951,7 @@ session workspce folder configuration for the server."
                       (lsp-session-server-id->folders)
                       (gethash (lsp--client-server-id client))
                       (-map 'lsp--path-to-uri)
+                      (apply 'vector)
                       (plist-put initialization-options :workspaceFolders))
             initialization-options)
       initialization-options)))
