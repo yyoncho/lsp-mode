@@ -4429,42 +4429,40 @@ SESSION is the active session."
   "Get the session associated with the current buffer."
   (or lsp--session (setq lsp--session (lsp--load-default-session))))
 
+(defun lsp--match-client? (client file-name buffer-major-mode)
+  "Return t if CLIENT can handle buffer with FILE-NAME and major mode BUFFER-MAJOR-MODE. "
+  (and (or (-some-> client lsp--client-activation-fn (funcall buffer-file-name buffer-major-mode))
+           (and (not (lsp--client-activation-fn client))
+                (-contains? (lsp--client-major-modes client) buffer-major-mode)
+                (eq (---truthy? (file-remote-p file-name))
+                    (---truthy? (lsp--client-remote? client)))))
+       (-some-> client lsp--client-new-connection (plist-get :test?) funcall)))
+
 (defun lsp--find-clients (buffer-major-mode file-name)
   "Find clients which can handle BUFFER-MAJOR-MODE.
 SESSION is the currently active session. The function will also
 pick only remote enabled clients in case the FILE-NAME is on
 remote machine and vice versa."
-  (let ((remote? (file-remote-p file-name)))
-    (--when-let (->> lsp-clients
-                     hash-table-values
-                     (-filter (-lambda (client)
-                                (and (or (-some-> client lsp--client-activation-fn (funcall buffer-file-name buffer-major-mode))
-                                         (and (not (lsp--client-activation-fn client))
-                                              (-contains? (lsp--client-major-modes client) buffer-major-mode)
-                                              (eq (---truthy? remote?) (---truthy? (lsp--client-remote? client)))))
-                                     (-some-> client lsp--client-new-connection (plist-get :test?) funcall)))))
-      (lsp-log "Found the following clients for %s: %s"
-               file-name
-               (s-join ", "
-                       (-map (lambda (client)
-                               (format "(server-id %s, priority %s)"
-                                       (lsp--client-server-id client)
-                                       (lsp--client-priority client)))
-                             it)))
-      (-let* (((add-on-clients main-clients) (-separate 'lsp--client-add-on? it))
-              (selected-clients (if-let (main-client (and main-clients
-                                                          (--max-by (> (lsp--client-priority it)
-                                                                       (lsp--client-priority other))
-                                                                    main-clients)))
+  (cl-labels ((clients->string (clients) (mapconcat (lambda (client)
+                                                      (format "(server-id %s, priority %s)"
+                                                              (lsp--client-server-id client)
+                                                              (lsp--client-priority client)))
+                                                    clients
+                                                    ", ")))
+    (when-let ((matching-clients (->> lsp-clients
+                                      hash-table-values
+                                      (-filter (-rpartial #'lsp--match-client? file-name buffer-major-mode)))))
+      (lsp-log "Found the following clients for %s: %s" file-name (clients->string matching-clients))
+      ;; use only one major client all :add-on? clients.
+      (-let* (((add-on-clients main-clients) (-separate 'lsp--client-add-on? matching-clients))
+              (main-client (--max-by (> (lsp--client-priority it)
+                                        (lsp--client-priority other))
+                                     main-clients))
+              (selected-clients (if main-client
                                     (cons main-client add-on-clients)
                                   add-on-clients)))
         (lsp-log "The following clients were selected based on priority: %s"
-                 (s-join ", "
-                         (-map (lambda (client)
-                                 (format "(server-id %s, priority %s)"
-                                         (lsp--client-server-id client)
-                                         (lsp--client-priority client)))
-                               selected-clients)))
+                 (clients->string selected-clients))
         selected-clients))))
 
 (defun lsp-register-client (client)
