@@ -4,7 +4,7 @@
 
 ;; Author: Vibhav Pant, Fangrui Song, Ivan Yonchovski
 ;; Keywords: languages
-;; Package-Requires: ((emacs "25.1") (dash "2.14.1") (dash-functional "2.14.1") (f "0.20.0") (ht "2.0") (spinner "1.7.3") (markdown-mode "2.3"))
+;; Package-Requires: ((emacs "25.1") (dash "2.14.1") (dash-functional "2.14.1") (f "0.20.0") (ht "2.0") (spinner "1.7.3") (markdown-mode "2.3") (seq "2.20"))
 ;; Version: 6.0
 
 ;; URL: https://github.com/emacs-lsp/lsp-mode
@@ -648,15 +648,6 @@ They are added to `markdown-code-lang-modes'")
   "Return Nth element of SEQUENCE or nil if N is out of range."
   (if (listp sequence) (elt sequence n)
     (and (> (length sequence) n) (elt sequence n))))
-
-;; define seq-first and seq-rest for older emacs
-(defun seq-first (sequence)
-  "Return the first element of SEQUENCE."
-  (lsp-elt sequence 0))
-
-(defun seq-rest (sequence)
-  "Return a sequence of the elements of SEQUENCE except the first one."
-  (seq-drop sequence 1))
 
 (defun lsp--info (format &rest args)
   "Display lsp info message with FORMAT with ARGS."
