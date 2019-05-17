@@ -22,6 +22,7 @@
 
 (Setup
  (setq lsp-prefer-flymake :none)
+ (setq debug-on-error t)
  )
 
 (Before
