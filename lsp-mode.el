@@ -3135,7 +3135,7 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
             ;; the language server does all the work by itself
             (let* ((resp (lsp-request "textDocument/completion"
                                       (plist-put (lsp--text-document-position-params)
-                                                 :context (ht))))
+                                                 :context (ht ("triggerKind" 1)))))
                    (items (cond
                            ((seqp resp) resp)
                            ((hash-table-p resp) (gethash "items" resp nil)))))
