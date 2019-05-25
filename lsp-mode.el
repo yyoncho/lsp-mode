@@ -553,7 +553,8 @@ If set to `:none' neither of two will be enabled."
                                         (enh-ruby-mode . "ruby")
                                         (f90-mode . "fortran")
                                         (elm-mode . "elm")
-                                        (dart-mode . "dart"))
+                                        (dart-mode . "dart")
+                                        (haxe-mode . "haxe"))
   "Language id configuration.")
 
 (defvar lsp-method-requirements
@@ -2378,8 +2379,8 @@ in that particular folder."
 (defun lsp--send-did-save-p ()
   "Return whether did save notifications should be sent to the server."
   (let ((sync (gethash "textDocumentSync" (lsp--server-capabilities))))
-    (and (hash-table-p sync)
-         (hash-table-p (gethash "save" sync nil)))))
+    (or (not (hash-table-p sync))
+        (hash-table-p (gethash "save" sync nil)))))
 
 (defun lsp--save-include-text-p ()
   "Return whether save notifications should include the text document's contents."
@@ -3134,7 +3135,8 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
             ;; *we* don't need to know the string being completed
             ;; the language server does all the work by itself
             (let* ((resp (lsp-request "textDocument/completion"
-                                      (lsp--text-document-position-params)))
+                                      (plist-put (lsp--text-document-position-params)
+                                                 :context (ht ("triggerKind" 1)))))
                    (items (cond
                            ((seqp resp) resp)
                            ((hash-table-p resp) (gethash "items" resp nil)))))
@@ -5142,8 +5144,8 @@ such."
 (defun lsp-workspace-shutdown (workspace)
   "Shut the workspace WORKSPACE and the language server associated with it"
   (interactive (list (lsp--completing-read "Select server: "
-					   (lsp-workspaces)
-					   'lsp--workspace-print nil t)))
+					                                 (lsp-workspaces)
+					                                 'lsp--workspace-print nil t)))
   (lsp--warn "Stopping %s" (lsp--workspace-print workspace))
   (setf (lsp--workspace-shutdown-action workspace) 'shutdown)
   (with-lsp-workspace workspace (lsp--shutdown-workspace)))
@@ -5163,8 +5165,8 @@ such."
 (defun lsp-workspace-restart (workspace)
   "Restart the workspace WORKSPACE and the language server associated with it"
   (interactive (list (lsp--completing-read "Select workspace: "
-					   (lsp-workspaces)
-					   'lsp--workspace-print nil t)))
+					                                 (lsp-workspaces)
+					                                 'lsp--workspace-print nil t)))
   (lsp--warn "Restarting %s" (lsp--workspace-print workspace))
   (setf (lsp--workspace-shutdown-action workspace) 'restart)
   (with-lsp-workspace workspace (lsp--shutdown-workspace)))
