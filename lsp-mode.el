@@ -3134,7 +3134,8 @@ https://microsoft.github.io/language-server-protocol/specification#textDocument_
             ;; *we* don't need to know the string being completed
             ;; the language server does all the work by itself
             (let* ((resp (lsp-request "textDocument/completion"
-                                      (lsp--text-document-position-params)))
+                                      (plist-put (lsp--text-document-position-params)
+                                                 :context (ht))))
                    (items (cond
                            ((seqp resp) resp)
                            ((hash-table-p resp) (gethash "items" resp nil)))))
