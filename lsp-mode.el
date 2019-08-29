@@ -4676,20 +4676,22 @@ standard I/O."
                                                               (stringp el))
                                                             l))))))
   (list :connect (lambda (filter sentinel name)
-                   (let ((final-command (lsp-resolve-final-function command))
-                         (process-name (generate-new-buffer-name name)))
-                     (let ((proc (make-process
-                                  :name process-name
-                                  :connection-type 'pipe
-                                  :buffer (format "*%s*" process-name)
-                                  :coding 'no-conversion
-                                  :command final-command
-                                  :filter filter
-                                  :sentinel sentinel
-                                  :stderr (format "*%s::stderr*" process-name)
-                                  :noquery t)))
-                       (set-process-query-on-exit-flag proc nil)
-                       (cons proc proc))))
+                   (let* ((final-command (lsp-resolve-final-function command))
+                          (process-name (generate-new-buffer-name name))
+                          (stderr-buffer (generate-new-buffer-name (format "*%s::stderr*" process-name)))
+                          (proc (make-process
+                                 :name process-name
+                                 :connection-type 'pipe
+                                 :buffer (format "*%s*" process-name)
+                                 :coding 'no-conversion
+                                 :command final-command
+                                 :filter filter
+                                 :sentinel sentinel
+                                 :stderr stderr-buffer
+                                 :noquery t)))
+                     (process-put proc :stderr-buffer stderr-buffer)
+                     (set-process-query-on-exit-flag proc nil)
+                     (cons proc proc)))
         :test? (lambda () (-> command lsp-resolve-final-function lsp-server-present?))))
 
 (defun lsp--open-network-stream (host port name &optional retry-count sleep-interval)
@@ -4738,12 +4740,18 @@ process listening for TCP connections on the provided port."
                      (final-command (if (consp command) command (list command)))
                      (_ (unless (executable-find (cl-first final-command))
                           (user-error (format "Couldn't find executable %s" (cl-first final-command)))))
-                     (proc (make-process :name name :connection-type 'pipe :coding 'no-conversion
-                                         :command final-command :sentinel sentinel :stderr name :noquery t))
+                     (stderr-buffer (generate-new-buffer-name (format "*%s::stderr*" name)))
+                     (proc (make-process :name name
+                                         :connection-type 'pipe
+                                         :coding 'no-conversion
+                                         :command final-command
+                                         :sentinel sentinel
+                                         :stderr stderr-buffer
+                                         :noquery t))
                      (tcp-proc (lsp--open-network-stream host port (concat name "::tcp"))))
-
-                ;; TODO: Same :noquery issue (see above)
-                (set-process-query-on-exit-flag (get-buffer-process (get-buffer (process-name proc))) nil)
+                (process-put proc :stderr-buffer stderr-buffer)
+                (set-process-query-on-exit-flag
+                 (get-buffer-process (get-buffer (process-name proc))) nil)
                 (set-process-query-on-exit-flag tcp-proc nil)
                 (set-process-filter tcp-proc filter)
                 (cons tcp-proc proc)))
@@ -4874,7 +4882,10 @@ returns the command to execute."
             (and (eq lsp-restart 'interactive)
                  (let ((query (format "Server %s exited with status %s. Do you want to restart it?"
                                       (lsp--workspace-print workspace)
-                                      (process-status (lsp--workspace-proc workspace)))))
+                                      (process-status (lsp--workspace-proc workspace))))
+                       (stderr-buffer (process-get (lsp--workspace-proc workspace) :stderr-buffer)))
+                   (when stderr-buffer
+                     (display-buffer stderr-buffer))
                    (y-or-n-p query))))
     (--each (lsp--workspace-buffers workspace)
       (when (buffer-live-p it)
