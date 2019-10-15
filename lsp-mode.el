@@ -326,7 +326,7 @@ the server has requested that."
                                     "[/\\\\]\\.reference$")
   "List of regexps matching directory paths which won't be monitored when creating file watches."
   :group 'lsp-mode
-  :type '(repeat string)
+  :type '(vector string)
   :package-version '(lsp-mode . "6.1"))
 
 ;; Allow lsp-file-watch-ignored as a file or directory-local variable
