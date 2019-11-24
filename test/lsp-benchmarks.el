@@ -31,8 +31,7 @@
 (defun lsp-benchmarks--create-process-message ()
   (let ((fn (lsp--create-filter-function nil)))
     (lambda (input)
-      (flet ((lsp--parser-on-message (msg _workspace)
-                                     (push msg lsp-benchmark--test-results)))
+      (flet ((lsp--parser-on-message (msg _workspace)))
         (funcall fn lsp-benchmark-process input)
         (prog1 lsp-benchmark--test-results
           (setq lsp-benchmark--test-results nil))))))
@@ -46,12 +45,10 @@
 ;; (progn
 ;;   ;; (profiler-start 'cpu)
 ;;   (let ((gc-cons-threshold 10000000000))
-
 ;;     (profiler-stop)
 ;;     (profiler-start 'cpu)
 ;;     (dotimes (_ 100)(mapc (lambda (it) (funcall lsp-benchmark-function it))
 ;;            lsp-benchmark-data))
-
 ;;     (profiler-report)
 ;;     (garbage-collect)))
 
