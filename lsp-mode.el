@@ -547,6 +547,7 @@ Changes take effect only when a new session is started."
                                         (".*\\.xml$" . "xml")
                                         (".*\\.hx$" . "haxe")
                                         (".*\\.lua$" . "lua")
+                                        (".*\\.sql$" . "sql")
                                         (ada-mode . "ada")
                                         (vimrc-mode . "vim")
                                         (sh-mode . "shellscript")
