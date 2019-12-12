@@ -1,4 +1,4 @@
-;;; lsp-pwsh.el ---  vscode-json-languageserver integration -*- lexical-binding: t; -*-
+;;; lsp-json.el ---  vscode-json-languageserver integration -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  Kien Nguyen
 
@@ -26,6 +26,7 @@
 
 (require 'lsp-mode)
 (require 'ht)
+(require 'url)
 (require 'url-util)
 
 (defgroup lsp-json nil
@@ -86,29 +87,34 @@
 
 (defvar lsp-json--schema-associations
   `(("/*.css-data.json" . ["https://raw.githubusercontent.com/Microsoft/vscode-css-languageservice/master/docs/customData.schema.json"])
-    ("/package.json" . ["https://schemastore.azurewebsites.net/schemas/json/package.json"])
+    ("/package.json" . ["http://json.schemastore.org/package"])
     ("/*.html-data.json" . ["https://raw.githubusercontent.com/Microsoft/vscode-html-languageservice/master/docs/customData.schema.json"])
     ("/*.schema.json" . ["http://json-schema.org/draft-07/schema#"])
-    ("/bower.json" . ["https://schemastore.azurewebsites.net/schemas/json/bower.json"])
-    ("/composer.json" . ["https://getcomposer.org/schema.json"])
-    ("/tsconfig.json" . ["https://schemastore.azurewebsites.net/schemas/json/tsconfig.json"])
-    ("/tsconfig.*.json" . ["https://schemastore.azurewebsites.net/schemas/json/tsconfig.json"])
-    ("/typings.json" . ["https://schemastore.azurewebsites.net/schemas/json/typings.json"])
-    ("/.bowerrc" . ["https://schemastore.azurewebsites.net/schemas/json/bowerrc.json"])
-    ("/.babelrc" . ["https://schemastore.azurewebsites.net/schemas/json/babelrc.json"])
-    ("/.babelrc.json" . ["https://schemastore.azurewebsites.net/schemas/json/babelrc.json"])
-    ("/babel.config.json" . ["https://schemastore.azurewebsites.net/schemas/json/babelrc.json"])
-    ("/jsconfig.json" . ["https://schemastore.azurewebsites.net/schemas/json/jsconfig.json"])
-    ("/jsconfig.*.json" . ["https://schemastore.azurewebsites.net/schemas/json/jsconfig.json"])
+    ("/bower.json" . ["http://json.schemastore.org/bower"])
+    ("/composer.json" . ["http://json.schemastore.org/composer"])
+    ("/tsconfig.json" . ["http://json.schemastore.org/tsconfig"])
+    ("/tsconfig.*.json" . ["http://json.schemastore.org/tsconfig"])
+    ("/typings.json" . ["http://json.schemastore.org/typings"])
+    ("/.bowerrc" . ["http://json.schemastore.org/bowerrc"])
+    ("/.babelrc" . ["http://json.schemastore.org/babelrc"])
+    ("/.babelrc.json" . ["http://json.schemastore.org/babelrc"])
+    ("/babel.config.json" . ["http://json.schemastore.org/babelrc"])
+    ("/jsconfig.json" . ["http://json.schemastore.org/jsconfig"])
+    ("/jsconfig.*.json" . ["http://json.schemastore.org/jsconfig"])
     ("/project.json" . ["http://json.schemastore.org/project"])
     ("/omnisharp.json" . ["http://json.schemastore.org/omnisharp"]))
   "Default json schemas.")
 
-(defun lsp-json--get-content (_workspace uri)
+(defun lsp-json--get-content (_workspace uri callback)
   "Get content from URI."
-  (with-temp-buffer
-    (url-insert-file-contents (url-unhex-string uri))
-    (buffer-string)))
+  (url-retrieve uri (lambda (_status callback)
+                      (goto-char (point-min))
+                      (re-search-forward "\n\n" nil 'noerror)
+                      (funcall
+                       callback
+                       (decode-coding-string (buffer-substring (point) (point-max))
+                                             'utf-8-unix)))
+                (list callback)))
 
 (lsp-register-client
  (make-lsp-client
@@ -118,7 +124,7 @@
   :priority -1
   :completion-in-comments? t
   :initialization-options lsp-json--extra-init-params
-  :request-handlers (ht ("vscode/content" #'lsp-json--get-content))
+  :async-request-handlers (ht ("vscode/content" #'lsp-json--get-content))
   :initialized-fn (lambda (w)
                     (with-lsp-workspace w
                       (lsp--set-configuration (lsp-configuration-section "json"))
