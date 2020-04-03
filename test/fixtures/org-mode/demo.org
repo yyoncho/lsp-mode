@@ -1,0 +1,75 @@
+#+BEGIN_SRC python :tangle "org_demo_file.py"
+import org_demo_file_2
+
+   x
+org_demo_file_2.external_function("sdf")
+org_demo_file_2.extenal_function("sdf")
+
+#+END_SRC
+* LSP/DAP interactive features <-> org-mode (preview)
+** Python
+   #+BEGIN_SRC python :tangle "org_demo_file_2.py"
+   def external_function(s):
+       pass
+
+   external_function("sdf")
+   #+END_SRC
+
+** Java
+   #+BEGIN_SRC java :tangle ./java-project/src/main/java/temp/App.java
+   package temp;
+
+   class App {
+       public static void main(final String[] ar) {
+           System.out.println();
+           System.currentTimeMillis();
+           System.currentTimeMillis();
+
+           System.class.getClass();
+
+           ar.toString();
+           System.class.isArray();
+       }
+
+       public static void demo() {
+       }
+   }
+   #+END_SRC
+
+   #+BEGIN_SRC java :tangle java-project/src/test/java/temp/AppTest.java
+   package temp;
+
+   import org.junit.Test;
+
+   public class AppTest {
+       @Test
+       public void testA() {
+           System.out.println("Entering testA...");
+           App.demo();
+           foo();
+       }
+
+
+       private void foo() {
+           System.out.println("Foo called.");
+       }
+
+       private void foo2() {
+           System.out.println("Foo called.");
+       }
+       @Test
+       public void testB() {
+           System.out.println("Entering testB...\n");
+           foo();
+       }
+
+   }
+   #+END_SRC
+** C++
+   #+BEGIN_SRC c :tangle "demo2.cpp"
+   int fo22() { return 10; };
+
+   int main(int argc, char *argv[]) {
+     return 0;
+   }
+   #+END_SRC
