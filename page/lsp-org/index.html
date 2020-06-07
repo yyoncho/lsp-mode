@@ -9,19 +9,19 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/configuration/">
+        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/lsp-org/">
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
     
     
       
-        <title>Configuration - LSP Mode - LSP support for Emacs</title>
+        <title>Literate programming using LSP and org-mode(alpha) - LSP Mode - LSP support for Emacs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
       
       
     
@@ -35,14 +35,13 @@
     
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/layout.css">
     
       <link rel="stylesheet" href="../../stylesheets/members.css">
     
     
       
         
-<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
 <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-165661257-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
@@ -59,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuration" class="md-skip">
+        <a href="#literate-programming-using-lsp-and-org-modealpha" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +85,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Configuration
+              Literate programming using LSP and org-mode(alpha)
             
           </span>
         </div>
@@ -148,9 +147,7 @@
         
           
 
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -159,7 +156,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../.." class="md-tabs__link md-tabs__link--active">
+        <a href="../.." class="md-tabs__link">
           Home
         </a>
       
@@ -260,12 +257,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       Home
@@ -299,12 +294,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2">
     
     <label class="md-nav__link" for="nav-1-2">
       Setup
@@ -331,88 +324,6 @@
     <a href="../installation/" title="Installation" class="md-nav__link">
       Installation
     </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Configuration
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Configuration" class="md-nav__link md-nav__link--active">
-      Configuration
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#basic-setup" class="md-nav__link">
-    Basic setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vanilla-emacs" class="md-nav__link">
-    Vanilla Emacs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spacemacs" class="md-nav__link">
-    Spacemacs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#doom-emacs" class="md-nav__link">
-    Doom Emacs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-package" class="md-nav__link">
-    use-package
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1538,36 +1449,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-setup" class="md-nav__link">
-    Basic setup
+  <a href="#demo" class="md-nav__link">
+    Demo
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vanilla-emacs" class="md-nav__link">
-    Vanilla Emacs
+  <a href="#commands" class="md-nav__link">
+    Commands
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#spacemacs" class="md-nav__link">
-    Spacemacs
+  <a href="#what-works" class="md-nav__link">
+    What works
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doom-emacs" class="md-nav__link">
-    Doom Emacs
+  <a href="#known-limitations" class="md-nav__link">
+    Known limitations
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-package" class="md-nav__link">
-    use-package
+  <a href="#what-does-not-work" class="md-nav__link">
+    What does not work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    What's next
   </a>
   
 </li>
@@ -1584,7 +1502,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/page/configuration.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/page/lsp-org.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1592,70 +1510,58 @@
                   
                 
                 
-                <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h1>
-<h3 id="basic-setup">Basic setup<a class="headerlink" href="#basic-setup" title="Permanent link">#</a></h3>
-<h2 id="vanilla-emacs">Vanilla Emacs<a class="headerlink" href="#vanilla-emacs" title="Permanent link">#</a></h2>
-<p>You could go minimal and use <code>lsp-mode</code> as it is without external packages with the built-in <code>flymake</code> and <code>completion-at-point</code> or you could install the following extensions for better experience:</p>
+                <h1 id="literate-programming-using-lsp-and-org-modealpha">Literate programming using LSP and org-mode(alpha)<a class="headerlink" href="#literate-programming-using-lsp-and-org-modealpha" title="Permanent link">#</a></h1>
+<p><code>lsp-mode</code> provides <strong>experimental</strong> support for running the language servers
+inside of <a href="https://orgmode.org/">org-mode</a> source blocks. <code>lsp-mode</code> is
+achieving this by obtaining the information about the source block from the
+source block header(language + <code>:tangle</code>) then translating the point to the LSP
+positions back and forth so the language server thinks that Emacs has opened the
+original file. In order that to work the files has to be present on the disk as
+well because the server expects to find them.</p>
+<p>Here it is a sample source block:</p>
+<div class="highlight"><pre><span></span><code>#+BEGIN_SRC python :tangle &quot;python.py&quot;
+print &quot;Hello!&quot;
+#+END_SRC
+</code></pre></div>
+
+<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">#</a></h2>
+<p><img alt="Demo" src="../../examples/org-mode.gif" /></p>
+<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">#</a></h2>
 <ul>
-<li><a href="https://emacs-lsp.github.io/lsp-ui/#intro">lsp-ui</a> for fancy sideline, popup documentation, VScode-like peek UI, etc.</li>
-<li><a href="https://github.com/flycheck/flycheck">flycheck</a> if you prefer the more popular <code>flycheck</code> over renewed <code>flymake</code>. <code>lsp-mode</code> will automatically pick it up.</li>
-<li><a href="https://github.com/company-mode/company-mode">company-mode</a> for completion popups.</li>
-<li><a href="https://github.com/emacs-lsp/lsp-treemacs">lsp-treemacs</a> for various tree based UI controls (symbols, errors overview, call hierarchy, etc.)</li>
-<li><a href="https://github.com/emacs-lsp/helm-lsp">helm-lsp</a> provides on type completion alternative of <code>xref-apropos</code> using <code>helm</code>.</li>
-<li><a href="https://github.com/emacs-lsp/lsp-ivy">lsp-ivy</a> provides on type completion alternative of <code>xref-apropos</code> using <code>ivy</code>.</li>
-<li><a href="https://emacs-lsp.github.io/dap-mode">dap-mode</a> if your language is supported by the debugger.</li>
+<li><code>lsp-org</code> start <code>lsp-mode</code> in source buffer. Must be executed with cursor
+  being source block.</li>
+<li><code>lsp-virtual-buffer-disconnect</code> turn off <code>lsp-mode</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">;; if you want to change prefix for lsp-mode keybindings.</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-keymap-prefix</span> <span class="s">&quot;s-l&quot;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;lsp-mode</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;XXX-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">lsp</span><span class="p">)</span>
-</code></pre></div>
-
-<p>Where <code>XXX</code> could be major mode like <code>python</code>, <code>java</code>, <code>c++</code>. Alternatively, if you want to minimize you configuration you may use <code>prog-mode-hook</code>. In case you do that, <code>lsp</code> will try to start for each programming mode and echo a message when there is no client registered for the current mode or if the corresponding server is not present. In addition, <code>lsp-mode</code> will automatically detect and configure <a href="https://emacs-lsp.github.io/lsp-ui">lsp-ui</a> and <a href="https://github.com/tigersoldier/company-lsp">company-lsp</a>. To turn off that behavior you could set <code>lsp-auto-configure</code> to <code>nil</code>.</p>
-<p>To defer LSP server startup (and DidOpen notifications) until the buffer is visible you can use <code>lsp-deferred</code> instead of <code>lsp</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;XXX-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">lsp-deferred</span><span class="p">)</span>
-</code></pre></div>
-
-<h2 id="spacemacs">Spacemacs<a class="headerlink" href="#spacemacs" title="Permanent link">#</a></h2>
-<p><a href="https://emacs-lsp.github.io/lsp-mode">lsp-mode</a> is included in spacemacs develop branch. Add <code>lsp</code> to <code>dotspacemacs-configuration-layers</code> and configure the language that you want to use to be backed by <code>lsp</code> backend.</p>
-<h2 id="doom-emacs">Doom Emacs<a class="headerlink" href="#doom-emacs" title="Permanent link">#</a></h2>
-<p><a href="https://emacs-lsp.github.io/lsp-mode">lsp-mode</a> is included in doom emacs. On your <code>init.el</code> file, add the <code>+lsp</code> flag to the language you want to enable LSP on the <code>:lang</code> module. For more information on how to configure the LSP on doom-emacs, check <a href="https://github.com/hlissner/doom-emacs/blob/master/modules/tools/lsp/README.org">here</a>.</p>
-<h2 id="use-package">use-package<a class="headerlink" href="#use-package" title="Permanent link">#</a></h2>
-<p>Replace <code>(require 'lsp-mode)</code> with the following if you use use-package.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">;; set prefix for lsp-command-keymap (few alternatives - &quot;C-l&quot;, &quot;C-c l&quot;)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-keymap-prefix</span> <span class="s">&quot;s-l&quot;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
-    <span class="nb">:hook</span> <span class="p">(</span><span class="c1">;; replace XXX-mode with concrete major-mode(e. g. python-mode)</span>
-            <span class="p">(</span><span class="nv">XXX-mode</span> <span class="o">.</span> <span class="nv">lsp</span><span class="p">)</span>
-            <span class="c1">;; if you want which-key integration</span>
-            <span class="p">(</span><span class="nv">lsp-mode</span> <span class="o">.</span> <span class="nv">lsp-enable-which-key-integration</span><span class="p">))</span>
-    <span class="nb">:commands</span> <span class="nv">lsp</span><span class="p">)</span>
-
-<span class="c1">;; optionally</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ui</span> <span class="nb">:commands</span> <span class="nv">lsp-ui-mode</span><span class="p">)</span>
-<span class="c1">;; if you are helm user</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">helm-lsp</span> <span class="nb">:commands</span> <span class="nv">helm-lsp-workspace-symbol</span><span class="p">)</span>
-<span class="c1">;; if you are ivy user</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ivy</span> <span class="nb">:commands</span> <span class="nv">lsp-ivy-workspace-symbol</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-treemacs</span> <span class="nb">:commands</span> <span class="nv">lsp-treemacs-errors-list</span><span class="p">)</span>
-
-<span class="c1">;; optionally if you want to use debugger</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">dap-mode</span><span class="p">)</span>
-<span class="c1">;; (use-package dap-LANGUAGE) to load the dap adapter for your language</span>
-
-<span class="c1">;; optional if you want which-key integration</span>
-<span class="p">(</span><span class="nb">use-package</span> <span class="nv">which-key</span>
-    <span class="nb">:config</span>
-    <span class="p">(</span><span class="nv">which-key-mode</span><span class="p">))</span>
-</code></pre></div>
-
-<p>To defer LSP server startup (and DidOpen notifications) until the buffer is visible you can use <code>lsp-deferred</code> instead of <code>lsp</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
-    <span class="nb">:hook</span> <span class="p">(</span><span class="nv">XXX-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
-    <span class="nb">:commands</span> <span class="p">(</span><span class="nv">lsp</span> <span class="nv">lsp-deferred</span><span class="p">))</span>
-</code></pre></div>
+<h2 id="what-works">What works<a class="headerlink" href="#what-works" title="Permanent link">#</a></h2>
+<ul>
+<li><code>lsp-mode</code> core features (finding references, going to definitions, completion, lenses, highlighting, etc)</li>
+<li><code>company-mode</code></li>
+<li><code>flycheck</code></li>
+<li><code>lsp-treemacs-symbols</code></li>
+<li><code>lsp-treemacs-errors-list</code></li>
+</ul>
+<h2 id="known-limitations">Known limitations<a class="headerlink" href="#known-limitations" title="Permanent link">#</a></h2>
+<ul>
+<li>Incremental updates are performed by sending the whole
+  buffer each time(they simulate full updates).</li>
+<li>Deleting content that spans across the source block and the content of the org
+  document is not handled.</li>
+<li>Opening and editing the actual file from the disk might cause undefined
+  behavour because the server expects file to be open only once.</li>
+</ul>
+<h2 id="what-does-not-work">What does not work<a class="headerlink" href="#what-does-not-work" title="Permanent link">#</a></h2>
+<ul>
+<li><code>dap-mode</code></li>
+<li><code>lsp-ui</code></li>
+<li><code>flymake</code>(?)</li>
+</ul>
+<h2 id="whats-next">What's next<a class="headerlink" href="#whats-next" title="Permanent link">#</a></h2>
+<ul>
+<li>Finishing the virtual buffers <code>API</code>.</li>
+<li><code>lsp-ui</code> support</li>
+<li><code>dap-mode</code> support</li>
+<li><code>markdown-mode</code> integration</li>
+</ul>
                 
                   
                     
@@ -1664,7 +1570,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: June 2, 2020
+      Last update: June 7, 2020
     
   </small>
 </div>
@@ -1683,41 +1589,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../installation/" title="Installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Installation
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../performance/" title="Perfomance" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Perfomance
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1767,14 +1638,14 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
