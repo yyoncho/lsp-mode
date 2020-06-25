@@ -2109,11 +2109,15 @@ The `:global' workspace is global one.")
 (defun lsp--headerline-check-breadcrumb (&rest _)
   "Request for document symbols to build the breadcrumb."
   (when (lsp-feature? "textDocument/documentSymbol")
-    (-if-let* ((lsp--document-symbols-request-async t)
-               (symbols (lsp--get-document-symbols))
-               (symbols-hierarchy (lsp-symbols->symbols-hierarchy symbols)))
-        (setq lsp--headerline-breadcrumb-string (lsp--headerline-build-string symbols-hierarchy))
-      (setq lsp--headerline-breadcrumb-string ""))
+    (setq lsp--headerline-breadcrumb-string
+          (format "%s %s"
+                  (f-relative (buffer-file-name)
+                              (lsp-workspace-root))
+                  (-if-let* ((lsp--document-symbols-request-async t)
+                             (symbols (lsp--get-document-symbols))
+                             (symbols-hierarchy (lsp-symbols->symbols-hierarchy symbols)))
+                      (lsp--headerline-build-string symbols-hierarchy)
+                    "")))
     (force-mode-line-update)))
 
 (define-minor-mode lsp-headerline-breadcrumb-mode
@@ -3709,9 +3713,11 @@ in that particular folder."
 
 (defun lsp--send-did-save-p ()
   "Return whether did save notifications should be sent to the server."
-  (let ((sync (lsp:server-capabilities-text-document-sync? (lsp--server-capabilities))))
-    (or (memq sync '(1 2))
-        (lsp:text-document-sync-options-save? sync))))
+  ;; (let ((sync (lsp:server-capabilities-text-document-sync? (lsp--server-capabilities))))
+  ;;   (or (memq sync '(1 2))
+  ;;       (lsp:text-document-sync-options-save? sync)))
+  t
+  )
 
 (defun lsp--save-include-text-p ()
   "Return whether save notifications should include the text document's contents."
@@ -4926,8 +4932,8 @@ Also, additional data to attached to each candidate can be passed via PLIST."
                                        (not (lsp:completion-list-is-incomplete resp))))
                         (items (lsp--while-no-input
                                 (--> (cond
-                                       ((lsp-completion-list? resp) (lsp:completion-list-items resp))
-                                       (t resp))
+                                      ((lsp-completion-list? resp) (lsp:completion-list-items resp))
+                                      (t resp))
                                      (if (or completed
                                              (seq-some #'lsp:completion-item-sort-text? it))
                                          (lsp--sort-completions it)
@@ -5258,10 +5264,9 @@ If INCLUDE-DECLARATION is non-nil, request the server to include declarations."
   "Display the type signature and documentation of the thing at
 point."
   (interactive)
-  (let ((contents (-some->> (lsp--text-document-position-params)
-                    (lsp--make-request "textDocument/hover")
-                    (lsp--send-request)
-                    (lsp:hover-contents))))
+  (let ((contents (->> (lsp--text-document-position-params)
+                       (lsp-request "textDocument/hover")
+                       lsp:hover-contents)))
     (if (and contents (not (equal contents "")))
         (let ((lsp-help-buf-name "*lsp-help*"))
           (with-current-buffer (get-buffer-create lsp-help-buf-name)

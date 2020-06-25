@@ -494,8 +494,17 @@ The command should include `--message=format=json` or similar option."
 (defconst lsp-rust-notification-handlers
   '(("rust-analyzer/publishDecorations" . (lambda (_w _p)))))
 
-(defconst lsp-rust-action-handlers
-  '())
+(eval-when-compile
+  (lsp-interface
+   (ra:RunArgs (:args :kind :label :location))
+   (ra:CargoArgs (:cargoArgs :executableArgs :workspaceRoot))))
+
+(lsp-defun lsp-rust-ra-run-lens ((&Command :arguments? [(&ra:RunArgs :args (&ra:CargoArgs :cargo-args :executable-args :workspace-root))]))
+  (let ((default-directory workspace-root))
+    (compile (format "cargo %s" (s-join " " cargo-args)))))
+
+(defvar lsp-rust-action-handlers
+  '(("rust-analyzer.runSingle" . lsp-rust-ra-run-lens)))
 
 (define-derived-mode lsp-rust-analyzer-syntax-tree-mode special-mode "Rust-Analyzer-Syntax-Tree"
   "Mode for the rust-analyzer syntax tree buffer.")
@@ -682,7 +691,6 @@ The command should include `--message=format=json` or similar option."
        (cons lsp-rust-analyzer--last-runnable (lsp-rust-analyzer--runnables))
      (lsp-rust-analyzer--runnables))
    (-lambda ((&rust-analyzer:Runnable :label)) label)))
-
 (defun lsp-rust-analyzer-run (runnable)
   (interactive (list (lsp-rust-analyzer--select-runnable)))
   (-let* (((&rust-analyzer:Runnable :env? :bin? :args :extra-args? :label) runnable)
