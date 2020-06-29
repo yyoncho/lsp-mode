@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
       
       
     
@@ -52,6 +52,7 @@
   
     <body dir="ltr">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -403,6 +404,20 @@
         <li class="md-nav__item">
   <a href="#checking-project-errors" class="md-nav__link">
     Checking project errors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-actions-on-modeline" class="md-nav__link">
+    Code actions on modeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breadcrumb-on-headerline" class="md-nav__link">
+    Breadcrumb on headerline
   </a>
   
 </li>
@@ -1220,8 +1235,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../lsp-metals/" title="Scala" class="md-nav__link">
+    <a href="https://emacs-lsp.github.io/lsp-metals" title="Scala" class="md-nav__link">
       Scala
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lsp-sqls/" title="SQL (sqls)" class="md-nav__link">
+      SQL (sqls)
     </a>
   </li>
 
@@ -1270,18 +1297,6 @@
   <li class="md-nav__item">
     <a href="../lsp-texlab/" title="TeX, LaTeX, etc (texlab)" class="md-nav__link">
       TeX, LaTeX, etc (texlab)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../lsp-latex/" title="TeX, LaTeX, etc (latex)" class="md-nav__link">
-      TeX, LaTeX, etc (latex)
     </a>
   </li>
 
@@ -1522,6 +1537,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#code-actions-on-modeline" class="md-nav__link">
+    Code actions on modeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breadcrumb-on-headerline" class="md-nav__link">
+    Breadcrumb on headerline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     Limitations
   </a>
@@ -1597,6 +1626,7 @@
 </ul>
 <h2 id="checking-project-errors">Checking project errors<a class="headerlink" href="#checking-project-errors" title="Permanent link">#</a></h2>
 <p>To see all error statistics in the modeline you can enable <code>lsp-diagnostics-modeline-mode</code>. This is especially useful for languages that compilation might be broken due to errors in other files(e.g. Java/Haskell).</p>
+<p><img alt="" src="../../examples/modeline-diagnostics.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">with-eval-after-load</span> <span class="ss">&#39;lsp-mode</span>
   <span class="c1">;; :project/:workspace/:file</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-diagnostics-modeline-scope</span> <span class="nb">:project</span><span class="p">)</span>
@@ -1604,6 +1634,12 @@
 </code></pre></div>
 
 <p><em>Tip:</em> To find out the global errors you might use <code>lsp-treemacs-errors-list</code>.</p>
+<h2 id="code-actions-on-modeline">Code actions on modeline<a class="headerlink" href="#code-actions-on-modeline" title="Permanent link">#</a></h2>
+<p>For a UI feedback of the available code actions, you can enable <code>lsp-modeline-code-actions-mode</code> which shows available code actions on modeline:</p>
+<p><img alt="" src="../../examples/modeline-code-actions.png" /></p>
+<h2 id="breadcrumb-on-headerline">Breadcrumb on headerline<a class="headerlink" href="#breadcrumb-on-headerline" title="Permanent link">#</a></h2>
+<p>For a UI feedback on headerline of the document symbol at point, you can enable <code>lsp-headerline-breadcrumb-mode</code> which shows a breadcrumb on top of window:</p>
+<p><img alt="" src="../../examples/headerline-breadcrumb.png" /></p>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">#</a></h2>
 <h3 id="file-watches">File watches<a class="headerlink" href="#file-watches" title="Permanent link">#</a></h3>
 <p>When some of the workspaces that are active in the current project requests file notifications via <code>workspace/didChangeWatchedFiles</code>, <code>lsp-mode</code> will start monitoring each of the folders in the workspace for changes. In case your project contains a lot of files you might want to disable file monitoring via <code>lsp-enable-file-watchers</code> (you may use dir-locals).</p>
@@ -1615,7 +1651,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: June 7, 2020
+      Last update: June 26, 2020
     
   </small>
 </div>
@@ -1718,14 +1754,14 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

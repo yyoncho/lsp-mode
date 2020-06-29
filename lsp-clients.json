@@ -352,22 +352,6 @@
     "debugger": "Not available"
   },
   {
-    "name": "serenata",
-    "full-name": "PHP (Serenata)",
-    "server-name": "Serenata",
-    "server-url": "https://gitlab.com/Serenata/Serenata",
-    "installation-url": "https://gitlab.com/Serenata/Serenata/-/releases",
-    "debugger": "Yes"
-  },
-  {
-    "name": "solargraph",
-    "full-name": "Ruby",
-    "server-name": "solargraph",
-    "server-url": "https://github.com/castwide/solargraph",
-    "installation": "gem install solargraph",
-    "debugger": "Yes"
-  },
-  {
     "name": "rust",
     "full-name": "Rust",
     "server-name": "rls",
@@ -384,11 +368,27 @@
     "debugger": "Not available"
   },
   {
-    "name": "metals",
-    "full-name": "Scala",
-    "server-name": "Metals",
-    "server-url": "https://scalameta.org/metals",
-    "installation-url": "https://scalameta.org/metals/docs/editors/emacs.html",
+    "name": "serenata",
+    "full-name": "PHP (Serenata)",
+    "server-name": "Serenata",
+    "server-url": "https://gitlab.com/Serenata/Serenata",
+    "installation-url": "https://gitlab.com/Serenata/Serenata/-/releases",
+    "debugger": "Yes"
+  },
+  {
+    "name": "solargraph",
+    "full-name": "Ruby",
+    "server-name": "solargraph",
+    "server-url": "https://github.com/castwide/solargraph",
+    "installation": "gem install solargraph",
+    "debugger": "Yes"
+  },
+  {
+    "name": "sqls",
+    "full-name": "SQL (sqls)",
+    "server-name": "sqls",
+    "server-url": "https://github.com/lighttiger2505/sqls",
+    "installation": "go get github.com/lighttiger2505/sqls",
     "debugger": "Not available"
   },
   {
@@ -397,16 +397,6 @@
     "server-name": "terraform-lsp",
     "server-url": "https://github.com/juliosueiras/terraform-lsp",
     "installation": "Git clone outside of $GOPATH; go install",
-    "debugger": "Not available"
-  },
-  {
-    "name": "latex",
-    "full-name": "TeX, LaTeX, etc.",
-    "server-name": "texlab",
-    "server-url": "https://github.com/latex-lsp/texlab",
-    "client-name": "lsp-latex",
-    "client-url": "https://github.com/ROCKTAKEY/lsp-latex",
-    "installation": "cargo install --git https://github.com/latex-lsp/texlab.git",
     "debugger": "Not available"
   },
   {

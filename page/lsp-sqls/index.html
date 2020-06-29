@@ -9,19 +9,19 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/lsp-metals/">
+        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/lsp-sqls/">
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
-        <title>Scala - LSP Mode - LSP support for Emacs</title>
+        <title>SQL (sqls) - LSP Mode - LSP support for Emacs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
       
       
     
@@ -52,13 +52,14 @@
   
     <body dir="ltr">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
         
-        <a href="#scala" class="md-skip">
+        <a href="#sql-sqls" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +86,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Scala
+              SQL (sqls)
             
           </span>
         </div>
@@ -1156,6 +1157,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="https://emacs-lsp.github.io/lsp-metals" title="Scala" class="md-nav__link">
+      Scala
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1167,14 +1180,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Scala
+        SQL (sqls)
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Scala" class="md-nav__link md-nav__link--active">
-      Scala
+    <a href="./" title="SQL (sqls)" class="md-nav__link md-nav__link--active">
+      SQL (sqls)
     </a>
     
       
@@ -1228,92 +1241,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lsp-metals-server-command" class="md-nav__link">
-    lsp-metals-server-command
+  <a href="#lsp-sqls-server" class="md-nav__link">
+    lsp-sqls-server
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#lsp-metals-server-args" class="md-nav__link">
-    lsp-metals-server-args
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-java-home" class="md-nav__link">
-    lsp-metals-java-home
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-scalafmt-config-path" class="md-nav__link">
-    lsp-metals-scalafmt-config-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-sbt-script" class="md-nav__link">
-    lsp-metals-sbt-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-gradle-script" class="md-nav__link">
-    lsp-metals-gradle-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-maven-script" class="md-nav__link">
-    lsp-metals-maven-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-mill-script" class="md-nav__link">
-    lsp-metals-mill-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-pants-targets" class="md-nav__link">
-    lsp-metals-pants-targets
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-bloop-sbt-already-installed" class="md-nav__link">
-    lsp-metals-bloop-sbt-already-installed
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-bloop-version" class="md-nav__link">
-    lsp-metals-bloop-version
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-super-method-lenses-enabled" class="md-nav__link">
-    lsp-metals-super-method-lenses-enabled
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-remote-language-server" class="md-nav__link">
-    lsp-metals-remote-language-server
+  <a href="#lsp-sqls-workspace-config-path" class="md-nav__link">
+    lsp-sqls-workspace-config-path
   </a>
   
 </li>
@@ -1374,18 +1310,6 @@
   <li class="md-nav__item">
     <a href="../lsp-texlab/" title="TeX, LaTeX, etc (texlab)" class="md-nav__link">
       TeX, LaTeX, etc (texlab)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../lsp-latex/" title="TeX, LaTeX, etc (latex)" class="md-nav__link">
-      TeX, LaTeX, etc (latex)
     </a>
   </li>
 
@@ -1654,92 +1578,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lsp-metals-server-command" class="md-nav__link">
-    lsp-metals-server-command
+  <a href="#lsp-sqls-server" class="md-nav__link">
+    lsp-sqls-server
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#lsp-metals-server-args" class="md-nav__link">
-    lsp-metals-server-args
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-java-home" class="md-nav__link">
-    lsp-metals-java-home
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-scalafmt-config-path" class="md-nav__link">
-    lsp-metals-scalafmt-config-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-sbt-script" class="md-nav__link">
-    lsp-metals-sbt-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-gradle-script" class="md-nav__link">
-    lsp-metals-gradle-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-maven-script" class="md-nav__link">
-    lsp-metals-maven-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-mill-script" class="md-nav__link">
-    lsp-metals-mill-script
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-pants-targets" class="md-nav__link">
-    lsp-metals-pants-targets
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-bloop-sbt-already-installed" class="md-nav__link">
-    lsp-metals-bloop-sbt-already-installed
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-bloop-version" class="md-nav__link">
-    lsp-metals-bloop-version
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-super-method-lenses-enabled" class="md-nav__link">
-    lsp-metals-super-method-lenses-enabled
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-metals-remote-language-server" class="md-nav__link">
-    lsp-metals-remote-language-server
+  <a href="#lsp-sqls-workspace-config-path" class="md-nav__link">
+    lsp-sqls-workspace-config-path
   </a>
   
 </li>
@@ -1761,7 +1608,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/page/lsp-metals.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/page/lsp-sqls.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1769,93 +1616,20 @@
                   
                 
                 
-                <h1 id="scala">Scala<a class="headerlink" href="#scala" title="Permanent link">#</a></h1>
+                <h1 id="sql-sqls">SQL (sqls)<a class="headerlink" href="#sql-sqls" title="Permanent link">#</a></h1>
 <h2 id="server">Server<a class="headerlink" href="#server" title="Permanent link">#</a></h2>
-<p>For information about the LSP server, check the <a href="https://scalameta.org/metals">Metals</a>.</p>
+<p>For information about the LSP server, check the <a href="https://github.com/lighttiger2505/sqls">sqls</a>.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p>For instruction on how to install, check <a href="https://scalameta.org/metals/docs/editors/emacs.html">here</a>.</p>
+<p><code>go get github.com/lighttiger2505/sqls</code></p>
 <h3 id="debugger-not-available">Debugger: Not available<a class="headerlink" href="#debugger-not-available" title="Permanent link">#</a></h3>
 <h2 id="available-configurations">Available configurations<a class="headerlink" href="#available-configurations" title="Permanent link">#</a></h2>
-<h3 id="lsp-metals-server-command"><code>lsp-metals-server-command</code><a class="headerlink" href="#lsp-metals-server-command" title="Permanent link">#</a></h3>
-<p><em>Default: <code>metals-emacs</code></em></p>
-<p>The command to launch the Scala language server.</p>
+<h3 id="lsp-sqls-server"><code>lsp-sqls-server</code><a class="headerlink" href="#lsp-sqls-server" title="Permanent link">#</a></h3>
+<p><em>Default: <code>sqls</code></em></p>
+<p>Path to the ‘sqls‘ binary.</p>
 <hr />
-<h3 id="lsp-metals-server-args"><code>lsp-metals-server-args</code><a class="headerlink" href="#lsp-metals-server-args" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>Extra arguments for the Scala language server.</p>
-<hr />
-<h3 id="lsp-metals-java-home"><code>lsp-metals-java-home</code><a class="headerlink" href="#lsp-metals-java-home" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>The Java Home directory used for indexing JDK sources and locating
-the ‘java’ binary.</p>
-<hr />
-<h3 id="lsp-metals-scalafmt-config-path"><code>lsp-metals-scalafmt-config-path</code><a class="headerlink" href="#lsp-metals-scalafmt-config-path" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>Optional custom path to the .scalafmt.conf file. Should be relative
-to the workspace root directory and use forward slashes / for file
-separators (even on Windows).</p>
-<hr />
-<h3 id="lsp-metals-sbt-script"><code>lsp-metals-sbt-script</code><a class="headerlink" href="#lsp-metals-sbt-script" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>Optional absolute path to an ‘sbt’ executable to use for running
-‘sbt bloopInstall’. By default, Metals uses ‘java -jar sbt-launch.jar’
-with an embedded launcher while respecting ‘.jvmopts’ and ‘.sbtopts’.
-Update this setting if your ‘sbt’ script requires more customizations
-like using environment variables.</p>
-<hr />
-<h3 id="lsp-metals-gradle-script"><code>lsp-metals-gradle-script</code><a class="headerlink" href="#lsp-metals-gradle-script" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>Optional absolute path to a ‘gradle’ executable to use for running
-‘gradle bloopInstall’. By default, Metals uses gradlew with 5.3.1
-gradle version. Update this setting if your ‘gradle’ script requires
-more customizations like using environment variables.</p>
-<hr />
-<h3 id="lsp-metals-maven-script"><code>lsp-metals-maven-script</code><a class="headerlink" href="#lsp-metals-maven-script" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>Optional absolute path to a ‘maven’ executable to use for
-generating bloop config. By default, Metals uses mvnw maven wrapper
-with 3.6.1 maven version. Update this setting if your ‘maven’ script
-requires more customizations.</p>
-<hr />
-<h3 id="lsp-metals-mill-script"><code>lsp-metals-mill-script</code><a class="headerlink" href="#lsp-metals-mill-script" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>Optional absolute path to a ‘mill’ executable to use for running
-‘mill mill.contrib.Bloop/install’. By default, Metals uses mill
-wrapper script with 0.5.0 mill version. Update this setting if your
-mill script requires more customizations like using environment
-variables.</p>
-<hr />
-<h3 id="lsp-metals-pants-targets"><code>lsp-metals-pants-targets</code><a class="headerlink" href="#lsp-metals-pants-targets" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>Space separated list of Pants targets to export, for example
-‘src/main/scala:: src/main/java::’. Syntax such as ‘src/{main,test}::’
-is not supported.</p>
-<hr />
-<h3 id="lsp-metals-bloop-sbt-already-installed"><code>lsp-metals-bloop-sbt-already-installed</code><a class="headerlink" href="#lsp-metals-bloop-sbt-already-installed" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>If true, Metals will not generate a ‘project/metals.sbt’ file under
-the assumption that sbt-bloop is already manually installed in the sbt
-build. Build import will fail with a ’not valid command bloopInstall‘
-error in case Bloop is not manually installed in the build when using
-this option.</p>
-<hr />
-<h3 id="lsp-metals-bloop-version"><code>lsp-metals-bloop-version</code><a class="headerlink" href="#lsp-metals-bloop-version" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>This version will be used for the Bloop build tool plugin, for any
-supported build tool, while importing in Metals as well as for running
-the embedded server.</p>
-<hr />
-<h3 id="lsp-metals-super-method-lenses-enabled"><code>lsp-metals-super-method-lenses-enabled</code><a class="headerlink" href="#lsp-metals-super-method-lenses-enabled" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>Super method lenses are visible above methods definition that
-override another methods. Clicking on a lens jumps to super method
-definition. Disabled lenses are not calculated for opened documents
-which might speed up document processing.</p>
-<hr />
-<h3 id="lsp-metals-remote-language-server"><code>lsp-metals-remote-language-server</code><a class="headerlink" href="#lsp-metals-remote-language-server" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>A URL pointing to an endpoint that implements a remote language
-server.</p>
+<h3 id="lsp-sqls-workspace-config-path"><code>lsp-sqls-workspace-config-path</code><a class="headerlink" href="#lsp-sqls-workspace-config-path" title="Permanent link">#</a></h3>
+<p><em>Default: <code>workspace</code></em></p>
+<p>If non-nil then setup workspace configuration with json file path.</p>
 <hr />
                 
                   
@@ -1865,7 +1639,7 @@ server.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: June 7, 2020
+      Last update: June 29, 2020
     
   </small>
 </div>
@@ -1968,14 +1742,14 @@ server.</p>
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
