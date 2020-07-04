@@ -809,6 +809,11 @@ ignored."
   :type 'boolean
   :group 'lsp-mode)
 
+(defcustom lsp-completion-show-kind t
+  "Whether or not to show kind of completion candidates."
+  :type 'boolean
+  :group 'lsp-mode)
+
 (defcustom lsp-server-trace nil
   "Request tracing on the server side.
 The actual trace output at each level depends on the language server in use.
@@ -4725,8 +4730,9 @@ and the position respectively."
                                                        'lsp-completion-item)))
     (concat (when (and lsp-completion-show-detail detail?)
               (concat " " (s-replace "\r" "" detail?)))
-            (when-let (kind-name (and kind? (aref lsp--completion-item-kind kind?)))
-              (format " (%s)" kind-name)))))
+            (when lsp-completion-show-kind
+              (when-let (kind-name (and kind? (aref lsp--completion-item-kind kind?)))
+                (format " (%s)" kind-name))))))
 
 (defun lsp--looking-back-trigger-characterp (trigger-characters)
   "Return trigger character if text before point matches any of the TRIGGER-CHARACTERS."
