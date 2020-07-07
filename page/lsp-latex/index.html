@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/lsp-vhdl/">
+        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/lsp-latex/">
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
@@ -17,7 +17,7 @@
     
     
       
-        <title>VHDL - LSP Mode - LSP support for Emacs</title>
+        <title>TeX, LaTeX, etc (texlab, external) - LSP Mode - LSP support for Emacs</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vhdl" class="md-skip">
+        <a href="#lsp-latex-for-tex-latex-etc" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              VHDL
+              TeX, LaTeX, etc (texlab, external)
             
           </span>
         </div>
@@ -1248,30 +1248,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../lsp-latex/" title="TeX, LaTeX, etc (texlab, external)" class="md-nav__link">
-      TeX, LaTeX, etc (texlab, external)
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../lsp-verilog/" title="Verilog/SystemVerilog" class="md-nav__link">
-      Verilog/SystemVerilog
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -1283,14 +1259,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        VHDL
+        TeX, LaTeX, etc (texlab, external)
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="VHDL" class="md-nav__link md-nav__link--active">
-      VHDL
+    <a href="./" title="TeX, LaTeX, etc (texlab, external)" class="md-nav__link md-nav__link--active">
+      TeX, LaTeX, etc (texlab, external)
     </a>
     
       
@@ -1316,11 +1292,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#installationserver" class="md-nav__link">
+    Installation(server)
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+    <nav class="md-nav" aria-label="Installation(server)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1336,23 +1312,37 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installationclient" class="md-nav__link">
+    Installation(client)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#available-configurations" class="md-nav__link">
     Available configurations
   </a>
   
-    <nav class="md-nav" aria-label="Available configurations">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-variables" class="md-nav__link">
+    Other variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Other variables">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lsp-vhdl-server" class="md-nav__link">
-    lsp-vhdl-server
+  <a href="#lsp-latex-texlab-executable" class="md-nav__link">
+    lsp-latex-texlab-executable
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#lsp-vhdl-server-path" class="md-nav__link">
-    lsp-vhdl-server-path
+  <a href="#lsp-latex-texlab-executable-argument-list" class="md-nav__link">
+    lsp-latex-texlab-executable-argument-list
   </a>
   
 </li>
@@ -1362,10 +1352,68 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#available-functions" class="md-nav__link">
+    Available functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Available functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lsp-latex-build" class="md-nav__link">
+    lsp-latex-build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsp-latex-forward-search" class="md-nav__link">
+    lsp-latex-forward-search
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lsp-verilog/" title="Verilog/SystemVerilog" class="md-nav__link">
+      Verilog/SystemVerilog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lsp-vhdl/" title="VHDL" class="md-nav__link">
+      VHDL
+    </a>
   </li>
 
         
@@ -1653,11 +1701,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#installationserver" class="md-nav__link">
+    Installation(server)
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+    <nav class="md-nav" aria-label="Installation(server)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1673,29 +1721,77 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installationclient" class="md-nav__link">
+    Installation(client)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#available-configurations" class="md-nav__link">
     Available configurations
   </a>
   
-    <nav class="md-nav" aria-label="Available configurations">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-variables" class="md-nav__link">
+    Other variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Other variables">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lsp-vhdl-server" class="md-nav__link">
-    lsp-vhdl-server
+  <a href="#lsp-latex-texlab-executable" class="md-nav__link">
+    lsp-latex-texlab-executable
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#lsp-vhdl-server-path" class="md-nav__link">
-    lsp-vhdl-server-path
+  <a href="#lsp-latex-texlab-executable-argument-list" class="md-nav__link">
+    lsp-latex-texlab-executable-argument-list
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-functions" class="md-nav__link">
+    Available functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Available functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lsp-latex-build" class="md-nav__link">
+    lsp-latex-build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsp-latex-forward-search" class="md-nav__link">
+    lsp-latex-forward-search
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
   
 </li>
       
@@ -1711,7 +1807,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/page/lsp-vhdl.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/page/lsp-latex.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1719,24 +1815,125 @@
                   
                 
                 
-                <h1 id="vhdl">VHDL<a class="headerlink" href="#vhdl" title="Permanent link">#</a></h1>
+                <h1 id="lsp-latex-for-tex-latex-etc">lsp-latex for TeX, LaTeX, etc.<a class="headerlink" href="#lsp-latex-for-tex-latex-etc" title="Permanent link">#</a></h1>
 <h2 id="server">Server<a class="headerlink" href="#server" title="Permanent link">#</a></h2>
-<p>For information about the LSP server, check the <a href="http://www.vhdltool.com">VHDL Tool</a>.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p>For instruction on how to install, check <a href="http://www.vhdltool.com/download">here</a>.</p>
+<p>For information about the LSP server, check the <a href="https://texlab.netlify.app/">texlab</a>.</p>
+<h2 id="installationserver">Installation(server)<a class="headerlink" href="#installationserver" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code>cargo install --git https://github.com/latex-lsp/texlab.git
+</code></pre></div>
+
 <h3 id="debugger-not-available">Debugger: Not available<a class="headerlink" href="#debugger-not-available" title="Permanent link">#</a></h3>
+<h2 id="installationclient">Installation(client)<a class="headerlink" href="#installationclient" title="Permanent link">#</a></h2>
+<p>You can get <code>lsp-latex</code> from melpa. Add melpa to the list <code>package-archives</code>,
+and run:
+<kbd>M-x</kbd> <code>package-initialize</code> <kbd>M-x</kbd> <code>package-install</code> <kbd>RET</kbd> <code>lsp-latex</code></p>
 <h2 id="available-configurations">Available configurations<a class="headerlink" href="#available-configurations" title="Permanent link">#</a></h2>
-<h3 id="lsp-vhdl-server"><code>lsp-vhdl-server</code><a class="headerlink" href="#lsp-vhdl-server" title="Permanent link">#</a></h3>
-<p><em>Default: <code>vhdl-tool</code></em></p>
-<p>Select which server to use:
-VHDL-tool: A syntax checking, type checking and linting tool (http://vhdltool.com).
-HDL Checker: A wrapper for third party tools such as GHDL, ModelSim, Vivado Simulator (https://github.com/suoto/hdl_checker).
-VHDL LS: A complete VHDL language server protocol implementation with diagnostics, navigate to symbol, find all references etc. (https://github.com/kraigher/rust_hdl).</p>
-<hr />
-<h3 id="lsp-vhdl-server-path"><code>lsp-vhdl-server-path</code><a class="headerlink" href="#lsp-vhdl-server-path" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>Path to binary server file.</p>
-<hr />
+<p>These are the available configurations. All configurations <code>texlab</code> provides are available.
+See also <a href="https://texlab.netlify.app/docs/reference/configuration">document of texlab</a>.</p>
+<table>
+<thead>
+<tr>
+<th>texlab configuration</th>
+<th>custom variable</th>
+<th>summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>latex.rootDirectory</td>
+<td>lsp-latex-root-directory</td>
+<td>Directory from which file get compiled</td>
+</tr>
+<tr>
+<td>latex.build.executable</td>
+<td>lsp-latex-build-executable</td>
+<td>Executable used on <code>lsp-latex-build</code></td>
+</tr>
+<tr>
+<td>latex.build.args</td>
+<td>lsp-latex--build-args</td>
+<td>Args passed to <code>lsp-latex-texlab-executable</code></td>
+</tr>
+<tr>
+<td>latex.build.onSave</td>
+<td>lsp-latex-build-on-save</td>
+<td>Build after saving file or not</td>
+</tr>
+<tr>
+<td>latex.build.outputDirectory</td>
+<td>lsp-latex-build-output-directory</td>
+<td>Directory which will contain outputs</td>
+</tr>
+<tr>
+<td>latex.build.forwardSearchAfter</td>
+<td>lsp-latex-forward-search-after</td>
+<td>Execute forward search after building or not</td>
+</tr>
+<tr>
+<td>latex.forwardSearch.executable</td>
+<td>lsp-latex-forward-search-executable</td>
+<td>PDF viewer which will receive forward search signal</td>
+</tr>
+<tr>
+<td>latex.forwardSearch.args</td>
+<td>lsp-latex--forward-search-args</td>
+<td>Args passed to <code>lsp-latex-forward-search-executable</code></td>
+</tr>
+<tr>
+<td>latex.lint.onChange</td>
+<td>lsp-latex-lint-on-change</td>
+<td>Lint with chktex after changing a file or not</td>
+</tr>
+<tr>
+<td>latex.lint.onSave</td>
+<td>lsp-latex-lint-on-save</td>
+<td>Lint with chktex after saving a file</td>
+</tr>
+<tr>
+<td>bibtex.formatting.lineLength</td>
+<td>lsp-latex-bibtex-formatting-line-length</td>
+<td>Max length of characters per line on formatting BibTeX files</td>
+</tr>
+<tr>
+<td>bibtex.formatting.formatter</td>
+<td>lsp-latex-bibtex-formatting-formatter</td>
+<td>Formatter of BibTeX (texlab or latexindent)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="other-variables">Other variables<a class="headerlink" href="#other-variables" title="Permanent link">#</a></h2>
+<h3 id="lsp-latex-texlab-executable"><code>lsp-latex-texlab-executable</code><a class="headerlink" href="#lsp-latex-texlab-executable" title="Permanent link">#</a></h3>
+<p>Where texlab server located.</p>
+<h3 id="lsp-latex-texlab-executable-argument-list"><code>lsp-latex-texlab-executable-argument-list</code><a class="headerlink" href="#lsp-latex-texlab-executable-argument-list" title="Permanent link">#</a></h3>
+<p>Argument list passed to texlab server.</p>
+<h2 id="available-functions">Available functions<a class="headerlink" href="#available-functions" title="Permanent link">#</a></h2>
+<h3 id="lsp-latex-build"><code>lsp-latex-build</code><a class="headerlink" href="#lsp-latex-build" title="Permanent link">#</a></h3>
+<p>Build .tex files with texlab.
+It use latexmk by default, so add .latexmkrc if you want to customize
+latex commands or options. You can change build command and option to other
+such as <code>make</code>, by changing <code>lsp-latex-build-executable</code> and
+<code>lsp-latex-build-args</code>.</p>
+<p>This command builds asynchronously by default, while it build synchronously
+with prefix argument(C-u).</p>
+<h3 id="lsp-latex-forward-search"><code>lsp-latex-forward-search</code><a class="headerlink" href="#lsp-latex-forward-search" title="Permanent link">#</a></h3>
+<p>Move to current position on pdf viewer.
+To use, you should set <code>lsp-latex-forward-search-executable</code> and
+<code>lsp-latex-forward-search-args</code> according to your pdf viewer.
+See also <a href="https://texlab.netlify.app/docs/installation/previewing">document of texlab</a>.</p>
+<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h2>
+<p>In this package, you can use even texlab v0.4.2 or older, written with Java,
+though it is not recommended. If you want to use them, you can write like:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">;; Path to Java executable. If it is added to environmental PATH,</span>
+<span class="c1">;; you don&#39;t have to write this.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-latex-java-executable</span> <span class="s">&quot;/path/to/java&quot;</span><span class="p">)</span>
+
+<span class="c1">;; &quot;texlab.jar&quot; must be located at a directory contained in `exec-path&#39;</span>
+<span class="c1">;; &quot;texlab&quot; must be located at a directory contained in `exec-path&#39;.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-latex-texlab-jar-file</span> <span class="ss">&#39;search-from-exec-path</span><span class="p">)</span>
+<span class="c1">;; If you want to put &quot;texlab.jar&quot; somewhere else,</span>
+<span class="c1">;; you can specify the path to &quot;texlab.jar&quot; as follows:</span>
+<span class="c1">;; (setq lsp-latex-texlab-jar-file &quot;/path/to/texlab.jar&quot;)</span>
+</code></pre></div>
                 
                   
                     
@@ -1768,7 +1965,7 @@ VHDL LS: A complete VHDL language server protocol implementation with diagnostic
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../lsp-verilog/" title="Verilog/SystemVerilog" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../lsp-texlab/" title="TeX, LaTeX, etc (texlab)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1777,19 +1974,19 @@ VHDL LS: A complete VHDL language server protocol implementation with diagnostic
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Verilog/SystemVerilog
+                TeX, LaTeX, etc (texlab)
               </div>
             </div>
           </a>
         
         
-          <a href="../lsp-vim/" title="Vimscript" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../lsp-verilog/" title="Verilog/SystemVerilog" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Vimscript
+                Verilog/SystemVerilog
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
