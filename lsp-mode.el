@@ -6208,10 +6208,37 @@ A reference is highlighted only if it is visible in a window."
     (25 . "Operator")
     (26 . "Type Parameter")))
 
+(defconst lsp--completion-kind->symbol
+  '((1 . text)
+    (2 . method)
+    (3 . function)
+    (4 . constructor)
+    (5 . field)
+    (6 . variable)
+    (7 . class)
+    (8 . interface)
+    (9 . module)
+    (10 . property)
+    (11 . unit)
+    (12 . value)
+    (13 . enum)
+    (14 . keyword)
+    (15 . snippet)
+    (16 . color)
+    (17 . file)
+    (18 . reference)
+    (19 . folder)
+    (20 . enum-member)
+    (21 . constant)
+    (22 . struct)
+    (23 . event)
+    (24 . operator)
+    (25 . type-parameter)))
+
 (lsp-defun lsp--symbol-information-to-xref
-  ((&SymbolInformation  :kind :name
-                        :location (&Location :uri :range (&Range :start
-                                                                 (&Position :line :character)))))
+  ((&SymbolInformation :kind :name
+                       :location (&Location :uri :range (&Range :start
+                                                                (&Position :line :character)))))
   "Return a `xref-item' from SYMBOL information."
   (xref-make (format "[%s] %s" (alist-get kind lsp--symbol-kind) name)
              (xref-make-file-location (lsp--uri-to-path uri)
