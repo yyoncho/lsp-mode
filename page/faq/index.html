@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.3">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.b5d04df8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.947af8d5.min.css">
       
       
     
@@ -1682,19 +1682,13 @@
 <li><code>Rust Analyzer</code> does not support disabling snippets - see <a href="https://github.com/rust-analyzer/rust-analyzer/issues/2518">https://github.com/rust-analyzer/rust-analyzer/issues/2518</a></li>
 </ul>
 </li>
-<li>How do I get flex completion in when using <code>Emacs 26</code>?<ul>
-<li><code>flex</code> filtering has been implemented in <code>Emacs 27+</code> and <code>lsp-mode</code> is using it by default and there is no <code>flex</code> matching by default. In order to have <code>flex</code> completion by default you could either upgrade to <code>Emacs 27</code> or try using <code>helm-flex</code> implementation including the following snippet in your config:
-  <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-completion-styles</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">helm-flex</span><span class="p">))</span>
-</code></pre></div>
-  See also
-  <a href="https://github.com/emacs-lsp/lsp-mode/issues/1652">#1652</a>.</li>
-</ul>
-</li>
 <li>How do I force <code>lsp-mode</code> to forget the workspace folders for multi root
-  servers so the workspace folders are added on demand?</li>
+  servers so the workspace folders are added on demand?<ul>
 <li>Use the following snippet:
   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nv">advice-add</span> <span class="ss">&#39;lsp</span> <span class="nb">:before</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="kp">&amp;rest</span> <span class="nv">_args</span><span class="p">)</span> <span class="p">(</span><span class="nf">eval</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">lsp-session-server-id-&gt;folders</span> <span class="p">(</span><span class="nv">lsp-session</span><span class="p">))</span> <span class="p">(</span><span class="nv">ht</span><span class="p">)))))</span>
 </code></pre></div></li>
+</ul>
+</li>
 </ul>
                 
                   
@@ -1704,7 +1698,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 28, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 4, 2020</span>
     
   </small>
 </div>
@@ -1806,15 +1800,15 @@
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.92ffa368.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5123e3d4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.c3dc8c49.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f9edbbd5.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+            worker: "../../assets/javascripts/worker/search.8e2cddea.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
