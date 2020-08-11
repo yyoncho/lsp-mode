@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.5">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.947af8d5.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.63b94e9e.min.css">
       
       
     
@@ -960,7 +960,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../lsp-bingo/" title="Go (bingo)" class="md-nav__link">
+    <a href="../lsp-bingo.md" title="Go (bingo)" class="md-nav__link">
       Go (bingo)
     </a>
   </li>
@@ -1847,16 +1847,58 @@
 <p><em>Tip:</em> To find out the global errors you might use <code>lsp-treemacs-errors-list</code>.</p>
 <h2 id="code-actions-on-modeline">Code actions on modeline<a class="headerlink" href="#code-actions-on-modeline" title="Permanent link">#</a></h2>
 <p>For a UI feedback of the available code actions, you can enable <code>lsp-modeline-code-actions-mode</code> which shows available code actions on modeline:</p>
-<p><img alt="" src="../../examples/modeline-code-actions.png" /></p>
+<p>With <code>lsp-modeline-code-actions-segments</code> you can customize what to show on the modeline as you want:</p>
+<table>
+<thead>
+<tr>
+<th align="center"><code>lsp-modeline-code-actions-segments</code></th>
+<th align="center">result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>'(count icon)</code> (Default)</td>
+<td align="center"><img alt="" src="../../examples/modeline-code-actions-count-icon.png" /></td>
+</tr>
+<tr>
+<td align="center"><code>'(name icon)</code></td>
+<td align="center"><img alt="" src="../../examples/modeline-code-actions-name-icon.png" /></td>
+</tr>
+<tr>
+<td align="center"><code>'(icon)</code></td>
+<td align="center"><img alt="" src="../../examples/modeline-code-actions-icon.png" /></td>
+</tr>
+<tr>
+<td align="center"><code>'(count icon name)</code></td>
+<td align="center"><img alt="" src="../../examples/modeline-code-actions-count-icon-name.png" /></td>
+</tr>
+</tbody>
+</table>
 <h2 id="breadcrumb-on-headerline">Breadcrumb on headerline<a class="headerlink" href="#breadcrumb-on-headerline" title="Permanent link">#</a></h2>
 <p>For a UI feedback on headerline of the document symbols at point, current file or project name, you can enable <code>lsp-headerline-breadcrumb-mode</code> which shows a breadcrumb on top of window.</p>
 <p>You can customize the breadcrumb segments via <code>lsp-headerline-breadcrumb-segments</code> variable, some examples:</p>
-<p><code>'(path-up-to-project file symbols)</code> (Default)</p>
-<p><img alt="" src="../../examples/headerline-breadcrumb-path-up-to-project-file-symbols.png" /></p>
-<p><code>'(project file symbols)</code></p>
-<p><img alt="" src="../../examples/headerline-breadcrumb-project-file-symbols.png" /></p>
-<p><code>'(symbols)</code></p>
-<p><img alt="" src="../../examples/headerline-breadcrumb-symbols.png" /></p>
+<table>
+<thead>
+<tr>
+<th align="center"><code>lsp-headerline-breadcrumb-segments</code></th>
+<th align="center">result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>'(path-up-to-project file symbols)</code> (Default)</td>
+<td align="center"><img alt="" src="../../examples/headerline-breadcrumb-path-up-to-project-file-symbols.png" /></td>
+</tr>
+<tr>
+<td align="center"><code>'(project file symbols)</code></td>
+<td align="center"><img alt="" src="../../examples/headerline-breadcrumb-project-file-symbols.png" /></td>
+</tr>
+<tr>
+<td align="center"><code>'(symbols)</code></td>
+<td align="center"><img alt="" src="../../examples/headerline-breadcrumb-symbols.png" /></td>
+</tr>
+</tbody>
+</table>
 <p>If <code>lsp-headerline-breadcrumb-segments</code> contains <code>'symbols</code>, you can optionally label the corresponding entries in the headerline display by setting <code>lsp-headerline-breadcrumb-enable-symbol-numbers</code> to <code>t</code>.</p>
 <h2 id="symbol-highlights">Symbol highlights<a class="headerlink" href="#symbol-highlights" title="Permanent link">#</a></h2>
 <p>In case LSP server supports <code>hover</code> feature:</p>
@@ -1883,7 +1925,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 6, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 10, 2020</span>
     
   </small>
 </div>
@@ -1985,7 +2027,7 @@
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.c3dc8c49.min.js"></script>
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
       <script src="../../assets/javascripts/bundle.f9edbbd5.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
@@ -1993,7 +2035,7 @@
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.8e2cddea.min.js"
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
