@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.6">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.63b94e9e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.36ee6aaa.min.css">
       
       
     
@@ -1157,6 +1157,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../lsp-nix/" title="Nix" class="md-nav__link">
+      Nix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../lsp-ocaml/" title="OCaml (ocaml)" class="md-nav__link">
       OCaml (ocaml)
     </a>
@@ -1858,6 +1870,13 @@ Then you need to install the specific LSP server for your language.</p>
 <h3 id="manually-via-melpa">Manually via MELPA<a class="headerlink" href="#manually-via-melpa" title="Permanent link">#</a></h3>
 <p>The recommended way to install <code>lsp-mode</code> is via <code>package.el</code> - the built-in package manager in Emacs. <code>lsp-mode</code> is available on the two major <code>package.el</code> community maintained repos - <a href="http://stable.melpa.org">MELPA Stable</a> and <a href="http://melpa.org">MELPA</a>.</p>
 <p><kbd>M-x</kbd> <code>package-install</code> <kbd>RET</kbd> <code>lsp-mode</code> <kbd>RET</kbd></p>
+<p>When updating your packages with <code>package.el</code>, we recommend the following procedure:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">1. Delete your LSP-related packages</span>
+<span class="err">2. Restart Emacs</span>
+<span class="err">3. Install the new versions of the packages.</span>
+</code></pre></div>
+
+
 <h3 id="doom-emacs">Doom Emacs<a class="headerlink" href="#doom-emacs" title="Permanent link">#</a></h3>
 <p><a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a> has a module to install and configure <code>lsp-mode</code> automatically, you just need to add <code>lsp</code> below <code>:tools</code> in your <code>init.el</code>.</p>
 <p>To add <code>lsp-mode</code> support to some language, you can add the <code>+lsp</code> flag to the language you want. Example:</p>
@@ -1941,7 +1960,7 @@ Then you need to install the specific LSP server for your language.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 15, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2020</span>
     
   </small>
 </div>
@@ -2043,15 +2062,15 @@ Then you need to install the specific LSP server for your language.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
-      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.df0def68.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

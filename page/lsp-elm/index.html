@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.6">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.9">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.63b94e9e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.36ee6aaa.min.css">
       
       
     
@@ -837,61 +837,6 @@
     Available configurations
   </a>
   
-    <nav class="md-nav" aria-label="Available configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-language-server-path" class="md-nav__link">
-    lsp-elm-elm-language-server-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-trace-server" class="md-nav__link">
-    lsp-elm-trace-server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-path" class="md-nav__link">
-    lsp-elm-elm-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-format-path" class="md-nav__link">
-    lsp-elm-elm-format-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-test-path" class="md-nav__link">
-    lsp-elm-elm-test-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-analyse-trigger" class="md-nav__link">
-    lsp-elm-elm-analyse-trigger
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-server-args" class="md-nav__link">
-    lsp-elm-server-args
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1173,6 +1118,18 @@
   <li class="md-nav__item">
     <a href="../lsp-nim/" title="Nim" class="md-nav__link">
       Nim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lsp-nix/" title="Nix" class="md-nav__link">
+      Nix
     </a>
   </li>
 
@@ -1827,61 +1784,6 @@
     Available configurations
   </a>
   
-    <nav class="md-nav" aria-label="Available configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-language-server-path" class="md-nav__link">
-    lsp-elm-elm-language-server-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-trace-server" class="md-nav__link">
-    lsp-elm-trace-server
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-path" class="md-nav__link">
-    lsp-elm-elm-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-format-path" class="md-nav__link">
-    lsp-elm-elm-format-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-test-path" class="md-nav__link">
-    lsp-elm-elm-test-path
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-elm-analyse-trigger" class="md-nav__link">
-    lsp-elm-elm-analyse-trigger
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lsp-elm-server-args" class="md-nav__link">
-    lsp-elm-server-args
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1911,36 +1813,6 @@
 <p><code>npm i -g @elm-tooling/elm-language-server, or clone the repository and follow installation instructions</code></p>
 <h3 id="debugger-not-available">Debugger: Not available<a class="headerlink" href="#debugger-not-available" title="Permanent link">#</a></h3>
 <h2 id="available-configurations">Available configurations<a class="headerlink" href="#available-configurations" title="Permanent link">#</a></h2>
-<h3 id="lsp-elm-elm-language-server-path"><code>lsp-elm-elm-language-server-path</code><a class="headerlink" href="#lsp-elm-elm-language-server-path" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>Path for elm-language-server.
-Can be installed globally with: npm i -g @elm-tooling/elm-language-server,
-or manually by cloning the repo and following the installing instructions.</p>
-<hr />
-<h3 id="lsp-elm-trace-server"><code>lsp-elm-trace-server</code><a class="headerlink" href="#lsp-elm-trace-server" title="Permanent link">#</a></h3>
-<p><em>Default: <code>nil</code></em></p>
-<p>Enable/disable trace logging of client and server communication.</p>
-<hr />
-<h3 id="lsp-elm-elm-path"><code>lsp-elm-elm-path</code><a class="headerlink" href="#lsp-elm-elm-path" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>The path to your elm executable.  Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one.  If you set it manually it will not try to load from the npm folder.</p>
-<hr />
-<h3 id="lsp-elm-elm-format-path"><code>lsp-elm-elm-format-path</code><a class="headerlink" href="#lsp-elm-elm-format-path" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>The path to your elm-format executable.  Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one.  If you set it manually it will not try to load from the npm folder.</p>
-<hr />
-<h3 id="lsp-elm-elm-test-path"><code>lsp-elm-elm-test-path</code><a class="headerlink" href="#lsp-elm-elm-test-path" title="Permanent link">#</a></h3>
-<p><em>Default: ``</em></p>
-<p>The path to your elm-test executable.  Should be empty by default, in that case it will assume the name and try to first get it from a local npm installation or a global one.  If you set it manually it will not try to load from the npm folder.</p>
-<hr />
-<h3 id="lsp-elm-elm-analyse-trigger"><code>lsp-elm-elm-analyse-trigger</code><a class="headerlink" href="#lsp-elm-elm-analyse-trigger" title="Permanent link">#</a></h3>
-<p><em>Default: <code>change</code></em></p>
-<p>Elm-analyse executed on ’change’, ’save’ or ’never’ (default: ’change’).</p>
-<hr />
-<h3 id="lsp-elm-server-args"><code>lsp-elm-server-args</code><a class="headerlink" href="#lsp-elm-server-args" title="Permanent link">#</a></h3>
-<p><em>Default: <code>(--stdio)</code></em></p>
-<p>Arguments to pass to the server.</p>
-<hr />
                 
                   
                     
@@ -1949,7 +1821,7 @@ or manually by cloning the repo and following the installing instructions.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 15, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2020</span>
     
   </small>
 </div>
@@ -2051,15 +1923,15 @@ or manually by cloning the repo and following the installing instructions.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
-      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.df0def68.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
