@@ -271,7 +271,7 @@
     "debugger": "Not available"
   },
   {
-    "name": "ocalm-lsp-server",
+    "name": "ocaml-lsp-server",
     "full-name": "OCaml",
     "server-name": "ocaml-lsp-server",
     "server-url": "https://github.com/ocaml/ocaml-lsp",
@@ -389,6 +389,22 @@
     "server-url": "https://github.com/REditorSupport/languageserver",
     "installation-url": "https://github.com/REditorSupport/languageserver",
     "installation": "install.packages(“languageserver”)",
+    "debugger": "Not available"
+  },
+  {
+    "name": "racket-langserver",
+    "full-name": "Racket (jeapostrophe)",
+    "server-name": "racket-langserver",
+    "server-url": "https://github.com/jeapostrophe/racket-langserver",
+    "installation": "raco pkg install racket-langserver",
+    "debugger": "Not available"
+  },
+  {
+    "name": "racket-language-server",
+    "full-name": "Racket (Theia)",
+    "server-name": "racket-language-server",
+    "server-url": "https://github.com/theia-ide/racket-language-server",
+    "installation": "raco pkg install racket-language-server",
     "debugger": "Not available"
   },
   {
