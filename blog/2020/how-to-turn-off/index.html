@@ -1759,20 +1759,20 @@ people looking for minimal distraction free experience. Although, the turn off
 when you want to disable stuff. So here it is this article which will streamline
 and simplify that process.</p>
 <p><img alt="Turn Off 1" src="../images/turn-off-1.png" title="turn off 1" /></p>
-<ul>
+<ol>
 <li>Symbol highlighting
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-enable-symbol-highlighting</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li><code>lsp-ui-doc</code> - on hover dialogs.</li>
 <li>disable via
-<div class="highlight"><pre><span></span><code>(setq lsp-ui-doc-enable nil)
+   <div class="highlight"><pre><span></span><code>(setq lsp-ui-doc-enable nil)
 </code></pre></div></li>
 <li>disable cursor hover (keep mouse hover)
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-cursor</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-cursor</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li>disable mouse hover (keep cursor hover)
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-mouse</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
+   <code>elisp
+   (setq lsp-ui-doc-show-with-mouse nil)</code></li>
 <li>Lenses
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-lens-enable</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
@@ -1781,24 +1781,24 @@ and simplify that process.</p>
 </code></pre></div></li>
 <li>Sideline code actions</li>
 <li>disable whole sideline via
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li>hide code actions
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-code-actions</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-code-actions</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li>Sideline hover symbols</li>
 <li>disable whole sideline via
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nv">*setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li>hide only hover symbols
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-hover</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-hover</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li>Modeline code actions
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-modeline-code-actions-enable</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
-</ul>
+</ol>
 <p><img alt="Turn Off 2" src="../images/turn-off-2.png" title="turn off 2" /></p>
-<ul>
+<ol>
 <li>
 <p><code>Flycheck</code> (or <code>flymake</code> if no <code>flycheck</code> is present)
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-diagnostics-provider</span> <span class="nb">:none</span><span class="p">)</span>
@@ -1808,12 +1808,12 @@ and simplify that process.</p>
 <p>Sideline diagnostics</p>
 </li>
 <li>disable whole sideline via
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
 <li>hide only errors
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-diagnostics</span> <span class="no">nil</span><span class="p">)</span>
+   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-diagnostics</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div></li>
-</ul>
+</ol>
                 
                   
                     
