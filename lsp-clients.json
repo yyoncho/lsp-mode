@@ -309,7 +309,7 @@
     "full-name": "Perl",
     "server-name": "Perl::LanguageServer",
     "server-url": "https://github.com/richterger/Perl-LanguageServer",
-    "installation": "cpanm Perl::LanguageServer",
+    "installation": "cpan Perl::LanguageServer",
     "debugger": "Not available"
   },
   {
@@ -336,6 +336,14 @@
     "server-url": "https://github.com/PowerShell/PowerShellEditorServices",
     "installation": "Automatic",
     "debugger": "Yes"
+  },
+  {
+    "name": "prolog",
+    "full-name": "Prolog",
+    "server-name": "lsp_server",
+    "server-url": "https://github.com/jamesnvc/lsp_server",
+    "installation": "swipl -g 'pack_install(lsp_server).'",
+    "debugger": "Not available"
   },
   {
     "name": "purescript",
