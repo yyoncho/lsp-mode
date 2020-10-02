@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -8,26 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Language Server Protocol Support for Emacs">
       
-        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/blog/2020/how-to-turn-off/">
+      
+        <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/">
       
       
-      <link rel="shortcut icon" href="../../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+        <meta name="author" content="ercdll1337@gmail.com">
+      
+      <link rel="shortcut icon" href="../../examples/logo-mini.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.0">
     
     
       
-        <title>How to turn off lsp-mode feature (with pictures) - LSP Mode - LSP support for Emacs</title>
+        <title>A guide on disabling/enabling lsp-mode features - LSP Mode - LSP support for Emacs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4dd2dd8d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d877a71.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.17bd0b03.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -35,9 +41,9 @@
     
     
     
-      <link rel="stylesheet" href="../../../stylesheets/layout.css">
+      <link rel="stylesheet" href="../../stylesheets/layout.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/members.css">
+      <link rel="stylesheet" href="../../stylesheets/members.css">
     
     
       
@@ -50,16 +56,21 @@
   </head>
   
   
-    <body dir="ltr">
-  
     
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
         
-        <a href="#how-to-turn-off-lsp-mode-feature-with-pictures" class="md-skip">
+        <a href="#a-guide-on-disablingenabling-lsp-mode-features" class="md-skip">
           Skip to content
         </a>
       
@@ -72,7 +83,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://emacs-lsp.github.io/lsp-mode" title="LSP Mode - LSP support for Emacs" class="md-header-nav__button md-logo" aria-label="LSP Mode - LSP support for Emacs">
       
-  <img src="../../../examples/logo-mini.png" alt="logo">
+  <img src="../../examples/logo-mini.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -86,7 +97,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              How to turn off lsp-mode feature (with pictures)
+              A guide on disabling/enabling lsp-mode features
             
           </span>
         </div>
@@ -142,13 +153,13 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
           
 
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -157,7 +168,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../.." class="md-tabs__link">
+        <a href="../.." class="md-tabs__link">
           Home
         </a>
       
@@ -170,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../page/languages/" class="md-tabs__link">
+        <a href="../../page/languages/" class="md-tabs__link">
           Languages
         </a>
       
@@ -196,7 +207,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../page/gallery/" class="md-tabs__link">
+        <a href="../../page/gallery/" class="md-tabs__link">
           Gallery
         </a>
       
@@ -209,7 +220,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../page/CHANGELOG/" class="md-tabs__link">
+        <a href="../../page/CHANGELOG/" class="md-tabs__link">
           Changelog
         </a>
       
@@ -222,7 +233,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../../tutorials/CPP-guide/" class="md-tabs__link">
+        <a href="../CPP-guide/" class="md-tabs__link md-tabs__link--active">
           Tutorials
         </a>
       
@@ -239,7 +250,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../7.0-release/" class="md-tabs__link">
+        <a href="../../blog/2020/7.0-release/" class="md-tabs__link">
           Blog
         </a>
       
@@ -278,7 +289,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://emacs-lsp.github.io/lsp-mode" title="LSP Mode - LSP support for Emacs" class="md-nav__button md-logo" aria-label="LSP Mode - LSP support for Emacs">
       
-  <img src="../../../examples/logo-mini.png" alt="logo">
+  <img src="../../examples/logo-mini.png" alt="logo">
 
     </a>
     LSP Mode - LSP support for Emacs
@@ -326,7 +337,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." title="Overview" class="md-nav__link">
+    <a href="../.." title="Overview" class="md-nav__link">
       Overview
     </a>
   </li>
@@ -359,7 +370,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/installation/" title="Installation" class="md-nav__link">
+    <a href="../../page/installation/" title="Installation" class="md-nav__link">
       Installation
     </a>
   </li>
@@ -371,7 +382,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/performance/" title="Performance" class="md-nav__link">
+    <a href="../../page/performance/" title="Performance" class="md-nav__link">
       Performance
     </a>
   </li>
@@ -388,7 +399,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/main-features/" title="Main features" class="md-nav__link">
+    <a href="../../page/main-features/" title="Main features" class="md-nav__link">
       Main features
     </a>
   </li>
@@ -400,7 +411,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/settings/" title="Settings" class="md-nav__link">
+    <a href="../../page/settings/" title="Settings" class="md-nav__link">
       Settings
     </a>
   </li>
@@ -412,7 +423,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/keybindings/" title="Keybindings" class="md-nav__link">
+    <a href="../../page/keybindings/" title="Keybindings" class="md-nav__link">
       Keybindings
     </a>
   </li>
@@ -498,7 +509,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/limitations/" title="Limitations" class="md-nav__link">
+    <a href="../../page/limitations/" title="Limitations" class="md-nav__link">
       Limitations
     </a>
   </li>
@@ -510,7 +521,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/remote/" title="Remote" class="md-nav__link">
+    <a href="../../page/remote/" title="Remote" class="md-nav__link">
       Remote
     </a>
   </li>
@@ -522,7 +533,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/faq/" title="FAQ" class="md-nav__link">
+    <a href="../../page/faq/" title="FAQ" class="md-nav__link">
       FAQ
     </a>
   </li>
@@ -534,7 +545,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/troubleshooting/" title="Troubleshooting" class="md-nav__link">
+    <a href="../../page/troubleshooting/" title="Troubleshooting" class="md-nav__link">
       Troubleshooting
     </a>
   </li>
@@ -546,7 +557,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/adding-new-language/" title="Adding new language" class="md-nav__link">
+    <a href="../../page/adding-new-language/" title="Adding new language" class="md-nav__link">
       Adding new language
     </a>
   </li>
@@ -584,7 +595,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/languages/" title="Languages" class="md-nav__link">
+    <a href="../../page/languages/" title="Languages" class="md-nav__link">
       Languages
     </a>
   </li>
@@ -596,7 +607,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-ada/" title="Ada" class="md-nav__link">
+    <a href="../../page/lsp-ada/" title="Ada" class="md-nav__link">
       Ada
     </a>
   </li>
@@ -608,7 +619,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-angular/" title="Angular" class="md-nav__link">
+    <a href="../../page/lsp-angular/" title="Angular" class="md-nav__link">
       Angular
     </a>
   </li>
@@ -620,7 +631,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-bash/" title="Bash" class="md-nav__link">
+    <a href="../../page/lsp-bash/" title="Bash" class="md-nav__link">
       Bash
     </a>
   </li>
@@ -632,7 +643,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-ccls/" title="C++ (ccls)" class="md-nav__link">
+    <a href="../../page/lsp-ccls/" title="C++ (ccls)" class="md-nav__link">
       C++ (ccls)
     </a>
   </li>
@@ -644,7 +655,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-clangd/" title="C++ (clangd)" class="md-nav__link">
+    <a href="../../page/lsp-clangd/" title="C++ (clangd)" class="md-nav__link">
       C++ (clangd)
     </a>
   </li>
@@ -656,7 +667,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-csharp/" title="C#" class="md-nav__link">
+    <a href="../../page/lsp-csharp/" title="C#" class="md-nav__link">
       C#
     </a>
   </li>
@@ -668,7 +679,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-clojure/" title="Clojure" class="md-nav__link">
+    <a href="../../page/lsp-clojure/" title="Clojure" class="md-nav__link">
       Clojure
     </a>
   </li>
@@ -680,7 +691,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-cmake/" title="CMake" class="md-nav__link">
+    <a href="../../page/lsp-cmake/" title="CMake" class="md-nav__link">
       CMake
     </a>
   </li>
@@ -692,7 +703,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-crystal/" title="Crystal" class="md-nav__link">
+    <a href="../../page/lsp-crystal/" title="Crystal" class="md-nav__link">
       Crystal
     </a>
   </li>
@@ -704,7 +715,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-css/" title="CSS/LessCSS/SASS/SCSS" class="md-nav__link">
+    <a href="../../page/lsp-css/" title="CSS/LessCSS/SASS/SCSS" class="md-nav__link">
       CSS/LessCSS/SASS/SCSS
     </a>
   </li>
@@ -728,7 +739,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-dhall/" title="Dhall" class="md-nav__link">
+    <a href="../../page/lsp-dhall/" title="Dhall" class="md-nav__link">
       Dhall
     </a>
   </li>
@@ -740,7 +751,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-dockerfile/" title="Dockerfile" class="md-nav__link">
+    <a href="../../page/lsp-dockerfile/" title="Dockerfile" class="md-nav__link">
       Dockerfile
     </a>
   </li>
@@ -752,7 +763,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-elixir/" title="Elixir" class="md-nav__link">
+    <a href="../../page/lsp-elixir/" title="Elixir" class="md-nav__link">
       Elixir
     </a>
   </li>
@@ -764,7 +775,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-elm/" title="Elm" class="md-nav__link">
+    <a href="../../page/lsp-elm/" title="Elm" class="md-nav__link">
       Elm
     </a>
   </li>
@@ -776,7 +787,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-erlang/" title="Erlang" class="md-nav__link">
+    <a href="../../page/lsp-erlang/" title="Erlang" class="md-nav__link">
       Erlang
     </a>
   </li>
@@ -788,7 +799,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-eslint/" title="Eslint" class="md-nav__link">
+    <a href="../../page/lsp-eslint/" title="Eslint" class="md-nav__link">
       Eslint
     </a>
   </li>
@@ -800,7 +811,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-fsharp/" title="F#" class="md-nav__link">
+    <a href="../../page/lsp-fsharp/" title="F#" class="md-nav__link">
       F#
     </a>
   </li>
@@ -812,7 +823,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-fortran/" title="Fortran" class="md-nav__link">
+    <a href="../../page/lsp-fortran/" title="Fortran" class="md-nav__link">
       Fortran
     </a>
   </li>
@@ -824,7 +835,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-gdscript/" title="GDScript" class="md-nav__link">
+    <a href="../../page/lsp-gdscript/" title="GDScript" class="md-nav__link">
       GDScript
     </a>
   </li>
@@ -836,7 +847,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-gopls/" title="Go (gopls)" class="md-nav__link">
+    <a href="../../page/lsp-gopls/" title="Go (gopls)" class="md-nav__link">
       Go (gopls)
     </a>
   </li>
@@ -848,7 +859,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-bingo.md" title="Go (bingo)" class="md-nav__link">
+    <a href="../../page/lsp-bingo.md" title="Go (bingo)" class="md-nav__link">
       Go (bingo)
     </a>
   </li>
@@ -860,7 +871,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-groovy/" title="Groovy" class="md-nav__link">
+    <a href="../../page/lsp-groovy/" title="Groovy" class="md-nav__link">
       Groovy
     </a>
   </li>
@@ -872,7 +883,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-hack/" title="Hack" class="md-nav__link">
+    <a href="../../page/lsp-hack/" title="Hack" class="md-nav__link">
       Hack
     </a>
   </li>
@@ -884,7 +895,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-html/" title="HTML" class="md-nav__link">
+    <a href="../../page/lsp-html/" title="HTML" class="md-nav__link">
       HTML
     </a>
   </li>
@@ -908,7 +919,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-emmy-lua/" title="Lua (EmmyLua)" class="md-nav__link">
+    <a href="../../page/lsp-emmy-lua/" title="Lua (EmmyLua)" class="md-nav__link">
       Lua (EmmyLua)
     </a>
   </li>
@@ -920,7 +931,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-lua-language-server/" title="Lua (Lua Language Server)" class="md-nav__link">
+    <a href="../../page/lsp-lua-language-server/" title="Lua (Lua Language Server)" class="md-nav__link">
       Lua (Lua Language Server)
     </a>
   </li>
@@ -932,7 +943,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-lua-lsp/" title="Lua (Lua-Lsp)" class="md-nav__link">
+    <a href="../../page/lsp-lua-lsp/" title="Lua (Lua-Lsp)" class="md-nav__link">
       Lua (Lua-Lsp)
     </a>
   </li>
@@ -956,7 +967,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-typescript-javascript/" title="JavaScript/TypeScript (sourcegraph)" class="md-nav__link">
+    <a href="../../page/lsp-typescript-javascript/" title="JavaScript/TypeScript (sourcegraph)" class="md-nav__link">
       JavaScript/TypeScript (sourcegraph)
     </a>
   </li>
@@ -968,7 +979,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-typescript/" title="JavaScript/TypeScript (theia-ide)" class="md-nav__link">
+    <a href="../../page/lsp-typescript/" title="JavaScript/TypeScript (theia-ide)" class="md-nav__link">
       JavaScript/TypeScript (theia-ide)
     </a>
   </li>
@@ -980,7 +991,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-flow/" title="JavaScript Flow" class="md-nav__link">
+    <a href="../../page/lsp-flow/" title="JavaScript Flow" class="md-nav__link">
       JavaScript Flow
     </a>
   </li>
@@ -992,7 +1003,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-json/" title="Json" class="md-nav__link">
+    <a href="../../page/lsp-json/" title="Json" class="md-nav__link">
       Json
     </a>
   </li>
@@ -1004,7 +1015,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-julia/" title="Julia" class="md-nav__link">
+    <a href="../../page/lsp-julia/" title="Julia" class="md-nav__link">
       Julia
     </a>
   </li>
@@ -1016,7 +1027,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-kotlin/" title="Kotlin" class="md-nav__link">
+    <a href="../../page/lsp-kotlin/" title="Kotlin" class="md-nav__link">
       Kotlin
     </a>
   </li>
@@ -1040,7 +1051,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-nim/" title="Nim" class="md-nav__link">
+    <a href="../../page/lsp-nim/" title="Nim" class="md-nav__link">
       Nim
     </a>
   </li>
@@ -1052,7 +1063,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-nix/" title="Nix" class="md-nav__link">
+    <a href="../../page/lsp-nix/" title="Nix" class="md-nav__link">
       Nix
     </a>
   </li>
@@ -1064,7 +1075,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-ocaml/" title="OCaml (ocaml)" class="md-nav__link">
+    <a href="../../page/lsp-ocaml/" title="OCaml (ocaml)" class="md-nav__link">
       OCaml (ocaml)
     </a>
   </li>
@@ -1076,7 +1087,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-ocaml-lsp-server/" title="OCaml (ocaml-lsp)" class="md-nav__link">
+    <a href="../../page/lsp-ocaml-lsp-server/" title="OCaml (ocaml-lsp)" class="md-nav__link">
       OCaml (ocaml-lsp)
     </a>
   </li>
@@ -1088,7 +1099,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-pascal/" title="Pascal/Object Pascal" class="md-nav__link">
+    <a href="../../page/lsp-pascal/" title="Pascal/Object Pascal" class="md-nav__link">
       Pascal/Object Pascal
     </a>
   </li>
@@ -1100,7 +1111,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-perl/" title="Perl" class="md-nav__link">
+    <a href="../../page/lsp-perl/" title="Perl" class="md-nav__link">
       Perl
     </a>
   </li>
@@ -1112,7 +1123,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-intelephense/" title="PHP (intelephense)" class="md-nav__link">
+    <a href="../../page/lsp-intelephense/" title="PHP (intelephense)" class="md-nav__link">
       PHP (intelephense)
     </a>
   </li>
@@ -1124,7 +1135,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-serenata/" title="PHP (Serenata)" class="md-nav__link">
+    <a href="../../page/lsp-serenata/" title="PHP (Serenata)" class="md-nav__link">
       PHP (Serenata)
     </a>
   </li>
@@ -1136,7 +1147,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-php/" title="PHP (felixbecker)" class="md-nav__link">
+    <a href="../../page/lsp-php/" title="PHP (felixbecker)" class="md-nav__link">
       PHP (felixbecker)
     </a>
   </li>
@@ -1148,7 +1159,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-pwsh/" title="Powershell" class="md-nav__link">
+    <a href="../../page/lsp-pwsh/" title="Powershell" class="md-nav__link">
       Powershell
     </a>
   </li>
@@ -1160,7 +1171,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-prolog/" title="Prolog" class="md-nav__link">
+    <a href="../../page/lsp-prolog/" title="Prolog" class="md-nav__link">
       Prolog
     </a>
   </li>
@@ -1172,7 +1183,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-purescript/" title="PureScript" class="md-nav__link">
+    <a href="../../page/lsp-purescript/" title="PureScript" class="md-nav__link">
       PureScript
     </a>
   </li>
@@ -1184,7 +1195,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-jedi/" title="Python (Jedi Language Server)" class="md-nav__link">
+    <a href="../../page/lsp-jedi/" title="Python (Jedi Language Server)" class="md-nav__link">
       Python (Jedi Language Server)
     </a>
   </li>
@@ -1196,7 +1207,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-pyls/" title="Python (Palantir)" class="md-nav__link">
+    <a href="../../page/lsp-pyls/" title="Python (Palantir)" class="md-nav__link">
       Python (Palantir)
     </a>
   </li>
@@ -1232,7 +1243,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-r/" title="R" class="md-nav__link">
+    <a href="../../page/lsp-r/" title="R" class="md-nav__link">
       R
     </a>
   </li>
@@ -1244,7 +1255,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-racket-langserver/" title="Racket (jeapostrophe)" class="md-nav__link">
+    <a href="../../page/lsp-racket-langserver/" title="Racket (jeapostrophe)" class="md-nav__link">
       Racket (jeapostrophe)
     </a>
   </li>
@@ -1256,7 +1267,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-racket-language-server/" title="Racket (Theia)" class="md-nav__link">
+    <a href="../../page/lsp-racket-language-server/" title="Racket (Theia)" class="md-nav__link">
       Racket (Theia)
     </a>
   </li>
@@ -1268,7 +1279,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-solargraph/" title="Ruby" class="md-nav__link">
+    <a href="../../page/lsp-solargraph/" title="Ruby" class="md-nav__link">
       Ruby
     </a>
   </li>
@@ -1280,7 +1291,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-rust/" title="Rust" class="md-nav__link">
+    <a href="../../page/lsp-rust/" title="Rust" class="md-nav__link">
       Rust
     </a>
   </li>
@@ -1304,7 +1315,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-sqls/" title="SQL (sqls)" class="md-nav__link">
+    <a href="../../page/lsp-sqls/" title="SQL (sqls)" class="md-nav__link">
       SQL (sqls)
     </a>
   </li>
@@ -1316,7 +1327,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-svelte/" title="Svelte" class="md-nav__link">
+    <a href="../../page/lsp-svelte/" title="Svelte" class="md-nav__link">
       Svelte
     </a>
   </li>
@@ -1340,7 +1351,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-terraform/" title="Terraform" class="md-nav__link">
+    <a href="../../page/lsp-terraform/" title="Terraform" class="md-nav__link">
       Terraform
     </a>
   </li>
@@ -1352,7 +1363,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-tex/" title="TeX, LaTeX, etc (digestif)" class="md-nav__link">
+    <a href="../../page/lsp-tex/" title="TeX, LaTeX, etc (digestif)" class="md-nav__link">
       TeX, LaTeX, etc (digestif)
     </a>
   </li>
@@ -1364,7 +1375,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-texlab/" title="TeX, LaTeX, etc (texlab)" class="md-nav__link">
+    <a href="../../page/lsp-texlab/" title="TeX, LaTeX, etc (texlab)" class="md-nav__link">
       TeX, LaTeX, etc (texlab)
     </a>
   </li>
@@ -1376,7 +1387,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-latex/" title="TeX, LaTeX, etc (texlab, external)" class="md-nav__link">
+    <a href="../../page/lsp-latex/" title="TeX, LaTeX, etc (texlab, external)" class="md-nav__link">
       TeX, LaTeX, etc (texlab, external)
     </a>
   </li>
@@ -1388,7 +1399,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-verilog/" title="Verilog/SystemVerilog" class="md-nav__link">
+    <a href="../../page/lsp-verilog/" title="Verilog/SystemVerilog" class="md-nav__link">
       Verilog/SystemVerilog
     </a>
   </li>
@@ -1400,7 +1411,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-vhdl/" title="VHDL" class="md-nav__link">
+    <a href="../../page/lsp-vhdl/" title="VHDL" class="md-nav__link">
       VHDL
     </a>
   </li>
@@ -1412,7 +1423,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-vim/" title="Vimscript" class="md-nav__link">
+    <a href="../../page/lsp-vim/" title="Vimscript" class="md-nav__link">
       Vimscript
     </a>
   </li>
@@ -1424,7 +1435,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-vetur/" title="Vue" class="md-nav__link">
+    <a href="../../page/lsp-vetur/" title="Vue" class="md-nav__link">
       Vue
     </a>
   </li>
@@ -1436,7 +1447,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-xml/" title="XML" class="md-nav__link">
+    <a href="../../page/lsp-xml/" title="XML" class="md-nav__link">
       XML
     </a>
   </li>
@@ -1448,7 +1459,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/lsp-yaml/" title="YAML" class="md-nav__link">
+    <a href="../../page/lsp-yaml/" title="YAML" class="md-nav__link">
       YAML
     </a>
   </li>
@@ -1524,7 +1535,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/gallery/" title="Gallery" class="md-nav__link">
+    <a href="../../page/gallery/" title="Gallery" class="md-nav__link">
       Gallery
     </a>
   </li>
@@ -1562,7 +1573,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../page/CHANGELOG/" title="Changelog" class="md-nav__link">
+    <a href="../../page/CHANGELOG/" title="Changelog" class="md-nav__link">
       Changelog
     </a>
   </li>
@@ -1577,10 +1588,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
     <label class="md-nav__link" for="nav-6">
       Tutorials
@@ -1600,9 +1613,30 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../tutorials/CPP-guide/" title="Configuring Emacs a C/C++ IDE" class="md-nav__link">
+    <a href="../CPP-guide/" title="Configuring Emacs a C/C++ IDE" class="md-nav__link">
       Configuring Emacs a C/C++ IDE
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="A guide on disabling/enabling lsp-mode features" class="md-nav__link md-nav__link--active">
+      A guide on disabling/enabling lsp-mode features
+    </a>
+    
   </li>
 
         
@@ -1659,7 +1693,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../7.0-release/" title="7.0 Release" class="md-nav__link">
+    <a href="../../blog/2020/7.0-release/" title="7.0 Release" class="md-nav__link">
       7.0 Release
     </a>
   </li>
@@ -1740,111 +1774,93 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/blog/2020/how-to-turn-off.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/emacs-lsp/lsp-mode/edit/master/docs/tutorials/how-to-turn-off.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  
-                
-                
-                <h1 id="how-to-turn-off-lsp-mode-feature-with-pictures">How to turn off lsp-mode feature (with pictures)<a class="headerlink" href="#how-to-turn-off-lsp-mode-feature-with-pictures" title="Permanent link">#</a></h1>
+                <h1 id="a-guide-on-disablingenabling-lsp-mode-features">A guide on disabling/enabling lsp-mode features<a class="headerlink" href="#a-guide-on-disablingenabling-lsp-mode-features" title="Permanent link">#</a></h1>
 <p>Early in the project, we decided to auto-configure/enable all of the stable
 features by default in order to improve discoverability and simplify the setup
 for the beginners. This decision was considered good by the majority of the
-users coming from IDEs but it but still in <code>Emacs</code> community there are a lot of
-people looking for minimal distraction free experience. Although, the turn off
-<code>defcustom</code> settings are documented in corresponding <code>README</code> and available via
-<code>customize-group</code> it turned out that it is not very easy to customize <code>lsp-mode</code>
-when you want to disable stuff. So here it is this article which will streamline
-and simplify that process.</p>
-<p><img alt="Turn Off 1" src="../images/turn-off-1.png" title="turn off 1" /></p>
-<ol>
-<li>Symbol highlighting
+users coming from IDEs but still in <code>Emacs</code> community there are a lot of people
+looking for a minimal distraction-free experience especially traditional long
+time users. Although the turn off <code>defcustom</code> settings are documented in
+corresponding <code>README</code> and available via <code>customize-group</code> it turned out that it
+is not very easy to find them when you want to turn a particular feature off
+which led to a lot of frustration. Hopefully, this article will help solving
+that issue:</p>
+<p><img alt="Turn Off 1" src="../images/turn-off-1.png" title="turn off 1" />
+1. Symbol highlighting
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-enable-symbol-highlighting</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li><code>lsp-ui-doc</code> - on hover dialogs.</li>
-<li>disable via
-   <div class="highlight"><pre><span></span><code>(setq lsp-ui-doc-enable nil)
-</code></pre></div></li>
-<li>disable cursor hover (keep mouse hover)
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-cursor</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>disable mouse hover (keep cursor hover)
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-mouse</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Lenses
+</code></pre></div>
+2. <code>lsp-ui-doc</code> - on hover dialogs.
+* disable via
+<div class="highlight"><pre><span></span><code>(setq lsp-ui-doc-enable nil)
+</code></pre></div>
+* disable cursor hover (keep mouse hover)
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-cursor</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+* disable mouse hover (keep cursor hover)
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-doc-show-with-mouse</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+3. Lenses
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-lens-enable</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Headerline
+</code></pre></div>
+4. Headerline
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-headerline-breadcrumb-enable</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Sideline code actions</li>
-<li>disable whole sideline via
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>hide code actions
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-code-actions</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Sideline hover symbols</li>
-<li>disable whole sideline via
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>hide only hover symbols
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-hover</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Modeline code actions
+</code></pre></div>
+5. Sideline code actions
+* disable whole sideline via
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+* hide code actions
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-code-actions</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+6. Sideline hover symbols
+* disable whole sideline via
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+* hide only hover symbols
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-hover</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+7. Modeline code actions
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-modeline-code-actions-enable</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-</ol>
-<p><img alt="Turn Off 2" src="../images/turn-off-2.png" title="turn off 2" /></p>
-<ol>
-<li>
-<p><code>Flycheck</code> (or <code>flymake</code> if no <code>flycheck</code> is present)
+</code></pre></div>
+<img alt="Turn Off 2" src="../images/turn-off-2.png" title="turn off 2" />
+8. <code>Flycheck</code> (or <code>flymake</code> if no <code>flycheck</code> is present)
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-diagnostics-provider</span> <span class="nb">:none</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Sideline diagnostics</p>
-</li>
-<li>disable whole sideline via
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>hide only errors
-   <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-diagnostics</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Eldoc
+</code></pre></div>
+9. Sideline diagnostics
+* disable whole sideline via
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+* hide only errors
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-ui-sideline-show-diagnostics</span> <span class="no">nil</span><span class="p">)</span>
+</code></pre></div>
+10. Eldoc
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-eldoc-enable-hover</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>
-<p>Modeline diagnostics statistics
+</code></pre></div>
+11. Modeline diagnostics statistics
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-modeline-diagnostics-enable</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div>
-<img alt="Turn Off 3" src="../images/turn-off-3.png" title="turn off 3" /></p>
-</li>
-<li>
-<p>Signature help
+<img alt="Turn Off 3" src="../images/turn-off-3.png" title="turn off 3" />
+12. Signature help
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-signature-auto-activate</span> <span class="no">nil</span><span class="p">)</span> <span class="c1">;; you could manually requiest them via `lsp-signature-activate`</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Signature help documentation (keep the signatures)
+</code></pre></div>
+13. Signature help documentation (keep the signatures)
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-signature-render-documentation</span> <span class="no">nil</span><span class="p">)</span>
 </code></pre></div>
-<img alt="Turn Off 4" src="../images/turn-off-4.png" title="turn off 4" /></p>
-</li>
-<li>
-<p>Completion (<code>company-mode</code>)
+<img alt="Turn Off 4" src="../images/turn-off-4.png" title="turn off 4" />
+14. Completion (<code>company-mode</code>)
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-completion-provider</span> <span class="nb">:none</span><span class="p">)</span>
-</code></pre></div></p>
-</li>
-<li>Completion item detail
+</code></pre></div>
+15. Completion item detail
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-completion-show-detail</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-<li>Completion item kind
+</code></pre></div>
+16. Completion item kind
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">setq</span> <span class="nv">lsp-completion-show-kind</span> <span class="no">nil</span><span class="p">)</span>
-</code></pre></div></li>
-</ol>
+</code></pre></div></p>
                 
                   
                     
@@ -1853,7 +1869,7 @@ and simplify that process.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 13, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 1, 2020</span>
     
   </small>
 </div>
@@ -1868,7 +1884,7 @@ and simplify that process.</p>
 
   <h2 id="__comments">Comments</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="https://emacs-lsp.github.io/lsp-mode/blog/2020/how-to-turn-off/",this.page.identifier="/blog/2020/how-to-turn-off/"};window.addEventListener("load",function(){var e=document,i=e.createElement("script");i.src="//emacs-lsp.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)})</script>
+  <script>var disqus_config=function(){this.page.url="https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/",this.page.identifier="/tutorials/how-to-turn-off/"};window.addEventListener("load",function(){var e=document,i=e.createElement("script");i.src="//emacs-lsp.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)})</script>
 
               
             </article>
@@ -1878,6 +1894,41 @@ and simplify that process.</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../CPP-guide/" title="Configuring Emacs a C/C++ IDE" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Configuring Emacs a C/C++ IDE
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../blog/2020/7.0-release/" title="7.0 Release" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                7.0 Release
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1926,20 +1977,20 @@ and simplify that process.</p>
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.c6483021.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e2f7d7a4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "../../..",
-          features: ["tabs"],
+          base: "../..",
+          features: ['navigation.tabs'],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../../assets/javascripts/worker/search.cbc634e2.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
       
-        <script src="../../../js/expanded_nav.js"></script>
+        <script src="../../js/expanded_nav.js"></script>
       
     
   </body>

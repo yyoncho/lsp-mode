@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -8,12 +6,16 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Language Server Protocol Support for Emacs">
+      
       
         <link rel="canonical" href="https://emacs-lsp.github.io/lsp-mode/page/lsp-xml/">
       
       
+        <meta name="author" content="ercdll1337@gmail.com">
+      
       <link rel="shortcut icon" href="../../examples/logo-mini.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.0">
     
     
       
@@ -21,13 +23,17 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d877a71.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.17bd0b03.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -50,9 +56,14 @@
   </head>
   
   
-    <body dir="ltr">
-  
     
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -141,8 +152,6 @@
 </header>
     
     <div class="md-container" data-md-component="container">
-      
-        
       
       
         
@@ -1821,6 +1830,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorials/how-to-turn-off/" title="A guide on disabling/enabling lsp-mode features" class="md-nav__link">
+      A guide on disabling/enabling lsp-mode features
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2148,9 +2169,6 @@
                   </a>
                 
                 
-                  
-                
-                
                 <h1 id="xml">XML<a class="headerlink" href="#xml" title="Permanent link">#</a></h1>
 <h2 id="server">Server<a class="headerlink" href="#server" title="Permanent link">#</a></h2>
 <p>For information about the LSP server, check the <a href="https://github.com/angelozerr/lsp4xml">lsp4xml</a>.</p>
@@ -2219,16 +2237,15 @@ Newlines and excess whitespace are removed.</p>
   editor.autoClosingTags for this to work</p>
 <hr />
 <h3 id="lsp-xml-server-vmargs"><code>lsp-xml-server-vmargs</code><a class="headerlink" href="#lsp-xml-server-vmargs" title="Permanent link">#</a></h3>
-<p><em>Default: <code>-noverify -Xmx64M
-  -XX:+UseG1GC -XX:+UseStringDeduplication</code></em></p>
-<p>Specifies extra VM
-  arguments used to launch the XML Language Server. Eg. use
-  ‘-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication‘ to
-  bypass class verification, increase the heap size to 1GB and
-  enable String deduplication with the G1 Garbage collector</p>
+<p><em>Default: <code>[-noverify -Xmx64M -XX:+UseG1GC -XX:+UseStringDeduplication]</code></em></p>
+<p>Specifies extra VM arguments used to launch the XML Language
+  Server. Eg. use ‘-noverify -Xmx1G -XX:+UseG1GC
+  -XX:+UseStringDeduplication‘ to bypass class verification,
+  increase the heap size to 1GB and enable String deduplication
+  with the G1 Garbage collector</p>
 <hr />
 <h3 id="lsp-xml-server-work-dir"><code>lsp-xml-server-work-dir</code><a class="headerlink" href="#lsp-xml-server-work-dir" title="Permanent link">#</a></h3>
-<p><em>Default: <code>~/.lsp4xml</code></em></p>
+<p><em>Default: <code>/home/runner/.lsp4xml</code></em></p>
 <p>Set a custom folder path for cached XML Schemas. An absolute
   path is expected, although the ~ prefix (for the user home
   directory) is supported.</p>
@@ -2263,7 +2280,7 @@ Newlines and excess whitespace are removed.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 13, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2020</span>
     
   </small>
 </div>
@@ -2365,15 +2382,15 @@ Newlines and excess whitespace are removed.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.c6483021.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e2f7d7a4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../..",
-          features: ["tabs"],
+          features: ['navigation.tabs'],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../../assets/javascripts/worker/search.cbc634e2.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
