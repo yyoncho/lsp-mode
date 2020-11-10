@@ -5665,8 +5665,11 @@ perform the request synchronously."
 
 (defun lsp-rename (newname)
   "Rename the symbol (and all references to it) under point to NEWNAME."
-  (interactive (list (-when-let ((symbol . placeholder) (lsp--get-symbol-to-rename))
-                       (read-string (format "Rename %s to: " symbol) placeholder nil symbol))))
+  (interactive (list (progn
+                       (unless (lsp-feature? "textDocument/rename")
+                         (user-error "Rename not supported..."))
+                       (-when-let ((symbol . placeholder) (lsp--get-symbol-to-rename))
+                         (read-string (format "Rename %s to: " symbol) placeholder nil symbol)))))
   (unless newname
     (user-error "A rename is not valid at this position"))
   (when-let ((edits (lsp-request "textDocument/rename"
