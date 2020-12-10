@@ -1634,6 +1634,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#lsp-xml-validation-resolve-external-entities" class="md-nav__link">
+    lsp-xml-validation-resolve-external-entities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#lsp-xml-validation-schema" class="md-nav__link">
     lsp-xml-validation-schema
   </a>
@@ -1643,6 +1650,13 @@
           <li class="md-nav__item">
   <a href="#lsp-xml-jar-file" class="md-nav__link">
     lsp-xml-jar-file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsp-xml-jar-download-url" class="md-nav__link">
+    lsp-xml-jar-download-url
   </a>
   
 </li>
@@ -1838,6 +1852,18 @@
   <li class="md-nav__item">
     <a href="../../tutorials/how-to-turn-off/" title="A guide on disabling/enabling lsp-mode features" class="md-nav__link">
       A guide on disabling/enabling lsp-mode features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorials/reactjs-tutorial/" title="React JavaScript Tutorial in Emacs" class="md-nav__link">
+      React JavaScript Tutorial in Emacs
     </a>
   </li>
 
@@ -2127,6 +2153,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#lsp-xml-validation-resolve-external-entities" class="md-nav__link">
+    lsp-xml-validation-resolve-external-entities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#lsp-xml-validation-schema" class="md-nav__link">
     lsp-xml-validation-schema
   </a>
@@ -2136,6 +2169,13 @@
           <li class="md-nav__item">
   <a href="#lsp-xml-jar-file" class="md-nav__link">
     lsp-xml-jar-file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsp-xml-jar-download-url" class="md-nav__link">
+    lsp-xml-jar-download-url
   </a>
   
 </li>
@@ -2171,9 +2211,11 @@
                 
                 <h1 id="xml">XML<a class="headerlink" href="#xml" title="Permanent link">#</a></h1>
 <h2 id="server">Server<a class="headerlink" href="#server" title="Permanent link">#</a></h2>
-<p>For information about the LSP server, check the <a href="https://github.com/angelozerr/lsp4xml">lsp4xml</a>.</p>
+<p>For more information about the LSP server, check <a href="https://github.com/eclipse/lemminx">lsp4xml</a>.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p><code>Download from lsp4xml releases</code></p>
+<p>This Server supports automatic install.
+Install this language server with <kbd>M-x</kbd><code>lsp-install-server</code><kbd>RET</kbd><code>xmlls</code><kbd>RET</kbd>.</p>
+<p><code>Automatic by lsp-mode</code></p>
 <h3 id="debugger-not-available">Debugger: Not available<a class="headerlink" href="#debugger-not-available" title="Permanent link">#</a></h3>
 <h2 id="available-configurations">Available configurations<a class="headerlink" href="#available-configurations" title="Permanent link">#</a></h2>
 <h3 id="lsp-xml-trace-server"><code>lsp-xml-trace-server</code><a class="headerlink" href="#lsp-xml-trace-server" title="Permanent link">#</a></h3>
@@ -2259,17 +2301,25 @@ Newlines and excess whitespace are removed.</p>
 <p><em>Default: <code>t</code></em></p>
 <p>Enable/disable all validation.</p>
 <hr />
+<h3 id="lsp-xml-validation-resolve-external-entities"><code>lsp-xml-validation-resolve-external-entities</code><a class="headerlink" href="#lsp-xml-validation-resolve-external-entities" title="Permanent link">#</a></h3>
+<p><em>Default: <code>nil</code></em></p>
+<p>Enable/disable resolution (downloading) of external entities from the internet.</p>
+<hr />
 <h3 id="lsp-xml-validation-schema"><code>lsp-xml-validation-schema</code><a class="headerlink" href="#lsp-xml-validation-schema" title="Permanent link">#</a></h3>
 <p><em>Default: <code>t</code></em></p>
 <p>Enable/disable schema based validation. Ignored if
   "xml.validation.enabled": false.</p>
 <hr />
 <h3 id="lsp-xml-jar-file"><code>lsp-xml-jar-file</code><a class="headerlink" href="#lsp-xml-jar-file" title="Permanent link">#</a></h3>
-<p><em>Default: <code>~/.emacs.d/org.eclipse.lsp4xml-0.3.0-uber.jar</code></em></p>
+<p><em>Default: <code>~/.emacs.d/.cache/lsp/xmlls/org.eclipse.lemminx-0.13.1-uber.jar</code></em></p>
 <p>Xml server jar command.</p>
 <hr />
+<h3 id="lsp-xml-jar-download-url"><code>lsp-xml-jar-download-url</code><a class="headerlink" href="#lsp-xml-jar-download-url" title="Permanent link">#</a></h3>
+<p><em>Default: <code>https://repo.eclipse.org/content/repositories/lemminx-releases/org/eclipse/lemminx/org.eclipse.lemminx/0.13.1/org.eclipse.lemminx-0.13.1-uber.jar</code></em></p>
+<p>Automatic download url for lsp-xml.</p>
+<hr />
 <h3 id="lsp-xml-server-command"><code>lsp-xml-server-command</code><a class="headerlink" href="#lsp-xml-server-command" title="Permanent link">#</a></h3>
-<p><em>Default: <code>(java -jar /home/runner/.emacs.d/org.eclipse.lsp4xml-0.3.0-uber.jar)</code></em></p>
+<p><em>Default: <code>(java -jar /home/runner/.emacs.d/.cache/lsp/xmlls/org.eclipse.lemminx-0.13.1-uber.jar)</code></em></p>
 <p>Xml server command.</p>
 <hr />
                 
@@ -2280,7 +2330,7 @@ Newlines and excess whitespace are removed.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 4, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2020</span>
     
   </small>
 </div>
