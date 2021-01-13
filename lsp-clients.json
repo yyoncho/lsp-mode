@@ -340,6 +340,15 @@
     "debugger": "Yes"
   },
   {
+    "name": "phpactor",
+    "full-name": "Phpactor",
+    "server-name": "phpactor",
+    "server-url": "https://github.com/phpactor/phpactor",
+    "installation-url": "https://phpactor.readthedocs.io/en/develop/usage/standalone.html#installation-global",
+    "installation": "composer g require phpactor/phpactor",
+    "debugger": "yes"
+  },
+  {
     "name": "pwsh",
     "full-name": "Powershell",
     "server-name": "PowerShellEditorServices",
@@ -482,6 +491,14 @@
     "server-name": "sqls",
     "server-url": "https://github.com/lighttiger2505/sqls",
     "installation": "go get github.com/lighttiger2505/sqls",
+    "debugger": "Not available"
+  },
+  {
+    "name": "steep",
+    "full-name": "Ruby (Steep)",
+    "server-name": "steep",
+    "server-url": "https://github.com/soutaro/steep",
+    "installation": "gem install steep",
     "debugger": "Not available"
   },
   {
