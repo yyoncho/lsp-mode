@@ -165,5 +165,26 @@
     (should (lsp-point-in-range? (lsp-make-position :character 3 :line 3)
                                  range))))
 
+(ert-deftest lsp-mode-test-point/position ()
+  (with-temp-buffer
+    (insert "🍋")
+    (let ((position (lsp--point-to-position (point)))
+          (point (point)))
+      (should (= 0 (plist-get position :line)))
+      (should (= 2 (plist-get position :character)))
+      (insert "more chars")
+      (should (= (lsp--position-to-point position)
+                 point)))))
+
+(ert-deftest lsp-mode-test-point/position-out-of-range ()
+  (with-temp-buffer
+    (insert "1")
+    (should (= (lsp--position-to-point (lsp-make-position :character 100
+                                                          :line 1))
+               2))))
+
+
+
+
 (provide 'lsp-mode-test)
 ;;; lsp-mode-test.el ends here
