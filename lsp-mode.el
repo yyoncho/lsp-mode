@@ -2802,12 +2802,7 @@ If WORKSPACE is not provided current workspace will be used."
 
 (defun lsp--make-message (params)
   "Create a LSP message from PARAMS, after encoding it to a JSON string."
-  (let ((body (lsp--json-serialize params)))
-    (concat "Content-Length: "
-            (number-to-string (1+ (string-bytes body)))
-            "\r\n\r\n"
-            body
-            "\n")))
+  params)
 
 (cl-defstruct lsp--log-entry timestamp process-time type method id body)
 
@@ -5812,7 +5807,10 @@ textDocument/didOpen for the new file."
       (lsp--flush-delayed-changes)))
 
   (condition-case err
-      (process-send-string proc message)
+      (lsp-async-send-request my/pipe
+                              (plist-get message :method)
+                              (plist-get message :params))
+    ;; (process-send-string proc message)
     ('error (lsp--error "Sending to process failed with the following error: %s"
                         (error-message-string err)))))
 
@@ -6582,6 +6580,11 @@ Ignore non-boolean keys whose value is nil."
                                                       (eval value))))
                     process-environment))))
 
+(defun my/handler (p i)
+  (let ((result (lsp-handler p i)))
+    (message ">>>>> %s" result)
+    (lsp--parser-on-message result lsp-global-workspace)))
+
 (defun lsp-stdio-connection (command &optional test-command)
   "Returns a connection property list using COMMAND.
 COMMAND can be: A string, denoting the command to launch the
@@ -6601,26 +6604,21 @@ returned by COMMAND is available via `executable-find'"
                                                               (stringp el))
                                                             l))))))
   (list :connect (lambda (filter sentinel name environment-fn)
-                   (let ((final-command (lsp-resolve-final-function command))
-                         (process-name (generate-new-buffer-name name))
-                         (process-environment
-                          (lsp--compute-process-environment environment-fn)))
-                     (let* ((stderr-buf (format "*%s::stderr*" process-name))
-                            (proc (make-process
-                                   :name process-name
-                                   :connection-type 'pipe
-                                   :buffer (format "*%s*" process-name)
-                                   :coding 'no-conversion
-                                   :command final-command
-                                   :filter filter
-                                   :sentinel sentinel
-                                   :stderr stderr-buf
-                                   :noquery t)))
-                       (set-process-query-on-exit-flag proc nil)
-                       (set-process-query-on-exit-flag (get-buffer-process stderr-buf) nil)
-                       (with-current-buffer (get-buffer stderr-buf)
-                         ;; Make the *NAME::stderr* buffer buffer-read-only, q to bury, etc.
-                         (special-mode))
+                   (let ((final-command (lsp-resolve-final-function command)))
+
+                     (setq my/pipe (make-lsp-connection (seq-first final-command)
+                                                        (seq-rest final-command)
+                                                        #'my/handler))
+
+                     (lsp-json-config my/pipe
+                                      :object-type 'hash-table
+                                      :false-object :json-false
+                                      :ser-false-object nil
+                                      :ser-null-object nil)
+
+                     (let ((proc (make-process :name "xxxx"
+                                               :command '("ls")
+                                               :noquery t)))
                        (cons proc proc))))
         :test? (or
                 test-command
@@ -6880,6 +6878,7 @@ SESSION is the active session."
     (setf (lsp--workspace-proc workspace) proc
           (lsp--workspace-cmd-proc workspace) cmd-proc)
 
+    (setq lsp-global-workspace workspace)
     ;; update (lsp-session-folder->servers) depending on whether we are starting
     ;; multi/single folder workspace
     (mapc (lambda (project-root)
