@@ -6583,7 +6583,8 @@ Ignore non-boolean keys whose value is nil."
 (defun my/handler (p i)
   (let ((result (lsp-handler p i)))
     (message ">>>>> %s" result)
-    (lsp--parser-on-message result lsp-global-workspace)))
+    (setq my/result result)
+    (run-with-idle-timer 0 nil 'lsp--parser-on-message my/result lsp-global-workspace)))
 
 (defun lsp-stdio-connection (command &optional test-command)
   "Returns a connection property list using COMMAND.
@@ -6883,9 +6884,9 @@ SESSION is the active session."
     ;; multi/single folder workspace
     (mapc (lambda (project-root)
             (->> session
-                 (lsp-session-folder->servers)
-                 (gethash project-root)
-                 (cl-pushnew workspace)))
+              (lsp-session-folder->servers)
+              (gethash project-root)
+              (cl-pushnew workspace)))
           (or workspace-folders (list root)))
 
     (with-lsp-workspace workspace
@@ -6905,17 +6906,17 @@ SESSION is the active session."
           (list :trace lsp-server-trace))
         (when multi-root
           (->> workspace-folders
-               (-distinct)
-               (-map (lambda (folder)
-                       (list :uri (lsp--path-to-uri folder)
-                             :name (f-filename folder))))
-               (apply 'vector)
-               (list :workspaceFolders))))
+            (-distinct)
+            (-map (lambda (folder)
+                    (list :uri (lsp--path-to-uri folder)
+                          :name (f-filename folder))))
+            (apply 'vector)
+            (list :workspaceFolders))))
        (lambda (response)
          (unless response
            (lsp--spinner-stop)
            (signal 'lsp-empty-response-error (list "initialize")))
-
+         (message "XXXXX initialize response..." )
          (let* ((capabilities (lsp:initialize-result-capabilities response))
                 (json-object-type 'hash-table)
                 (text-document-sync (-some-> lsp-parsed-message
@@ -6928,8 +6929,8 @@ SESSION is the active session."
            ;; see #1807
            (when (and (ht? save) (ht-empty? save))
              (-> capabilities
-                 (lsp:server-capabilities-text-document-sync?)
-                 (lsp:set-text-document-sync-options-save? save)))
+               (lsp:server-capabilities-text-document-sync?)
+               (lsp:set-text-document-sync-options-save? save)))
 
            (setf (lsp--workspace-server-capabilities workspace) capabilities
                  (lsp--workspace-status workspace) 'initialized)
@@ -6940,10 +6941,10 @@ SESSION is the active session."
            (when initialized-fn (funcall initialized-fn workspace))
 
            (->> workspace
-                (lsp--workspace-buffers)
-                (mapc (lambda (buffer)
-                        (lsp-with-current-buffer buffer
-                          (lsp--open-in-workspace workspace)))))
+             (lsp--workspace-buffers)
+             (mapc (lambda (buffer)
+                     (lsp-with-current-buffer buffer
+                       (lsp--open-in-workspace workspace)))))
 
            (with-lsp-workspace workspace
              (run-hooks 'lsp-after-initialize-hook))
