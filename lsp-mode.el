@@ -3289,7 +3289,8 @@ disappearing, unset all the variables related to it."
                       (publishDiagnostics . ((relatedInformation . t)
                                              (tagSupport . ((valueSet . [1 2])))
                                              (versionSupport . t)))))
-     (window . ((workDoneProgress . t))))
+     ;; (window . ((workDoneProgress . t)))
+     )
    custom-capabilities))
 
 (defun lsp-find-roots-for-workspace (workspace session)
