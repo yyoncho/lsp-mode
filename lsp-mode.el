@@ -268,7 +268,7 @@ It contains all of the clients that are currently registered.")
   "List of clients allowed to be used for projects.
 When nil, all registered clients are considered candidates.")
 
-(defvar lsp-last-id 0
+(defvar lsp-last-id 1
   "Last request id.")
 
 (defcustom lsp-before-initialize-hook nil
@@ -5807,9 +5807,14 @@ textDocument/didOpen for the new file."
       (lsp--flush-delayed-changes)))
 
   (condition-case err
-      (lsp-async-send-request my/pipe
-                              (plist-get message :method)
-                              (plist-get message :params))
+      (if-let ((id (plist-get message :id)))
+          (lsp-async-send-request my/pipe
+                                  (plist-get message :method)
+                                  (plist-get message :params)
+                                  (number-to-string id))
+        (lsp-async-send-notification my/pipe
+                                     (plist-get message :method)
+                                     (plist-get message :params)))
     ;; (process-send-string proc message)
     ('error (lsp--error "Sending to process failed with the following error: %s"
                         (error-message-string err)))))
@@ -6073,11 +6078,13 @@ WORKSPACE is the active workspace."
                 (lsp--make-log-entry method id data 'incoming-resp
                                      (/ (nth 2 (time-since before-send)) 1000))
                 workspace))
-             (when callback
-               (funcall callback (lsp:json-response-result json-data))
-               (remhash id (lsp--client-response-handlers client))
-               (lsp--log-request-time server-id method id start-time before-send
-                                      received-time after-parsed-time (current-time)))))
+             (if callback
+                 (progn  (funcall callback (lsp:json-response-result json-data))
+                         (remhash id (lsp--client-response-handlers client))
+                         (lsp--log-request-time server-id method id start-time before-send
+                                                received-time after-parsed-time (current-time)))
+               ;; (warn "No handler for %s keys = %s" id (ht-keys (lsp--client-response-handlers client)))
+               )))
           ('response-error
            (cl-assert id)
            (-let [(_ callback method start-time before-send) (gethash id (lsp--client-response-handlers client))]
@@ -6581,8 +6588,9 @@ Ignore non-boolean keys whose value is nil."
                     process-environment))))
 
 (defun my/handler (p i)
+  ;; (message ">>>>>")
   (let ((result (lsp-handler p i)))
-    (message ">>>>> %s" result)
+    ;; (message ">>>>> %s" result)
     (setq my/result result)
     (run-with-idle-timer 0 nil 'lsp--parser-on-message my/result lsp-global-workspace)))
 
@@ -6890,66 +6898,66 @@ SESSION is the active session."
           (or workspace-folders (list root)))
 
     (with-lsp-workspace workspace
-      (run-hooks 'lsp-before-initialize-hook)
-      (lsp-request-async
-       "initialize"
-       (append
-        (list :processId nil
-              :rootPath (lsp-file-local-name (expand-file-name root))
-              :clientInfo (list :name "emacs"
-                                :version (emacs-version))
-              :rootUri (lsp--path-to-uri root)
-              :capabilities (lsp--client-capabilities custom-capabilities)
-              :initializationOptions initialization-options
-              :workDoneToken "1")
-        (when lsp-server-trace
-          (list :trace lsp-server-trace))
-        (when multi-root
-          (->> workspace-folders
-            (-distinct)
-            (-map (lambda (folder)
-                    (list :uri (lsp--path-to-uri folder)
-                          :name (f-filename folder))))
-            (apply 'vector)
-            (list :workspaceFolders))))
-       (lambda (response)
-         (unless response
-           (lsp--spinner-stop)
-           (signal 'lsp-empty-response-error (list "initialize")))
-         (message "XXXXX initialize response..." )
-         (let* ((capabilities (lsp:initialize-result-capabilities response))
-                (json-object-type 'hash-table)
-                (text-document-sync (-some-> lsp-parsed-message
-                                      (json-read-from-string)
-                                      (ht-get "result")
-                                      (ht-get "capabilities")
-                                      (ht-get "textDocumentSync")))
-                (save (when (ht? text-document-sync)
-                        (ht-get text-document-sync "save"))))
-           ;; see #1807
-           (when (and (ht? save) (ht-empty? save))
-             (-> capabilities
-               (lsp:server-capabilities-text-document-sync?)
-               (lsp:set-text-document-sync-options-save? save)))
+                        (run-hooks 'lsp-before-initialize-hook)
+                        (lsp-request-async
+                         "initialize"
+                         (append
+                          (list :processId nil
+                                :rootPath (lsp-file-local-name (expand-file-name root))
+                                :clientInfo (list :name "emacs"
+                                                  :version (emacs-version))
+                                :rootUri (lsp--path-to-uri root)
+                                :capabilities (lsp--client-capabilities custom-capabilities)
+                                :initializationOptions initialization-options
+                                :workDoneToken "1")
+                          (when lsp-server-trace
+                            (list :trace lsp-server-trace))
+                          (when multi-root
+                            (->> workspace-folders
+                              (-distinct)
+                              (-map (lambda (folder)
+                                      (list :uri (lsp--path-to-uri folder)
+                                            :name (f-filename folder))))
+                              (apply 'vector)
+                              (list :workspaceFolders))))
+                         (lambda (response)
+                           (unless response
+                             (lsp--spinner-stop)
+                             (signal 'lsp-empty-response-error (list "initialize")))
+                           ;; (message "XXXXX initialize response..." )
+                           (let* ((capabilities (lsp:initialize-result-capabilities response))
+                                  (json-object-type 'hash-table)
+                                  (text-document-sync (-some-> lsp-parsed-message
+                                                        (json-read-from-string)
+                                                        (ht-get "result")
+                                                        (ht-get "capabilities")
+                                                        (ht-get "textDocumentSync")))
+                                  (save (when (ht? text-document-sync)
+                                          (ht-get text-document-sync "save"))))
+                             ;; see #1807
+                             (when (and (ht? save) (ht-empty? save))
+                               (-> capabilities
+                                 (lsp:server-capabilities-text-document-sync?)
+                                 (lsp:set-text-document-sync-options-save? save)))
 
-           (setf (lsp--workspace-server-capabilities workspace) capabilities
-                 (lsp--workspace-status workspace) 'initialized)
+                             (setf (lsp--workspace-server-capabilities workspace) capabilities
+                                   (lsp--workspace-status workspace) 'initialized)
 
-           (with-lsp-workspace workspace
-             (lsp-notify "initialized" lsp--empty-ht))
+                             (with-lsp-workspace workspace
+                                                 (lsp-notify "initialized" lsp--empty-ht))
 
-           (when initialized-fn (funcall initialized-fn workspace))
+                             (when initialized-fn (funcall initialized-fn workspace))
 
-           (->> workspace
-             (lsp--workspace-buffers)
-             (mapc (lambda (buffer)
-                     (lsp-with-current-buffer buffer
-                       (lsp--open-in-workspace workspace)))))
+                             (->> workspace
+                               (lsp--workspace-buffers)
+                               (mapc (lambda (buffer)
+                                       (lsp-with-current-buffer buffer
+                                                                (lsp--open-in-workspace workspace)))))
 
-           (with-lsp-workspace workspace
-             (run-hooks 'lsp-after-initialize-hook))
-           (lsp--info "%s initialized successfully" (lsp--workspace-print workspace))))
-       :mode 'detached))
+                             (with-lsp-workspace workspace
+                                                 (run-hooks 'lsp-after-initialize-hook))
+                             (lsp--info "%s initialized successfully" (lsp--workspace-print workspace))))
+                         :mode 'detached))
     workspace))
 
 (defun lsp--load-default-session ()
