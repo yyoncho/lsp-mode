@@ -7386,7 +7386,7 @@ the next question until the queue is empty."
     (when lsp--question-queue
       (lsp--process-question-queue))))
 
-(defun lsp--matching-clients? (client)
+(defun lsp--support-buffer? (client)
   (and
    ;; both file and client remote or both local
    (eq (---truthy? (file-remote-p (buffer-file-name)))
@@ -7414,7 +7414,7 @@ the next question until the queue is empty."
 SESSION is the currently active session. The function will also
 pick only remote enabled clients in case the FILE-NAME is on
 remote machine and vice versa."
-  (-when-let (matching-clients (lsp--filter-clients (-andfn #'lsp--matching-clients?
+  (-when-let (matching-clients (lsp--filter-clients (-andfn #'lsp--support-buffer?
                                                             #'lsp--server-binary-present?)))
     (lsp-log "Found the following clients for %s: %s"
              (buffer-file-name)
@@ -7857,21 +7857,19 @@ Returns nil if the project should not be added to the current SESSION."
 (defun lsp--try-open-in-library-workspace ()
   "Try opening current file as library file in any of the active workspace.
 The library folders are defined by each client for each of the active workspace."
-
-  (when-let ((workspace (->> (lsp-session)
-                             (lsp--session-workspaces)
-                             ;; Sort the last active workspaces first as they are more likely to be
-                             ;; the correct ones, especially when jumping to a definition.
-                             (-sort (lambda (a _b)
-                                      (-contains? lsp--last-active-workspaces a)))
-                             (--first
-                              (and (-contains? (-> it lsp--workspace-client lsp--client-major-modes)
-                                               major-mode)
-                                   (when-let ((library-folders-fn
-                                               (-> it lsp--workspace-client lsp--client-library-folders-fn)))
-                                     (-first (lambda (library-folder)
-                                               (lsp-f-ancestor-of? library-folder (buffer-file-name)))
-                                             (funcall library-folders-fn it))))))))
+  (when-let ((workspace (-first
+                         (lambda (workspace)
+                           (and (lsp--support-buffer? (lsp--workspace-client workspace))
+                                (when-let ((library-folders-fn
+                                            (-> workspace lsp--workspace-client lsp--client-library-folders-fn)))
+                                  (-first (lambda (library-folder)
+                                            (lsp-f-ancestor-of? library-folder (buffer-file-name)))
+                                          (funcall library-folders-fn workspace)))))
+                         ;; Sort the last active workspaces first as they are more likely to be
+                         ;; the correct ones, especially when jumping to a definition.
+                         (-sort (lambda (a _b)
+                                  (-contains? lsp--last-active-workspaces a))
+                                (lsp--session-workspaces (lsp-session))))))
     (lsp--open-in-workspace workspace)
     (view-mode t)
     (lsp--info "Opening read-only library file %s." (buffer-file-name))
@@ -7991,7 +7989,7 @@ argument ask the user to select which language server to start."
   (when (buffer-file-name)
     (let (clients
           (matching-clients (lsp--filter-clients
-                             (-andfn #'lsp--matching-clients?
+                             (-andfn #'lsp--support-buffer?
                                      #'lsp--server-binary-present?))))
       (cond
        (matching-clients
@@ -8009,7 +8007,7 @@ argument ask the user to select which language server to start."
                      (apply 'concat (--map (format "[%s]" (lsp--workspace-print it))
                                            lsp--buffer-workspaces)))))
        ;; look for servers which are currently being downloaded.
-       ((setq clients (lsp--filter-clients (-andfn #'lsp--matching-clients?
+       ((setq clients (lsp--filter-clients (-andfn #'lsp--support-buffer?
                                                    #'lsp--client-download-in-progress?)))
         (lsp--info "There are language server(%s) installation in progress.
 The server(s) will be started in the buffer when it has finished."
@@ -8018,7 +8016,7 @@ The server(s) will be started in the buffer when it has finished."
                   (cl-pushnew (current-buffer) (lsp--client-buffers client)))
                 clients))
        ;; look for servers to install
-       ((setq clients (lsp--filter-clients (-andfn #'lsp--matching-clients?
+       ((setq clients (lsp--filter-clients (-andfn #'lsp--support-buffer?
                                                    #'lsp--client-download-server-fn
                                                    (-not #'lsp--client-download-in-progress?))))
         (let ((client (lsp--completing-read
@@ -8032,7 +8030,7 @@ The server(s) will be started in the buffer when it has finished."
           (lsp--install-server-internal client)))
        ;; no clients present
        ((setq clients (unless matching-clients
-                        (lsp--filter-clients (-andfn #'lsp--matching-clients?
+                        (lsp--filter-clients (-andfn #'lsp--support-buffer?
                                                      (-not #'lsp--server-binary-present?)))))
         (lsp--warn "The following servers support current file but do not have automatic installation configuration: %s
 You may find the installation instructions at https://emacs-lsp.github.io/lsp-mode/page/languages.
@@ -8042,7 +8040,7 @@ You may find the installation instructions at https://emacs-lsp.github.io/lsp-mo
                               clients
                               " ")))
        ;; no matches
-       ((-> #'lsp--matching-clients? lsp--filter-clients not)
+       ((-> #'lsp--support-buffer? lsp--filter-clients not)
         (lsp--error "There are no language servers supporting current mode `%s' registered with `lsp-mode'.
 This issue might be caused by:
 1. The language you are trying to use does not have built-in support in `lsp-mode'. You must install the required support manually. Examples of this are `lsp-java' or `lsp-metals'.
