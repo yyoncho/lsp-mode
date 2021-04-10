@@ -6146,7 +6146,7 @@ deserialization.")
   (let ((body-received 0)
         leftovers body-length body chunk)
     (lambda (_proc input)
-      (setf chunk (let ((encoded (encode-coding-string input 'utf-8 'nocopy)))
+      (setf chunk (let ((encoded input))
                     (if (s-blank? leftovers)
                         encoded
                       (concat leftovers encoded))))
@@ -6171,14 +6171,14 @@ deserialization.")
               ;; for when the next chunk arrives and await further input.
               (setf leftovers chunk
                     chunk ""))
-          (let* ((chunk-length (string-bytes chunk))
+          (let* ((chunk-length (length chunk))
                  (left-to-receive (- body-length body-received))
                  (this-body (if (< left-to-receive chunk-length)
                                 (prog1 (substring chunk 0 left-to-receive)
                                   (setf chunk (substring chunk left-to-receive)))
                               (prog1 chunk
                                 (setf chunk ""))))
-                 (body-bytes (string-bytes this-body)))
+                 (body-bytes (length this-body)))
             (push this-body body)
             (setf body-received (+ body-received body-bytes))
             (when (>= chunk-length left-to-receive)
@@ -6186,16 +6186,17 @@ deserialization.")
                (condition-case err
                    (with-temp-buffer
                      (apply #'insert
-                            (-map
-                             (lambda (s)
-                               (decode-coding-string s 'utf-8 'no-copy))
-                             (nreverse
-                              (prog1 body
-                                (setf leftovers nil
-                                      body-length nil
-                                      body-received nil
-                                      body nil)))))
+                            (nreverse
+                             (prog1 body
+                               (setf leftovers nil
+                                     body-length nil
+                                     body-received nil
+                                     body nil))))
+                     (decode-coding-region (point-min)
+                                           (point-max)
+                                           'utf-8)
                      (goto-char (point-min))
+
                      (json-parse-buffer :object-type (if lsp-use-plists 'plist 'hash-table)
                                         :null-object nil :false-object nil))
 
