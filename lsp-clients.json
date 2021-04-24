@@ -1,5 +1,13 @@
 [
   {
+    "name": "actionscript",
+    "full-name": "ActionScript",
+    "server-name": "as3mxml",
+    "server-url": "https://github.com/BowlerHatLLC/vscode-as3mxml",
+    "installation-url": "https://github.com/BowlerHatLLC/vscode-as3mxml/wiki/Install-the-ActionScript-and-MXML-extension-for-Visual-Studio-Code",
+    "debugger": "Yes"
+  },
+  {
     "name": "ada",
     "full-name": "Ada",
     "server-name": "ada_language_server",
@@ -14,7 +22,7 @@
     "server-url": "https://github.com/angular/vscode-ng-language-service",
     "installation-url": "https://github.com/emacs-lsp/lsp-mode/wiki/Install-Angular-Language-server",
     "installation": "npm install -g @angular/language-service@next typescript  @angular/language-server",
-      "debugger": "Not relevant"
+    "debugger": "Not relevant"
   },
   {
     "name": "bash",
@@ -86,6 +94,14 @@
     "installation": "npm install -g vscode-css-languageserver-bin",
     "lsp-install-server": "css-ls",
     "debugger": "Not available"
+  },
+  {
+    "name": "d",
+    "full-name": "D",
+    "server-name": "serve-d",
+    "server-url": "https://github.com/pure-d/serve-d",
+    "installation-url": "https://github.com/pure-d/serve-d#installation",
+    "debugger": "Yes"
   },
   {
     "name": "dhall",
@@ -167,8 +183,17 @@
     "full-name": "Go",
     "server-name": "gopls",
     "server-url": "https://github.com/golang/tools/tree/master/gopls",
-    "installation-url": "https://github.com/golang/tools/blob/master/gopls/doc/user.md#installation",
+    "installation-url": "https://github.com/golang/tools/tree/master/gopls#installation",
     "debugger": "Yes"
+  },
+  {
+    "name": "grammarly",
+    "full-name": "Grammarly",
+    "server-name": "unofficial-grammarly-language-server-2",
+    "server-url": "https://github.com/emacs-grammarly/unofficial-grammarly-language-server",
+    "installation-url": "https://github.com/emacs-grammarly/unofficial-grammarly-language-server",
+    "installation": "npm i -g unofficial-grammarly-language-server-2",
+    "debugger": "Not available"
   },
   {
     "name": "groovy",
@@ -221,6 +246,13 @@
     "debugger": "Yes (Firefox/Chrome)"
   },
   {
+    "name": "deno",
+    "full-name": "Javascript/Typescript (deno)",
+    "server-name": "deno lsp",
+    "server-url": "https://deno.land/#installation",
+    "debugger": "Yes (Chrome)"
+  },
+  {
     "name": "json",
     "full-name": "Json",
     "server-name": "vscode-json-languageserver",
@@ -270,6 +302,14 @@
     "installation-url": "https://luarocks.org/modules/alloyed/lua-lsp",
     "server-url": "https://github.com/Alloyed/lua-lsp",
     "installation": "luarocks install --server=https://luarocks.org/dev lua-lsp --local",
+    "debugger": "Not available"
+  },
+  {
+    "name": "markdown",
+    "full-name": "Markdown",
+    "server-name": "unified-language-server",
+    "server-url": "https://github.com/unifiedjs/unified-language-server",
+    "installation": "npm i -g unified-language-server",
     "debugger": "Not available"
   },
   {
@@ -388,7 +428,7 @@
     "full-name": "Python",
     "server-name": "pyls",
     "server-url": "https://github.com/palantir/python-language-server",
-    "installation": "pip install ‘python-language-server[all]’",
+    "installation": "pip install 'python-language-server[all]'",
     "debugger": "Yes"
   },
   {
@@ -602,6 +642,14 @@
     "server-url": "https://github.com/redhat-developer/yaml-language-server",
     "installation": "npm install -g yaml-language-server",
     "lsp-install-server": "yamlls",
+    "debugger": "Not available"
+  },
+  {
+    "name": "zig",
+    "full-name": "Zig",
+    "server-name": "zls",
+    "server-url": "https://github.com/zigtools/zls",
+    "installation-url": "https://github.com/zigtools/zls#installation",
     "debugger": "Not available"
   }
 ]
