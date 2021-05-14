@@ -1309,6 +1309,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lsp-verify-signature" class="md-nav__link">
+    lsp-verify-signature
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lsp-vscode-ext-url" class="md-nav__link">
     lsp-vscode-ext-url
   </a>
@@ -1497,6 +1504,19 @@
   <li class="md-nav__item">
     <a href="https://github.com/emacs-lsp/lsp-ivy" class="md-nav__link">
       Ivy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/gagbo/consult-lsp" class="md-nav__link">
+      Consult
     </a>
   </li>
 
@@ -2531,7 +2551,20 @@
 
   <li class="md-nav__item">
     <a href="../../lsp-verilog/" class="md-nav__link">
-      Verilog/SystemVerilog
+      Verilog/SystemVerilog (hdl-checker)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../../lsp-svlangserver/" class="md-nav__link">
+      Verilog/SystemVerilog (svlangserver)
     </a>
   </li>
 
@@ -3530,6 +3563,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lsp-verify-signature" class="md-nav__link">
+    lsp-verify-signature
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lsp-vscode-ext-url" class="md-nav__link">
     lsp-vscode-ext-url
   </a>
@@ -3642,7 +3682,7 @@ before saving a document.</p>
 <hr />
 <h3 id="lsp-client-packages"><code>lsp-client-packages</code><a class="headerlink" href="#lsp-client-packages" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>(repeat symbol)</code></p>
-<p><em>Default:</em> <code>(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)</code></p>
+<p><em>Default:</em> <code>(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)</code></p>
 <p>List of the clients to be automatically required.</p>
 <hr />
 <h3 id="lsp-completion-default-behaviour"><code>lsp-completion-default-behaviour</code><a class="headerlink" href="#lsp-completion-default-behaviour" title="Permanent link">#</a></h3>
@@ -3795,7 +3835,7 @@ Renaming can be done using <code>lsp-rename</code>.</p>
 <hr />
 <h3 id="lsp-file-watch-ignored-directories"><code>lsp-file-watch-ignored-directories</code><a class="headerlink" href="#lsp-file-watch-ignored-directories" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>(repeat string)</code></p>
-<p><em>Default:</em> <code>([/\\]\.git\' [/\\]\.hg\' [/\\]\.bzr\' [/\\]_darcs\' [/\\]\.svn\' [/\\]_FOSSIL_\' [/\\]\.idea\' [/\\]\.ensime_cache\' [/\\]\.eunit\' [/\\]node_modules [/\\]\.fslckout\' [/\\]\.tox\' [/\\]dist\' [/\\]dist-newstyle\' [/\\]\.stack-work\' [/\\]\.bloop\' [/\\]\.metals\' [/\\]target\' [/\\]\.ccls-cache\' [/\\]\.vscode\' [/\\]\.deps\' [/\\]build-aux\' [/\\]autom4te.cache\' [/\\]\.reference\' [/\\]\.lsp\' [/\\]\.clj-kondo\' [/\\]\.shadow-cljs\' [/\\]\.babel_cache\' [/\\]\.cpcache\' [/\\]bin/Debug\' [/\\]obj\' [/\\]_opam\' [/\\]_build\')</code></p>
+<p><em>Default:</em> <code>([/\\]\.git\' [/\\]\.github\' [/\\]\.circleci\' [/\\]\.hg\' [/\\]\.bzr\' [/\\]_darcs\' [/\\]\.svn\' [/\\]_FOSSIL_\' [/\\]\.idea\' [/\\]\.ensime_cache\' [/\\]\.eunit\' [/\\]node_modules [/\\]\.fslckout\' [/\\]\.tox\' [/\\]dist\' [/\\]dist-newstyle\' [/\\]\.stack-work\' [/\\]\.bloop\' [/\\]\.metals\' [/\\]target\' [/\\]\.ccls-cache\' [/\\]\.vscode\' [/\\]\.deps\' [/\\]build-aux\' [/\\]autom4te.cache\' [/\\]\.reference\' [/\\]\.lsp\' [/\\]\.clj-kondo\' [/\\]\.shadow-cljs\' [/\\]\.babel_cache\' [/\\]\.cpcache\' [/\\]bin/Debug\' [/\\]obj\' [/\\]_opam\' [/\\]_build\' [/\\]\.direnv\')</code></p>
 <p>List of regexps matching directory paths which won`t be monitored when
 creating file watches. Customization of this variable is only honored at
 the global level or at a root of an lsp workspace.</p>
@@ -3955,8 +3995,8 @@ Changes take effect only when a new session is started.</p>
 <p>File where session information is stored.</p>
 <hr />
 <h3 id="lsp-signature-auto-activate"><code>lsp-signature-auto-activate</code><a class="headerlink" href="#lsp-signature-auto-activate" title="Permanent link">#</a></h3>
-<p><em>Type:</em> <code>(repeat (choice (const :tag On trigger chars pressed. :on-trigger-char) (const :tag After selected completion. :after-completion)))</code></p>
-<p><em>Default:</em> <code>(:on-trigger-char)</code></p>
+<p><em>Type:</em> <code>(repeat (choice (const :tag On trigger chars pressed. :on-trigger-char) (const :tag After selected completion. :after-completion) (const :tag When the server has sent show signature help. :on-server-request)))</code></p>
+<p><em>Default:</em> <code>(:on-trigger-char :on-server-request)</code></p>
 <p>Auto activate signature conditions.</p>
 <hr />
 <h3 id="lsp-signature-cycle"><code>lsp-signature-cycle</code><a class="headerlink" href="#lsp-signature-cycle" title="Permanent link">#</a></h3>
@@ -4021,6 +4061,11 @@ namespace SymbolKind.</p>
 <p><em>Default:</em> <code>bash -c 'mkdir -p %2$s &amp;&amp; unzip -qq -o %1$s -d %2$s'</code></p>
 <p>The script to unzip.</p>
 <hr />
+<h3 id="lsp-verify-signature"><code>lsp-verify-signature</code><a class="headerlink" href="#lsp-verify-signature" title="Permanent link">#</a></h3>
+<p><em>Type:</em> <code>boolean</code></p>
+<p><em>Default:</em> <code>t</code></p>
+<p>Whether to check GPG signatures of downloaded files.</p>
+<hr />
 <h3 id="lsp-vscode-ext-url"><code>lsp-vscode-ext-url</code><a class="headerlink" href="#lsp-vscode-ext-url" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>string</code></p>
 <p><em>Default:</em> <code>https://marketplace.visualstudio.com/_apis/public/gallery/publishers/%s/vsextensions/%s/%s/vspackage</code></p>
@@ -4040,7 +4085,7 @@ The hook will receive two parameters list of added and removed folders.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 24, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 14, 2021</span>
     
   </small>
 </div>
