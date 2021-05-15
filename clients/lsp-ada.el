@@ -63,9 +63,10 @@
                   :major-modes '(ada-mode)
                   :priority -1
                   :initialized-fn (lambda (workspace)
-                                    (with-lsp-workspace workspace
-                                      (lsp--set-configuration
-                                       (lsp-configuration-section "ada"))))
+                                    (lsp--with-workspace-temp-buffer (lsp--workspace-root workspace)
+                                      (with-lsp-workspace workspace
+                                        (lsp--set-configuration
+                                         (lsp-configuration-section "ada")))))
                   :server-id 'ada-ls))
 
 (provide 'lsp-ada)
