@@ -34,6 +34,15 @@
     "debugger": "Not available"
   },
   {
+    "name": "beancount",
+    "full-name": "Beancount",
+    "server-name": "beancount-langserver",
+    "server-url": "https://github.com/polarmutex/beancount-language-server",
+    "installation": "npm install -g beancount-langserver",
+    "lsp-install-server": "beancount-ls",
+    "debugger": "Not available"
+  },
+  {
     "name": "csharp",
     "full-name": "C#",
     "server-name": "OmniSharp-Roslyn",
@@ -197,10 +206,10 @@
   {
     "name": "grammarly",
     "full-name": "Grammarly",
-    "server-name": "unofficial-grammarly-language-server-2",
+    "server-name": "@emacs-grammarly/unofficial-grammarly-language-server",
     "server-url": "https://github.com/emacs-grammarly/unofficial-grammarly-language-server",
     "installation-url": "https://github.com/emacs-grammarly/unofficial-grammarly-language-server",
-    "installation": "npm i -g unofficial-grammarly-language-server-2",
+    "installation": "npm i -g @emacs-grammarly/unofficial-grammarly-language-server",
     "debugger": "Not available"
   },
   {
@@ -285,6 +294,14 @@
     "server-name": "kotlin-language-server",
     "server-url": "https://github.com/fwcd/KotlinLanguageServer",
     "installation-url": "https://github.com/fwcd/kotlin-language-server/blob/master/BUILDING.md",
+    "debugger": "Not available"
+  },
+  {
+    "name": "ltex",
+    "full-name": "LanguageTool",
+    "server-name": "LTEX",
+    "server-url": "https://github.com/valentjn/ltex-ls",
+    "installation-url": "https://github.com/valentjn/ltex-ls#installation",
     "debugger": "Not available"
   },
   {

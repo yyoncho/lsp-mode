@@ -1666,6 +1666,19 @@
 
 
   <li class="md-nav__item">
+    <a href="../../lsp-beancount/" class="md-nav__link">
+      Beancount
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
     <a href="../../lsp-ccls/" class="md-nav__link">
       C++ (ccls)
     </a>
@@ -2071,6 +2084,19 @@
   <li class="md-nav__item">
     <a href="../../lsp-kotlin/" class="md-nav__link">
       Kotlin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../../lsp-ltex/" class="md-nav__link">
+      LanguageTool (LTEX)
     </a>
   </li>
 
@@ -3682,7 +3708,7 @@ before saving a document.</p>
 <hr />
 <h3 id="lsp-client-packages"><code>lsp-client-packages</code><a class="headerlink" href="#lsp-client-packages" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>(repeat symbol)</code></p>
-<p><em>Default:</em> <code>(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)</code></p>
+<p><em>Default:</em> <code>(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-beancount lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-ltex lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)</code></p>
 <p>List of the clients to be automatically required.</p>
 <hr />
 <h3 id="lsp-completion-default-behaviour"><code>lsp-completion-default-behaviour</code><a class="headerlink" href="#lsp-completion-default-behaviour" title="Permanent link">#</a></h3>
@@ -3835,7 +3861,7 @@ Renaming can be done using <code>lsp-rename</code>.</p>
 <hr />
 <h3 id="lsp-file-watch-ignored-directories"><code>lsp-file-watch-ignored-directories</code><a class="headerlink" href="#lsp-file-watch-ignored-directories" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>(repeat string)</code></p>
-<p><em>Default:</em> <code>([/\\]\.git\' [/\\]\.github\' [/\\]\.circleci\' [/\\]\.hg\' [/\\]\.bzr\' [/\\]_darcs\' [/\\]\.svn\' [/\\]_FOSSIL_\' [/\\]\.idea\' [/\\]\.ensime_cache\' [/\\]\.eunit\' [/\\]node_modules [/\\]\.fslckout\' [/\\]\.tox\' [/\\]dist\' [/\\]dist-newstyle\' [/\\]\.stack-work\' [/\\]\.bloop\' [/\\]\.metals\' [/\\]target\' [/\\]\.ccls-cache\' [/\\]\.vscode\' [/\\]\.deps\' [/\\]build-aux\' [/\\]autom4te.cache\' [/\\]\.reference\' [/\\]\.lsp\' [/\\]\.clj-kondo\' [/\\]\.shadow-cljs\' [/\\]\.babel_cache\' [/\\]\.cpcache\' [/\\]bin/Debug\' [/\\]obj\' [/\\]_opam\' [/\\]_build\' [/\\]\.direnv\')</code></p>
+<p><em>Default:</em> <code>([/\\]\.git\' [/\\]\.github\' [/\\]\.circleci\' [/\\]\.hg\' [/\\]\.bzr\' [/\\]_darcs\' [/\\]\.svn\' [/\\]_FOSSIL_\' [/\\]\.idea\' [/\\]\.ensime_cache\' [/\\]\.eunit\' [/\\]node_modules [/\\]\.yarn\' [/\\]\.fslckout\' [/\\]\.tox\' [/\\]dist\' [/\\]dist-newstyle\' [/\\]\.stack-work\' [/\\]\.bloop\' [/\\]\.metals\' [/\\]target\' [/\\]\.ccls-cache\' [/\\]\.vscode\' [/\\]\.deps\' [/\\]build-aux\' [/\\]autom4te.cache\' [/\\]\.reference\' [/\\]\.lsp\' [/\\]\.clj-kondo\' [/\\]\.shadow-cljs\' [/\\]\.babel_cache\' [/\\]\.cpcache\' [/\\]bin/Debug\' [/\\]obj\' [/\\]_opam\' [/\\]_build\' [/\\]\.direnv\')</code></p>
 <p>List of regexps matching directory paths which won`t be monitored when
 creating file watches. Customization of this variable is only honored at
 the global level or at a root of an lsp workspace.</p>
@@ -4085,7 +4111,7 @@ The hook will receive two parameters list of added and removed folders.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2021</span>
     
   </small>
 </div>
