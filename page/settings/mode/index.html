@@ -819,6 +819,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lsp-auto-touch-files" class="md-nav__link">
+    lsp-auto-touch-files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lsp-before-apply-edits-hook" class="md-nav__link">
     lsp-before-apply-edits-hook
   </a>
@@ -2446,8 +2453,21 @@
 
 
   <li class="md-nav__item">
-    <a href="../../lsp-rust/" class="md-nav__link">
-      Rust
+    <a href="../../lsp-rust-analyzer/" class="md-nav__link">
+      Rust (rust-analyzer)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../../lsp-rust-rls/" class="md-nav__link">
+      Rust (rls)
     </a>
   </li>
 
@@ -2552,6 +2572,19 @@
   <li class="md-nav__item">
     <a href="../../lsp-latex/" class="md-nav__link">
       TeX, LaTeX, etc (texlab, external)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../../lsp-v/" class="md-nav__link">
+      V
     </a>
   </li>
 
@@ -3094,6 +3127,13 @@
         <li class="md-nav__item">
   <a href="#lsp-auto-select-workspace" class="md-nav__link">
     lsp-auto-select-workspace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lsp-auto-touch-files" class="md-nav__link">
+    lsp-auto-touch-files
   </a>
   
 </li>
@@ -3684,6 +3724,11 @@ If set and the current buffer has only a single workspace
 associated with it, <code>lsp-shutdown-workspace</code> and
 <code>lsp-restart-workspace</code> will act on it without asking.</p>
 <hr />
+<h3 id="lsp-auto-touch-files"><code>lsp-auto-touch-files</code><a class="headerlink" href="#lsp-auto-touch-files" title="Permanent link">#</a></h3>
+<p><em>Type:</em> <code>boolean</code></p>
+<p><em>Default:</em> <code>t</code></p>
+<p>If non-nil ensure the files exist before sending textDocument/didOpen notification.</p>
+<hr />
 <h3 id="lsp-before-apply-edits-hook"><code>lsp-before-apply-edits-hook</code><a class="headerlink" href="#lsp-before-apply-edits-hook" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>hook</code></p>
 <p><em>Default:</em> <code>nil</code></p>
@@ -3708,7 +3753,7 @@ before saving a document.</p>
 <hr />
 <h3 id="lsp-client-packages"><code>lsp-client-packages</code><a class="headerlink" href="#lsp-client-packages" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>(repeat symbol)</code></p>
-<p><em>Default:</em> <code>(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-beancount lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-ltex lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)</code></p>
+<p><em>Default:</em> <code>(ccls lsp-actionscript lsp-ada lsp-angular lsp-bash lsp-beancount lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-d lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-grammarly lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-ltex lsp-lua lsp-markdown lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-pylsp lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-v lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte lsp-steep lsp-zig)</code></p>
 <p>List of the clients to be automatically required.</p>
 <hr />
 <h3 id="lsp-completion-default-behaviour"><code>lsp-completion-default-behaviour</code><a class="headerlink" href="#lsp-completion-default-behaviour" title="Permanent link">#</a></h3>
@@ -4111,7 +4156,7 @@ The hook will receive two parameters list of added and removed folders.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2021</span>
     
   </small>
 </div>

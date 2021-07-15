@@ -1008,6 +1008,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lsp-semantic-tokens-allow-delta-requests" class="md-nav__link">
+    lsp-semantic-tokens-allow-delta-requests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lsp-semantic-tokens-allow-ranged-requests" class="md-nav__link">
+    lsp-semantic-tokens-allow-ranged-requests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lsp-semantic-tokens-apply-modifiers" class="md-nav__link">
     lsp-semantic-tokens-apply-modifiers
   </a>
@@ -2054,8 +2068,21 @@
 
 
   <li class="md-nav__item">
-    <a href="../../lsp-rust/" class="md-nav__link">
-      Rust
+    <a href="../../lsp-rust-analyzer/" class="md-nav__link">
+      Rust (rust-analyzer)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../../lsp-rust-rls/" class="md-nav__link">
+      Rust (rls)
     </a>
   </li>
 
@@ -2160,6 +2187,19 @@
   <li class="md-nav__item">
     <a href="../../lsp-latex/" class="md-nav__link">
       TeX, LaTeX, etc (texlab, external)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../../lsp-v/" class="md-nav__link">
+      V
     </a>
   </li>
 
@@ -2805,6 +2845,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lsp-semantic-tokens-allow-delta-requests" class="md-nav__link">
+    lsp-semantic-tokens-allow-delta-requests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lsp-semantic-tokens-allow-ranged-requests" class="md-nav__link">
+    lsp-semantic-tokens-allow-ranged-requests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lsp-semantic-tokens-apply-modifiers" class="md-nav__link">
     lsp-semantic-tokens-apply-modifiers
   </a>
@@ -2865,14 +2919,14 @@
 <hr />
 <h3 id="lsp-face-semhl-enum"><code>lsp-face-semhl-enum</code><a class="headerlink" href="#lsp-face-semhl-enum" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
-<p><em>Default:</em> <code>((t (:inherit font-lock-variable-name-face)))</code></p>
+<p><em>Default:</em> <code>((t (:inherit font-lock-type-face)))</code></p>
 <p>Face used for enums.</p>
 <hr />
 <h3 id="lsp-face-semhl-function"><code>lsp-face-semhl-function</code><a class="headerlink" href="#lsp-face-semhl-function" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
 <p><em>Default:</em> <code>((t :inherit font-lock-function-name-face))</code></p>
-<p>Face used for semantic highlighting scopes matching entity.name.function.*,
-unless overridden by a more specific face association.</p>
+<p>Face used for semantic highlighting scopes matching entity.name.function.*.
+Unless overridden by a more specific face association.</p>
 <hr />
 <h3 id="lsp-face-semhl-interface"><code>lsp-face-semhl-interface</code><a class="headerlink" href="#lsp-face-semhl-interface" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
@@ -2902,14 +2956,14 @@ unless overridden by a more specific face association.</p>
 <h3 id="lsp-face-semhl-method"><code>lsp-face-semhl-method</code><a class="headerlink" href="#lsp-face-semhl-method" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
 <p><em>Default:</em> <code>((t :inherit lsp-face-semhl-function))</code></p>
-<p>Face used for semantic highlighting scopes matching entity.name.function.method.*,
-unless overridden by a more specific face association.</p>
+<p>Face used for semantic highlighting scopes matching entity.name.method.*.
+Unless overridden by a more specific face association.</p>
 <hr />
 <h3 id="lsp-face-semhl-namespace"><code>lsp-face-semhl-namespace</code><a class="headerlink" href="#lsp-face-semhl-namespace" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
 <p><em>Default:</em> <code>((t :inherit font-lock-type-face :weight bold))</code></p>
-<p>Face used for semantic highlighting scopes matching entity.name.namespace.*,
-unless overridden by a more specific face association.</p>
+<p>Face used for semantic highlighting scopes matching entity.name.namespace.*.
+Unless overridden by a more specific face association.</p>
 <hr />
 <h3 id="lsp-face-semhl-number"><code>lsp-face-semhl-number</code><a class="headerlink" href="#lsp-face-semhl-number" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
@@ -2959,8 +3013,23 @@ unless overridden by a more specific face association.</p>
 <h3 id="lsp-face-semhl-variable"><code>lsp-face-semhl-variable</code><a class="headerlink" href="#lsp-face-semhl-variable" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>face</code></p>
 <p><em>Default:</em> <code>((t :inherit font-lock-variable-name-face))</code></p>
-<p>Face used for semantic highlighting scopes matching variable.*,
-unless overridden by a more specific face association.</p>
+<p>Face used for semantic highlighting scopes matching variable.*.
+Unless overridden by a more specific face association.</p>
+<hr />
+<h3 id="lsp-semantic-tokens-allow-delta-requests"><code>lsp-semantic-tokens-allow-delta-requests</code><a class="headerlink" href="#lsp-semantic-tokens-allow-delta-requests" title="Permanent link">#</a></h3>
+<p><em>Type:</em> <code>boolean</code></p>
+<p><em>Default:</em> <code>t</code></p>
+<p>Whether to use semantic token delta requests when available.</p>
+<p>When supported by the language server, delta requests are always
+preferred over both full and ranged token requests.</p>
+<hr />
+<h3 id="lsp-semantic-tokens-allow-ranged-requests"><code>lsp-semantic-tokens-allow-ranged-requests</code><a class="headerlink" href="#lsp-semantic-tokens-allow-ranged-requests" title="Permanent link">#</a></h3>
+<p><em>Type:</em> <code>boolean</code></p>
+<p><em>Default:</em> <code>t</code></p>
+<p>Whether to use ranged semantic token requests when available.</p>
+<p>Note that even when this is set to t, delta requests will
+be preferred whenever possible, unless
+<code>lsp-semantic-tokens-allow-delta-requests</code> is false.</p>
 <hr />
 <h3 id="lsp-semantic-tokens-apply-modifiers"><code>lsp-semantic-tokens-apply-modifiers</code><a class="headerlink" href="#lsp-semantic-tokens-apply-modifiers" title="Permanent link">#</a></h3>
 <p><em>Type:</em> <code>boolean</code></p>
@@ -2988,7 +3057,7 @@ or modifier type returned by a language server has no face associated with it.</
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2021</span>
     
   </small>
 </div>

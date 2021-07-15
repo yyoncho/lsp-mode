@@ -47,7 +47,7 @@
     "full-name": "C#",
     "server-name": "OmniSharp-Roslyn",
     "server-url": "https://github.com/OmniSharp/omnisharp-roslyn",
-    "installation": "Supports automatic installation. Use M-x lsp-csharp-update-server to update to latest.",
+    "installation": "Supports automatic installation.",
     "lsp-install-server": "csharp",
     "debugger": "Not available"
   },
@@ -330,6 +330,14 @@
     "debugger": "Not available"
   },
   {
+    "name": "lua-roblox",
+    "full-name": "Lua Roblox",
+    "server-name": "lua-roblox-language-server",
+    "installation-url": "https://github.com/NightrainsRbx/RobloxLsp",
+    "server-url": "https://github.com/NightrainsRbx/RobloxLsp",
+    "debugger": "Not available"
+  },
+  {
     "name": "markdown",
     "full-name": "Markdown",
     "server-name": "unified-language-server",
@@ -519,20 +527,20 @@
     "debugger": "Yes"
   },
   {
-    "name": "rust",
-    "full-name": "Rust",
-    "server-name": "rls",
-    "server-url": "https://github.com/rust-lang/rls",
-    "installation-url": "https://github.com/rust-lang/rls",
-    "debugger": "Yes"
-  },
-  {
     "name": "rust-analyzer",
     "full-name": "Rust",
     "server-name": "rust-analyzer",
     "server-url": "https://github.com/rust-analyzer/rust-analyzer",
     "installation-url": "https://github.com/rust-analyzer/rust-analyzer#language-server-quick-start",
     "debugger": "Not available"
+  },
+  {
+    "name": "rust-rls",
+    "full-name": "Rust",
+    "server-name": "rls",
+    "server-url": "https://github.com/rust-lang/rls",
+    "installation-url": "https://github.com/rust-lang/rls",
+    "debugger": "Yes"
   },
   {
     "name": "serenata",
@@ -623,6 +631,14 @@
     "server-name": "texlab",
     "server-url": "https://github.com/latex-lsp/texlab",
     "installation": "cargo install --git https://github.com/latex-lsp/texlab.git",
+    "debugger": "Not available"
+  },
+  {
+    "name": "v",
+    "full-name": "V",
+    "server-name": "vls",
+    "server-url": "https://github.com/vlang/vls/tree/master",
+    "installation-url": "https://github.com/vlang/vls/tree/master#installation",
     "debugger": "Not available"
   },
   {
