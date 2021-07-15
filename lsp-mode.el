@@ -676,6 +676,12 @@ Changes take effect only when a new session is started."
   :group 'lsp-mode
   :package-version '(lsp-mode . "6.1"))
 
+(defcustom lsp-auto-touch-files t
+  "If non-nil ensure the files exist before sending textDocument/didOpen notification."
+  :type 'boolean
+  :group 'lsp-mode
+  :package-version '(lsp-mode . "7.1"))
+
 (defvar lsp-language-id-configuration '((".*\\.vue$" . "vue")
                                         (".*\\.tsx$" . "typescriptreact")
                                         (".*\\.ts$" . "typescript")
@@ -3857,6 +3863,11 @@ yet."
 (defun lsp--text-document-did-open ()
   "'document/didOpen' event."
   (run-hooks 'lsp-before-open-hook)
+  (when (and lsp-auto-touch-files
+             (not (f-exists? (lsp--uri-to-path (lsp--buffer-uri)))))
+    (lsp-info "Saving file '%s' because it is not present on the disk." (lsp--buffer-uri))
+    (save-buffer))
+
   (setq lsp--cur-version (or lsp--cur-version 0))
   (cl-pushnew (lsp-current-buffer) (lsp--workspace-buffers lsp--cur-workspace))
   (lsp-notify
